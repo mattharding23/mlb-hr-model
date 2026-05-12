@@ -1,0 +1,67 @@
+name: Daily MLB HR Model
+
+on:
+  schedule:
+    # 11:00 AM ET (15:00 UTC during EDT / 16:00 UTC during EST)
+    # Adjust the hour if you want a different run time:
+    #   14 = 10am ET summer  |  15 = 11am ET summer  |  16 = noon ET summer
+    - cron: '0 15 * * *'
+
+  # "Run workflow" button in the GitHub Actions tab — useful for testing
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to run (YYYY-MM-DD, leave blank for today)'
+        required: false
+        default: ''
+
+jobs:
+  run-model:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Get the code ─────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Python + dependency cache ────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ── 3. Run the model ────────────────────────────────────────
+      - name: Run model
+        env:
+          ODDS_API_KEY:        ${{ secrets.ODDS_API_KEY }}
+          GMAIL_ADDRESS:       ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD:  ${{ secrets.GMAIL_APP_PASSWORD }}
+          REPORT_EMAIL:        ${{ secrets.REPORT_EMAIL }}
+          REPORT_PHONE:        ${{ secrets.REPORT_PHONE }}
+          CARRIER:             ${{ secrets.CARRIER }}
+          PAGES_URL:           ${{ secrets.PAGES_URL }}
+        run: |
+          # Use workflow_dispatch date input if provided, otherwise today
+          RUN_DATE="${{ github.event.inputs.date }}"
+          if [ -z "$RUN_DATE" ]; then
+            RUN_DATE=$(date +%Y-%m-%d)
+          fi
+          echo "Running model for $RUN_DATE"
+          python mlb_hr_model.py -k "$ODDS_API_KEY" -d "$RUN_DATE"
+
+      # ── 4. Deploy report to GitHub Pages ────────────────────────
+      #    The Python script already writes docs/index.html
+      #    This step publishes it to your-username.github.io/mlb-hr-model
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        # Only deploy if docs/index.html was actually written (i.e., there were games)
+        if: hashFiles('docs/index.html') != ''
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          # Keep previous reports accessible at /reports/report_YYYY-MM-DD.html
+          keep_files: false
