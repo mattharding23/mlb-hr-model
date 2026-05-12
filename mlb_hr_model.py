@@ -30,7 +30,7 @@ Setup:
   pip install requests pybaseball pandas
 """
 
-import sys, os, math, argparse, smtplib, webbrowser
+import sys, os, math, argparse, smtplib, webbrowser, shutil
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.multipart import MIMEMultipart
@@ -98,6 +98,25 @@ CARRIER_GATEWAYS = {
     "cricket":  "@mms.cricketwireless.net",
     "uscellular":"@email.uscc.net",
 }
+
+WINDOW_LABELS = {
+    "early": "🕐 Early Window (12–3:59 pm ET)",
+    "mid":   "🕓 Mid Window (4–6:59 pm ET)",
+    "late":  "🕖 Late Window (7 pm+ ET)",
+}
+
+def in_window(game_date_str, window):
+    if not window or not game_date_str:
+        return True
+    try:
+        dt = datetime.fromisoformat(game_date_str.replace("Z", "+00:00"))
+        hour = (dt.hour - 4) % 24  # EDT = UTC-4 for the full baseball season
+        if window == "early": return 12 <= hour < 16
+        if window == "mid":   return 16 <= hour < 19
+        if window == "late":  return hour >= 19
+    except Exception:
+        pass
+    return True
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -375,6 +394,8 @@ tr:hover td{background:#1e293b;}
 .bet{background:#166534;color:#86efac;} .lean{background:#1c3a2a;color:#4ade80;} .skip{background:#3b0f0f;color:#f87171;}
 .factors{font-size:10px;color:#475569;line-height:1.7;margin-top:3px;}
 .note{font-size:12px;color:#64748b;margin-top:20px;padding:14px;background:#1e293b;border-radius:8px;line-height:1.8;}
+section+section{border-top:2px solid #1e293b;margin-top:40px;padding-top:30px;}
+.wh{font-size:15px;font-weight:600;color:#94a3b8;margin-bottom:14px;}
 """
 
 def cfactor(adj, label, thresh=0.04):
@@ -383,7 +404,7 @@ def cfactor(adj, label, thresh=0.04):
     color = "#22c55e" if d > 0 else "#f87171"
     return f'<span style="color:{color}">{"↑" if d>0 else "↓"}{label} {d*100:+.0f}%</span>'
 
-def build_report(results, date, has_odds, has_statcast, weather_count, has_key):
+def _build_section(results, date, has_odds, has_statcast, weather_count, has_key, window=None):
     total      = len(results)
     with_lines = sum(1 for r in results if r["best_odds"] is not None)
     value_bets = sum(1 for r in results if (r.get("edge") or 0) > 0.02)
@@ -449,15 +470,10 @@ def build_report(results, date, has_odds, has_statcast, weather_count, has_key):
     all_books = list({b["book"] for r in results for b in r.get("all_books",[])})
     odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Lean +2–5pp · Skip ≤−4pp." if has_key else "Run with -k YOUR_ODDS_KEY for live line comparison."
     sc_note   = f"Statcast: barrel% + hard-hit% (barrel ratio vs {LG_BARREL*100:.1f}% league avg, exp 0.40)." if has_statcast else "Statcast disabled — install pybaseball."
+    wh = f'<div class="wh">{WINDOW_LABELS[window]}</div>' if window else ""
 
-    return f"""<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>MLB HR Props — {date}</title>
-<style>{CSS}</style></head><body>
-<h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
-<div class="g5">
+    return f"""<section>
+{wh}<div class="g5">
   <div class="metric"><div class="ml">Players</div><div class="mv">{total}</div></div>
   <div class="metric"><div class="ml">With lines</div><div class="mv">{with_lines}</div></div>
   <div class="metric"><div class="ml">Value bets</div><div class="mv g">{value_bets}</div></div>
@@ -483,7 +499,42 @@ def build_report(results, date, has_odds, has_statcast, weather_count, has_key):
   season HR/PA · splits (regressed) · hotness L14 (regressed) · {sc_note} ·
   SP HR rate · bullpen HR rate (team−SP, 55/45 blend) · park factor ({len(VENUES)} venues) · weather.<br><br>
   <strong style="color:#94a3b8">Lines:</strong> {odds_note}
-</div></body></html>"""
+</div>
+</section>"""
+
+
+def build_report(results, date, has_odds, has_statcast, weather_count, has_key, window=None):
+    section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key, window)
+    return f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MLB HR Props — {date}</title>
+<style>{CSS}</style></head><body>
+<h1>⚾ MLB HR Prop Finder — {date}</h1>
+<p class="sub">v3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
+{section}
+</body></html>"""
+
+
+def append_to_combined(html_path, results, date, has_odds, has_statcast, weather_count, has_key, window=None):
+    section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key, window)
+    if not os.path.exists(html_path):
+        content = f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MLB HR Props — {date}</title>
+<style>{CSS}</style></head><body>
+<h1>⚾ MLB HR Prop Finder — {date}</h1>
+<p class="sub">v3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
+{section}
+</body></html>"""
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(content)
+    else:
+        with open(html_path, "r", encoding="utf-8") as f:
+            existing = f.read()
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(existing.replace("</body></html>", f"{section}\n</body></html>"))
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -493,6 +544,10 @@ def build_report(results, date, has_odds, has_statcast, weather_count, has_key):
 def send_notifications(results, date, html_content, args):
     """Send HTML report by email and a short summary by SMS."""
 
+    value_bets = [r for r in results if (r.get("edge") or 0) > 0.02]
+    if not value_bets:
+        return
+
     gmail_addr = os.environ.get("GMAIL_ADDRESS", "")    or args.gmail_from
     gmail_pass = os.environ.get("GMAIL_APP_PASSWORD","") or args.gmail_pass
     to_email   = os.environ.get("REPORT_EMAIL", "")     or args.email_to
@@ -501,20 +556,19 @@ def send_notifications(results, date, html_content, args):
     pages_url  = os.environ.get("PAGES_URL", "")        or args.pages_url
 
     if not gmail_addr or not gmail_pass:
-        return  # no credentials, skip silently
+        return
 
-    value_bets = [r for r in results if (r.get("edge") or 0) > 0.02]
-    subject    = f"⚾ MLB HR Props {date} — {len(value_bets)} value bet{'s' if len(value_bets)!=1 else ''}"
+    window_tag = f" [{args.window.title()}]" if getattr(args, "window", None) else ""
+    subject    = f"⚾ MLB HR Props {date}{window_tag} — {len(value_bets)} value bet{'s' if len(value_bets)!=1 else ''}"
 
     # ── Full HTML email ───────────────────────────────────────────
     if to_email:
         try:
             msg = MIMEMultipart("alternative")
             msg["Subject"] = subject
-            msg["From"]    = gmail_addr
+            msg["From"]    = f"MLB HR Model Value <{gmail_addr}>"
             msg["To"]      = to_email
-            # Plain-text fallback
-            plain = f"MLB HR Props — {date}\n{len(value_bets)} value bets\n\n"
+            plain = f"MLB HR Props — {date}{window_tag}\n{len(value_bets)} value bets\n\n"
             for r in value_bets:
                 plain += f"• {r['name']} {fo(r['best_odds'])} ({r.get('best_book','')}) edge {(r.get('edge') or 0)*100:+.1f}%\n"
             if pages_url:
@@ -535,13 +589,12 @@ def send_notifications(results, date, html_content, args):
             digits   = "".join(c for c in to_phone if c.isdigit())
             sms_addr = digits + CARRIER_GATEWAYS[carrier]
 
-            lines = [f"⚾ HR Props {date}"]
-            if value_bets:
-                for r in value_bets[:4]:
-                    e = (r.get("edge") or 0) * 100
-                    lines.append(f"• {r['name'].split()[-1]} {fo(r['best_odds'])} {e:+.0f}% ({(r.get('best_book') or '')[:3]})")
-            else:
-                lines.append("No value bets today")
+            lines = [f"⚾ HR Props {date}{window_tag}"]
+            for r in value_bets[:4]:
+                e     = (r.get("edge") or 0) * 100
+                label = "🔥 Strong" if e > 5 else "✅ Lean"
+                book  = (r.get("best_book") or "")[:3]
+                lines.append(f"• {r['name'].split()[-1]} {fo(r['best_odds'])} {book} {label} {e:+.1f}%")
             if pages_url:
                 lines.append(pages_url)
 
@@ -573,6 +626,7 @@ def main():
     p.add_argument("--carrier",        default="", help="att|verizon|tmobile|sprint|boost|cricket")
     p.add_argument("--gmail-from",     default="", help="Gmail sender address (or set GMAIL_ADDRESS)")
     p.add_argument("--gmail-pass",     default="", help="Gmail App Password (or set GMAIL_APP_PASSWORD)")
+    p.add_argument("--window",         choices=["early","mid","late"], default=None, help="Game time window: early(12-4pm ET) mid(4-7pm ET) late(7pm+ ET)")
     p.add_argument("--pages-url",      default="", help="GitHub Pages URL for SMS link")
     args = p.parse_args()
 
@@ -589,7 +643,12 @@ def main():
     games = (sched or {}).get("dates", [{}])[0].get("games", [])
     if not games:
         print("✗  No games today — exiting cleanly")
-        sys.exit(0)   # 0 = clean exit, don't fail the CI job
+        sys.exit(0)
+    if args.window:
+        games = [g for g in games if in_window(g.get("gameDate",""), args.window)]
+        if not games:
+            print(f"✗  No games in '{args.window}' window — exiting cleanly")
+            sys.exit(0)
     print(f"✓  {len(games)} games")
 
     # Lineups
@@ -711,17 +770,19 @@ def main():
             e = r.get("edge") or 0
             print(f"  {r['name'][:25]:<26} {r['game_prob']*100:.1f}%  {fo(r['best_odds']):>7}  {e*100:+.1f}%  {(r.get('best_book') or '')[:14]}{'  🔥' if e>.05 else ''}")
 
-    # HTML report
+    # HTML report — standalone window file
     os.makedirs("reports", exist_ok=True)
-    report_path = os.path.abspath(f"reports/report_{date}.html")
-    html = build_report(results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key))
+    window_suffix = f"_{args.window}" if args.window else ""
+    report_path   = os.path.abspath(f"reports/report_{date}{window_suffix}.html")
+    html = build_report(results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key), window=args.window)
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    # Also write docs/index.html for GitHub Pages
+    # Combined daily report for GitHub Pages (append this window's section)
     os.makedirs("docs", exist_ok=True)
-    with open("docs/index.html", "w", encoding="utf-8") as f:
-        f.write(html)
+    combined_path = f"docs/report_{date}.html"
+    append_to_combined(combined_path, results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key), window=args.window)
+    shutil.copy2(combined_path, "docs/index.html")
 
     print(f"\n  ✓  Report: {report_path}")
 
