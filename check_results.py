@@ -234,8 +234,12 @@ def main():
         print(f"No picks file found at {picks_path} — nothing to resolve.")
         sys.exit(0)
 
-    with open(picks_path) as f:
-        picks = json.load(f)
+    try:
+        with open(picks_path) as f:
+            picks = json.load(f)
+    except json.JSONDecodeError:
+        print(f"Picks file at {picks_path} is empty or invalid — nothing to resolve.")
+        sys.exit(0)
 
     print(f"\n⚾  check_results.py  —  resolving against today {today_str}")
     print("─" * 50)
