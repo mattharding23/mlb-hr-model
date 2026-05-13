@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-MLB HR Prop Finder v3
+MLB HR Prop Finder v4
 ──────────────────────────────────────────────────────────────────────────────
 Model factors:
   • Season HR/PA rate (base, min 30 PA)
   • vs LHP/RHP splits (regressed, max 45% weight)
   • Hotness: last 14 days HR/PA (regressed, max 35% weight, needs ≥8 PA)
   • Statcast: barrel% + hard-hit% from Baseball Savant (regressed, 40% weight)
-  • Starting pitcher HR rate vs league avg
-  • Bullpen HR rate (team total − SP, blended 55% SP / 45% BP)
+  • Starting pitcher HR rate vs league avg (regressed, platoon-aware)
+  • Bullpen HR rate (regressed, platoon-aware, weighted by reliever IP)
   • Park factor (29 venues)
   • Weather: temperature + wind speed for outdoor venues (Open-Meteo, free)
 
@@ -25,12 +25,13 @@ Environment variables (used automatically by GitHub Actions):
   REPORT_EMAIL        Email address to receive full HTML report
   REPORT_PHONE        10-digit phone number for SMS summary
   CARRIER             att | verizon | tmobile | sprint | boost | cricket
+  BANKROLL            Bankroll in dollars for stake sizing
 
 Setup:
   pip install requests pybaseball pandas
 """
 
-import sys, os, math, argparse, smtplib, webbrowser, shutil
+import sys, os, math, argparse, smtplib, webbrowser, shutil, json
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.multipart import MIMEMultipart
@@ -140,7 +141,7 @@ def fetch_many(urls, workers=15):
     return results
 
 def proj_pa(spot, ou=8.5):
-    return PA_BY_SPOT.get(spot, 4.1) + (ou - 8.5) * 0.06
+    return PA_BY_SPOT.get(spot, 4.1) + (ou - 8.5) * 0.10
 
 def american_to_implied(odds):
     if odds > 0: return 100 / (odds + 100)
@@ -235,22 +236,37 @@ def get_weather(venue_game_times):
     return result
 
 def get_odds(api_key, date):
-    if not api_key: return {}
+    if not api_key: return {}, {}
     events = fetch(
         f"https://api.the-odds-api.com/v4/sports/baseball_mlb/events"
         f"?apiKey={api_key}&dateFormat=iso"
         f"&commenceTimeFrom={date}T00:00:00Z&commenceTimeTo={date}T23:59:59Z"
     )
-    if not events or not isinstance(events, list): return {}
-    urls = [
+    if not events or not isinstance(events, list): return {}, {}
+
+    # Build event map for totals lookup: norm(away + home) -> over line
+    game_totals = {}
+
+    # Fetch both batter_home_runs and totals in one batch
+    hr_urls = [
         f"https://api.the-odds-api.com/v4/sports/baseball_mlb/events/{e['id']}/odds"
         f"?apiKey={api_key}&markets=batter_home_runs&oddsFormat=american"
         f"&bookmakers=draftkings,fanduel,betmgm,caesars,pointsbetus,betrivers"
         for e in events
     ]
-    responses = fetch_many(urls, workers=3)
+    totals_urls = [
+        f"https://api.the-odds-api.com/v4/sports/baseball_mlb/events/{e['id']}/odds"
+        f"?apiKey={api_key}&markets=totals&oddsFormat=american"
+        f"&bookmakers=draftkings,fanduel,betmgm,caesars"
+        for e in events
+    ]
+    all_urls = hr_urls + totals_urls
+    responses = fetch_many(all_urls, workers=6)
+    hr_responses     = responses[:len(events)]
+    totals_responses = responses[len(events):]
+
     odds_map = {}
-    for res in responses:
+    for res in hr_responses:
         if not res: continue
         for book in res.get("bookmakers", []):
             mkt = next((m for m in book.get("markets", []) if m["key"] == "batter_home_runs"), None)
@@ -263,15 +279,43 @@ def get_odds(api_key, date):
         best = max(odds_map[key]["books"], key=lambda x: x["odds"])
         odds_map[key]["best"]      = best["odds"]
         odds_map[key]["best_book"] = best["book"]
-    return odds_map
+
+    # Parse totals
+    for ev, res in zip(events, totals_responses):
+        if not res: continue
+        home_team = ev.get("home_team", "")
+        away_team = ev.get("away_team", "")
+        pair_key  = norm(away_team)  # use away team as primary key
+        for book in res.get("bookmakers", []):
+            mkt = next((m for m in book.get("markets", []) if m["key"] == "totals"), None)
+            if not mkt: continue
+            for o in mkt.get("outcomes", []):
+                if (o.get("name") or "").lower() == "over":
+                    pt = o.get("point")
+                    if pt is not None and pair_key not in game_totals:
+                        game_totals[pair_key] = float(pt)
+                    break
+            if pair_key in game_totals:
+                break
+
+    return odds_map, game_totals
 
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Model
 # ──────────────────────────────────────────────────────────────────────────────
 
-def run_model(batter, season, splits, hot, sp_stat, team_stat,
-              weather, sc_by_id, sc_by_name, odds_map):
+def regressed_hr_pa(hr, ip, min_ip=10, max_weight=0.70, full_ip=150):
+    if ip < min_ip:
+        return LG_HR_PA
+    pa_faced = ip * 4.35
+    raw = hr / pa_faced
+    weight = min(ip / full_ip, max_weight)
+    return raw * weight + LG_HR_PA * (1 - weight)
+
+
+def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
+              team_stat, weather, sc_by_id, sc_by_name, odds_map, ou=8.5):
     if not season: return None
     pa = safe_int(season.get("plateAppearances"))
     hr = safe_int(season.get("homeRuns"))
@@ -309,23 +353,24 @@ def run_model(batter, season, splits, hot, sp_stat, team_stat,
                 (b / LG_BARREL) ** 0.40 * ((hh / LG_HARD_HIT) ** 0.20 if hh > 0 else 1.0)
             ))
 
-    # 4. Starting pitcher
-    sp_adj = 1.0
-    if sp_stat:
-        ip = safe_float(sp_stat.get("inningsPitched"))
-        if ip > 10:
-            sp_adj = max(0.4, min(3.0, (safe_int(sp_stat.get("homeRuns")) / (ip * 4.35)) / LG_HR_PA))
+    bh = batter.get("batter_hand", "R")
+    sp_sitcode = "vl" if bh == "L" else "vr"  # SP faces batter: vl=vs lefties, vr=vs righties
 
-    # 5. Bullpen (team − SP)
-    bp_adj = 1.0
-    if team_stat:
-        t_ip = safe_float(team_stat.get("inningsPitched"))
-        t_hr = safe_int(team_stat.get("homeRuns"))
-        if t_ip > 50:
-            sp_ip = safe_float(sp_stat.get("inningsPitched")) if sp_stat else 0
-            sp_hr = safe_int(sp_stat.get("homeRuns"))         if sp_stat else 0
-            bp_ip = max(t_ip - sp_ip, 10)
-            bp_adj = max(0.5, min(2.5, (max(t_hr - sp_hr, 0) / (bp_ip * 4.35)) / LG_HR_PA))
+    # 4. Starting pitcher (regressed, platoon-aware)
+    sp_split = (sp_splits or {}).get(sp_sitcode)
+    if sp_split:
+        s_hr_sp = safe_int(sp_split.get("homeRuns"))
+        s_ip_sp = safe_float(sp_split.get("inningsPitched"))
+        sp_rate = regressed_hr_pa(s_hr_sp, s_ip_sp)
+    elif sp_stat:
+        sp_rate = regressed_hr_pa(safe_int(sp_stat.get("homeRuns")), safe_float(sp_stat.get("inningsPitched")))
+    else:
+        sp_rate = LG_HR_PA
+    sp_adj = max(0.4, min(3.0, sp_rate / LG_HR_PA))
+
+    # 5. Bullpen (regressed, platoon-aware)
+    bp_rate = (bp_splits or {}).get(bh, LG_HR_PA)
+    bp_adj = max(0.5, min(2.5, bp_rate / LG_HR_PA))
 
     pitch_blend = 0.55 * sp_adj + 0.45 * bp_adj
 
@@ -338,7 +383,7 @@ def run_model(batter, season, splits, hot, sp_stat, team_stat,
         temp_adj = max(0.92, min(1.10, 1 + (weather["temp_f"]   - 72) * 0.0015))
         wind_adj = max(0.92, min(1.12, 1 + max(0, weather["wind_mph"] - 5) * 0.005))
 
-    pp     = proj_pa(batter["batting_order"])
+    pp     = proj_pa(batter["batting_order"], ou)
     per_pa = max(0.001, min(0.12, sr * split_adj * hot_adj * sc_adj * pitch_blend * park_adj * temp_adj * wind_adj))
     gp     = 1 - (1 - per_pa) ** pp
 
@@ -347,6 +392,18 @@ def run_model(batter, season, splits, hot, sp_stat, team_stat,
     best_book = od.get("best_book")
     implied   = american_to_implied(best_odds) if best_odds is not None else None
     edge      = (gp - implied) if implied is not None else None
+
+    # Kelly fraction
+    kelly = None
+    quarter_kelly = None
+    if best_odds is not None and edge is not None and edge > 0:
+        b = (best_odds / 100) if best_odds > 0 else (100 / abs(best_odds))
+        q = 1 - gp
+        raw_kelly = (gp * b - q) / b
+        kelly = max(0, min(raw_kelly, 0.12))
+        quarter_kelly = min(kelly * 0.25, 0.03)
+
+    rec = "Bet" if (edge or -1) > 0.05 else "Lean" if (edge or -1) > 0.02 else "Skip" if (edge or -1) < -0.04 else "—"
 
     hot_label = ""
     if r_pa >= 8:
@@ -365,7 +422,112 @@ def run_model(batter, season, splits, hot, sp_stat, team_stat,
         "proj_pa": round(pp, 1), "game_prob": gp, "fair_line": implied_to_american(gp),
         "best_odds": best_odds, "best_book": best_book,
         "implied": implied, "edge": edge,
+        "kelly": kelly, "quarter_kelly": quarter_kelly,
+        "recommendation": rec,
         "all_books": od.get("books", []), "weather": weather,
+    }
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Picks tracking
+# ──────────────────────────────────────────────────────────────────────────────
+
+def save_picks(results, date, window):
+    path = "results/picks.json"
+    os.makedirs("results", exist_ok=True)
+    try:
+        with open(path) as f:
+            picks = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        picks = []
+
+    existing_keys = {(p["date"], p["player_id"], p.get("window")) for p in picks}
+
+    for r in results:
+        key = (date, r["id"], window)
+        if key in existing_keys:
+            continue
+        e = r.get("edge")
+        rec = r.get("recommendation", "—")
+        qk = r.get("quarter_kelly")
+        has_line = r.get("best_odds") is not None
+        pick = {
+            "date": date,
+            "window": window,
+            "player": r["name"],
+            "player_id": r["id"],
+            "team": r["team"],
+            "batting_order": r["batting_order"],
+            "lineup_confirmed": r.get("lineup_confirmed", True),
+            "model_prob": round(r["game_prob"], 4),
+            "fair_line": r["fair_line"],
+            "best_odds": r.get("best_odds"),
+            "best_book": r.get("best_book"),
+            "edge": round(e, 4) if e is not None else None,
+            "recommendation": rec,
+            "kelly_fraction": round(r["kelly"], 4) if r.get("kelly") is not None else None,
+            "quarter_kelly": round(qk, 4) if qk is not None else None,
+            "units_staked": round(qk, 4) if (qk is not None and rec in ("Bet", "Lean") and has_line) else None,
+            "result": None,
+            "units_returned": None,
+            "resolved_at": None,
+        }
+        picks.append(pick)
+
+    with open(path, "w") as f:
+        json.dump(picks, f, indent=2)
+
+
+def compute_stats(picks):
+    resolved   = [p for p in picks if p.get("result") is not None]
+    lined      = [p for p in resolved if p.get("units_staked") is not None]
+    bet_picks  = [p for p in lined if p.get("recommendation") == "Bet"]
+    lean_picks = [p for p in lined if p.get("recommendation") == "Lean"]
+
+    def wl(lst):
+        w = sum(1 for p in lst if p["result"])
+        return w, len(lst) - w
+
+    bet_w,  bet_l  = wl(bet_picks)
+    lean_w, lean_l = wl(lean_picks)
+    units_net    = sum(p["units_returned"] for p in lined if p.get("units_returned") is not None)
+    total_staked = sum(p["units_staked"]   for p in lined if p.get("units_staked")   is not None)
+    roi = (units_net / total_staked * 100) if total_staked > 0 else 0
+
+    # streak on Bet+Lean lined picks sorted by date
+    all_lined = sorted(lined, key=lambda p: (p["date"], p.get("window", "z")))
+    streak = 0
+    if all_lined:
+        last = all_lined[-1]["result"]
+        for p in reversed(all_lined):
+            if p["result"] == last:
+                streak += 1
+            else:
+                break
+        streak = streak if last else -streak
+
+    # calibration buckets
+    buckets = [(0, 5), (5, 10), (10, 15), (15, 20), (20, 99)]
+    cal = {}
+    for lo, hi in buckets:
+        bucket_picks = [p for p in resolved if lo <= p["model_prob"] * 100 < hi]
+        if bucket_picks:
+            cal[f"{lo}-{hi}%"] = {
+                "predicted_avg": round(sum(p["model_prob"] for p in bucket_picks) / len(bucket_picks) * 100, 1),
+                "actual_rate":   round(sum(1 for p in bucket_picks if p["result"]) / len(bucket_picks) * 100, 1),
+                "n": len(bucket_picks),
+            }
+
+    return {
+        "total_tracked":    len(resolved),
+        "total_lined":      len(lined),
+        "hit_rate_overall": round(sum(1 for p in resolved if p["result"]) / len(resolved), 3) if resolved else None,
+        "bet_w":   bet_w,  "bet_l":  bet_l,
+        "lean_w":  lean_w, "lean_l": lean_l,
+        "units_net":   round(units_net, 2),
+        "roi_pct":     round(roi, 1),
+        "streak":      streak,
+        "calibration": cal,
     }
 
 
@@ -396,6 +558,16 @@ tr:hover td{background:#1e293b;}
 .note{font-size:12px;color:#64748b;margin-top:20px;padding:14px;background:#1e293b;border-radius:8px;line-height:1.8;}
 section+section{border-top:2px solid #1e293b;margin-top:40px;padding-top:30px;}
 .wh{font-size:15px;font-weight:600;color:#94a3b8;margin-bottom:14px;}
+.perf-panel{background:#1e293b;border-radius:8px;padding:14px 18px;margin-bottom:16px;}
+.perf-panel h3{font-size:13px;color:#94a3b8;margin-bottom:10px;font-weight:600;}
+.perf-row{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;margin-bottom:8px;}
+.perf-item{display:flex;flex-direction:column;gap:2px;}
+.perf-label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.04em;}
+.perf-value{font-size:14px;font-weight:600;color:#e2e8f0;}
+.perf-value.pos{color:#22c55e;} .perf-value.neg{color:#f87171;}
+.cal-table{font-size:11px;margin-top:8px;border-collapse:collapse;}
+.cal-table th,.cal-table td{padding:3px 8px;text-align:right;border:1px solid #334155;}
+.cal-table th{color:#64748b;font-weight:500;font-size:10px;}
 """
 
 def cfactor(adj, label, thresh=0.04):
@@ -404,11 +576,48 @@ def cfactor(adj, label, thresh=0.04):
     color = "#22c55e" if d > 0 else "#f87171"
     return f'<span style="color:{color}">{"↑" if d>0 else "↓"}{label} {d*100:+.0f}%</span>'
 
-def _build_section(results, date, has_odds, has_statcast, weather_count, has_key, window=None):
+def _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
+                   window=None, stats=None, bankroll=0):
     total      = len(results)
     with_lines = sum(1 for r in results if r["best_odds"] is not None)
     value_bets = sum(1 for r in results if (r.get("edge") or 0) > 0.02)
     avg_prob   = sum(r["game_prob"] for r in results) / total if total else 0
+
+    # Performance panel
+    perf_html = ""
+    if stats is not None and stats.get("total_lined", 0) > 0:
+        s = stats
+        bet_rec  = f'{s["bet_w"]}-{s["bet_l"]}'
+        lean_rec = f'{s["lean_w"]}-{s["lean_l"]}'
+        net_cls  = "pos" if s["units_net"] >= 0 else "neg"
+        roi_cls  = "pos" if s["roi_pct"]  >= 0 else "neg"
+        streak_val = s["streak"]
+        streak_str = f'+{streak_val} streak' if streak_val > 0 else f'{streak_val} streak'
+        streak_cls = "pos" if streak_val > 0 else "neg" if streak_val < 0 else ""
+        cal_html = ""
+        cal = s.get("calibration", {})
+        has_cal = any(v["n"] >= 10 for v in cal.values())
+        if has_cal:
+            cal_rows = ""
+            for bucket, bv in cal.items():
+                if bv["n"] >= 10:
+                    cal_rows += f'<tr><td>{bucket}</td><td>{bv["predicted_avg"]}%</td><td>{bv["actual_rate"]}%</td><td>{bv["n"]}</td></tr>'
+            cal_html = f'''<table class="cal-table">
+              <thead><tr><th>Prob bucket</th><th>Pred avg</th><th>Actual</th><th>n</th></tr></thead>
+              <tbody>{cal_rows}</tbody>
+            </table>'''
+        perf_html = f'''<div class="perf-panel">
+  <h3>Season Performance</h3>
+  <div class="perf-row">
+    <div class="perf-item"><span class="perf-label">Bet record</span><span class="perf-value">{bet_rec}</span></div>
+    <div class="perf-item"><span class="perf-label">Lean record</span><span class="perf-value">{lean_rec}</span></div>
+    <div class="perf-item"><span class="perf-label">Net units</span><span class="perf-value {net_cls}">{s["units_net"]:+.2f}u</span></div>
+    <div class="perf-item"><span class="perf-label">ROI</span><span class="perf-value {roi_cls}">{s["roi_pct"]:+.1f}%</span></div>
+    <div class="perf-item"><span class="perf-label">Streak</span><span class="perf-value {streak_cls}">{streak_str}</span></div>
+    <div class="perf-item"><span class="perf-label">Tracked</span><span class="perf-value">{s["total_tracked"]}</span></div>
+  </div>
+  {cal_html}
+</div>'''
 
     rows = []
     for r in results:
@@ -416,7 +625,27 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         rbg = "background:rgba(34,197,94,.05);" if (e or 0) > 0.05 else ""
         ec = "#64748b" if e is None else "#22c55e" if e>.05 else "#86efac" if e>.02 else "#94a3b8" if e>-.02 else "#f87171"
         pc = "#22c55e" if gp>.11 else "#f59e0b" if gp>.07 else "#e2e8f0"
-        badge = '<span class="badge bet">Bet</span>' if (e or-1)>.05 else '<span class="badge lean">Lean</span>' if (e or-1)>.02 else '<span class="badge skip">Skip</span>' if (e or-1)<-.04 else "—"
+        rec = r.get("recommendation", "—")
+        if rec == "Bet":
+            badge = '<span class="badge bet">Bet</span>'
+        elif rec == "Lean":
+            badge = '<span class="badge lean">Lean</span>'
+        elif rec == "Skip":
+            badge = '<span class="badge skip">Skip</span>'
+        else:
+            badge = "—"
+
+        # Lineup confirmation flag
+        lineup_flag = ""
+        if not r.get("lineup_confirmed", True):
+            lineup_flag = ' <span style="font-size:10px;color:#64748b;background:#1e293b;padding:1px 5px;border-radius:3px">proj</span>'
+
+        # Result indicator
+        result_flag = ""
+        if r.get("result") is True:
+            result_flag = " ✅"
+        elif r.get("result") is False:
+            result_flag = " ❌"
 
         parts = [
             cfactor(r["split_adj"],  f'vs {r["pitcher_hand"]}HP'),
@@ -438,7 +667,17 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
             bo = r["best_odds"]
             bo_str = fo(bo) if bo is not None else '<span style="color:#334155">—</span>'
             edge_str = f"{e*100:+.1f}%" if e is not None else "—"
-            odds_cols = f'<td style="text-align:right;font-weight:600">{bo_str}</td><td style="font-size:11px;color:#64748b">{r.get("best_book") or "—"}</td><td style="text-align:right;font-weight:700;color:{ec}">{edge_str}</td><td>{badge}</td>'
+            # Stake display
+            stake_str = ""
+            qk = r.get("quarter_kelly")
+            if bankroll > 0 and qk is not None:
+                stake_str = f'<div style="font-size:10px;color:#64748b">${qk*bankroll:.2f}</div>'
+            odds_cols = (
+                f'<td style="text-align:right;font-weight:600">{bo_str}{stake_str}</td>'
+                f'<td style="font-size:11px;color:#64748b">{r.get("best_book") or "—"}</td>'
+                f'<td style="text-align:right;font-weight:700;color:{ec}">{edge_str}</td>'
+                f'<td>{badge}</td>'
+            )
 
         sc_col = ""
         if has_statcast:
@@ -451,7 +690,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         rows.append(f"""
         <tr style="{rbg}">
           <td style="min-width:155px;max-width:220px;">
-            <span style="font-weight:600">{r["name"]}</span>{" "+r["hot_label"] if r["hot_label"] else ""}
+            <span style="font-weight:600">{r["name"]}{result_flag}</span>{lineup_flag}{" "+r["hot_label"] if r["hot_label"] else ""}
             {f'<div class="factors">{"&nbsp;·&nbsp;".join(parts)}</div>' if parts else ""}
           </td>
           <td style="color:#94a3b8;white-space:nowrap;font-size:11px">{pitcher_disp}</td>
@@ -467,13 +706,13 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
 
     sc_th    = '<th style="text-align:right">Barrel%</th>' if has_statcast else ""
     odds_ths = '<th style="text-align:right">Best line</th><th>Book</th><th style="text-align:right">Edge</th><th>Rec</th>' if has_odds else ""
-    all_books = list({b["book"] for r in results for b in r.get("all_books",[])})
+    all_books = list({b["book"] for r in results for b in r.get("all_books", [])})
     odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Lean +2–5pp · Skip ≤−4pp." if has_key else "Run with -k YOUR_ODDS_KEY for live line comparison."
     sc_note   = f"Statcast: barrel% + hard-hit% (barrel ratio vs {LG_BARREL*100:.1f}% league avg, exp 0.40)." if has_statcast else "Statcast disabled — install pybaseball."
     wh = f'<div class="wh">{WINDOW_LABELS[window]}</div>' if window else ""
 
     return f"""<section>
-{wh}<div class="g5">
+{wh}{perf_html}<div class="g5">
   <div class="metric"><div class="ml">Players</div><div class="mv">{total}</div></div>
   <div class="metric"><div class="ml">With lines</div><div class="mv">{with_lines}</div></div>
   <div class="metric"><div class="ml">Value bets</div><div class="mv g">{value_bets}</div></div>
@@ -484,6 +723,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
   <span>🔥 Hot ≥+20%</span><span>↗ Warm +8–19%</span>
   <span>↘ Cool −10–22%</span><span>🧊 Cold ≤−22%</span>
   <span style="margin-left:8px">↑ raises prob &nbsp; ↓ lowers prob</span>
+  <span>⚠ proj = lineup not yet confirmed</span>
 </div>
 <div class="tw"><table>
   <thead><tr>
@@ -495,29 +735,33 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
   <tbody>{"".join(rows)}</tbody>
 </table></div>
 <div class="note">
-  <strong style="color:#94a3b8">v3 model:</strong>
+  <strong style="color:#94a3b8">v4 model:</strong>
   season HR/PA · splits (regressed) · hotness L14 (regressed) · {sc_note} ·
-  SP HR rate · bullpen HR rate (team−SP, 55/45 blend) · park factor ({len(VENUES)} venues) · weather.<br><br>
+  SP HR rate (regressed, platoon-aware) · bullpen HR rate (regressed, platoon-aware) · park factor ({len(VENUES)} venues) · weather.<br><br>
   <strong style="color:#94a3b8">Lines:</strong> {odds_note}
 </div>
 </section>"""
 
 
-def build_report(results, date, has_odds, has_statcast, weather_count, has_key, window=None):
-    section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key, window)
+def build_report(results, date, has_odds, has_statcast, weather_count, has_key,
+                 window=None, stats=None, bankroll=0):
+    section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
+                             window=window, stats=stats, bankroll=bankroll)
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
+<p class="sub">v4 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
 {section}
 </body></html>"""
 
 
-def append_to_combined(html_path, results, date, has_odds, has_statcast, weather_count, has_key, window=None):
-    section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key, window)
+def append_to_combined(html_path, results, date, has_odds, has_statcast, weather_count, has_key,
+                       window=None, stats=None, bankroll=0):
+    section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
+                             window=window, stats=stats, bankroll=bankroll)
     if not os.path.exists(html_path):
         content = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/>
@@ -525,7 +769,7 @@ def append_to_combined(html_path, results, date, has_odds, has_statcast, weather
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
+<p class="sub">v4 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
 {section}
 </body></html>"""
         with open(html_path, "w", encoding="utf-8") as f:
@@ -558,6 +802,15 @@ def send_notifications(results, date, html_content, args):
     if not gmail_addr or not gmail_pass:
         return
 
+    # Load season stats for notifications
+    season_stats = None
+    try:
+        with open("results/picks.json") as f:
+            all_picks = json.load(f)
+        season_stats = compute_stats(all_picks)
+    except (FileNotFoundError, json.JSONDecodeError):
+        all_picks = []
+
     window_tag = f" [{args.window.title()}]" if getattr(args, "window", None) else ""
     subject    = f"⚾ MLB HR Props {date}{window_tag} — {len(value_bets)} value bet{'s' if len(value_bets)!=1 else ''}"
 
@@ -568,11 +821,35 @@ def send_notifications(results, date, html_content, args):
             msg["Subject"] = subject
             msg["From"]    = f"MLB HR Model Value <{gmail_addr}>"
             msg["To"]      = to_email
-            plain = f"MLB HR Props — {date}{window_tag}\n{len(value_bets)} value bets\n\n"
+
+            # Build plain text with performance prefix
+            plain_lines = [f"MLB HR Props — {date}{window_tag}", ""]
+            if season_stats and season_stats.get("total_lined", 0) > 0:
+                s = season_stats
+                plain_lines.append("=== Season Performance ===")
+                plain_lines.append(f"Bet: {s['bet_w']}-{s['bet_l']}  Lean: {s['lean_w']}-{s['lean_l']}")
+                plain_lines.append(f"Net units: {s['units_net']:+.2f}  ROI: {s['roi_pct']:+.1f}%")
+                plain_lines.append("")
+                # Yesterday's resolved picks
+                yesterday = (datetime.strptime(date, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
+                yest_picks = [p for p in all_picks if p.get("date") == yesterday and p.get("result") is not None and p.get("units_staked") is not None]
+                if yest_picks:
+                    plain_lines.append("=== Yesterday's Results ===")
+                    for p in yest_picks:
+                        icon = "✅" if p["result"] else "❌"
+                        ur = p.get("units_returned")
+                        ur_str = f"{ur:+.2f}u" if ur is not None else ""
+                        plain_lines.append(f"{icon} {p['player']} ({p['recommendation']}) {ur_str}")
+                    plain_lines.append("")
+
+            plain_lines.append(f"{len(value_bets)} value bets:")
+            plain_lines.append("")
             for r in value_bets:
-                plain += f"• {r['name']} {fo(r['best_odds'])} ({r.get('best_book','')}) edge {(r.get('edge') or 0)*100:+.1f}%\n"
+                plain_lines.append(f"• {r['name']} {fo(r['best_odds'])} ({r.get('best_book','')}) edge {(r.get('edge') or 0)*100:+.1f}%")
             if pages_url:
-                plain += f"\nFull report: {pages_url}"
+                plain_lines.append(f"\nFull report: {pages_url}")
+            plain = "\n".join(plain_lines)
+
             msg.attach(MIMEText(plain, "plain"))
             msg.attach(MIMEText(html_content, "html"))
             with smtplib.SMTP("smtp.gmail.com", 587) as s:
@@ -590,6 +867,9 @@ def send_notifications(results, date, html_content, args):
             sms_addr = digits + CARRIER_GATEWAYS[carrier]
 
             lines = [f"⚾ HR Props {date}{window_tag}"]
+            if season_stats and season_stats.get("total_lined", 0) > 0:
+                s = season_stats
+                lines.append(f"📊 Season: {s['bet_w']}-{s['bet_l']} Bet · {s['units_net']:+.1f}u · ROI {s['roi_pct']:+.1f}%")
             for r in value_bets[:4]:
                 e     = (r.get("edge") or 0) * 100
                 label = "🔥 Strong" if e > 5 else "✅ Lean"
@@ -616,7 +896,7 @@ def send_notifications(results, date, html_content, args):
 # ──────────────────────────────────────────────────────────────────────────────
 
 def main():
-    p = argparse.ArgumentParser(description="MLB HR Prop Finder v3")
+    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4")
     p.add_argument("-d","--date",      default=datetime.today().strftime("%Y-%m-%d"))
     p.add_argument("-k","--key",       default=os.environ.get("ODDS_API_KEY",""))
     p.add_argument("--min-edge",       type=float, default=0.0)
@@ -628,13 +908,14 @@ def main():
     p.add_argument("--gmail-pass",     default="", help="Gmail App Password (or set GMAIL_APP_PASSWORD)")
     p.add_argument("--window",         choices=["early","mid","late"], default=None, help="Game time window: early(12-4pm ET) mid(4-7pm ET) late(7pm+ ET)")
     p.add_argument("--pages-url",      default="", help="GitHub Pages URL for SMS link")
+    p.add_argument("--bankroll",       type=float, default=float(os.environ.get("BANKROLL", "0")))
     args = p.parse_args()
 
     date = args.date
     yr   = date.split("-")[0]
     d14  = (datetime.strptime(date, "%Y-%m-%d") - timedelta(days=14)).strftime("%Y-%m-%d")
 
-    print(f"\n⚾  MLB HR Prop Finder v3  —  {date}")
+    print(f"\n⚾  MLB HR Prop Finder v4  —  {date}")
     print("─" * 50)
 
     # Schedule
@@ -655,6 +936,7 @@ def main():
     print("→ Fetching lineups…", end=" ", flush=True)
     boxes = fetch_many([f"{MLB_API}/game/{g['gamePk']}/boxscore" for g in games])
     batters, pitcher_ids, team_ids, venue_times = [], set(), set(), {}
+    game_pk_map = {}  # gamePk -> game dict
 
     for game, box in zip(games, boxes):
         hp = game["teams"]["home"].get("probablePitcher")
@@ -667,24 +949,35 @@ def main():
         if atid: team_ids.add(atid)
         venue = game.get("venue", {}).get("name", "")
         if venue: venue_times[venue] = game.get("gameDate", "")
+        game_pk_map[game["gamePk"]] = game
         if not box: continue
         for side in ["home","away"]:
             opp    = ap if side=="home" else hp
             opp_id = atid if side=="home" else htid
-            t      = box.get("teams",{}).get(side,{})
+            opp_team_name = game["teams"]["away"]["team"].get("name","") if side=="home" else game["teams"]["home"]["team"].get("name","")
+            t = box.get("teams",{}).get(side,{})
             for pid in t.get("batters",[]):
                 pl = t.get("players",{}).get(f"ID{pid}")
                 if not pl: continue
                 bo = pl.get("battingOrder")
                 spot = math.floor(safe_int(bo)/100) if bo else 5
+                lineup_confirmed = bo is not None
                 if not 1<=spot<=9: continue
                 batters.append({
-                    "id":pid,"name":pl.get("person",{}).get("fullName","Unknown"),
-                    "team":t.get("team",{}).get("abbreviation",""),
-                    "opp_team_id":opp_id,"batting_order":spot,
-                    "pitcher_id":opp["id"] if opp else None,
-                    "pitcher_name":opp.get("fullName") if opp else None,
-                    "pitcher_hand":"R","venue":venue,"game_date":game.get("gameDate",""),
+                    "id": pid,
+                    "name": pl.get("person",{}).get("fullName","Unknown"),
+                    "team": t.get("team",{}).get("abbreviation",""),
+                    "opp_team_id": opp_id,
+                    "opp_team_name": opp_team_name,
+                    "batting_order": spot,
+                    "lineup_confirmed": lineup_confirmed,
+                    "pitcher_id": opp["id"] if opp else None,
+                    "pitcher_name": opp.get("fullName") if opp else None,
+                    "pitcher_hand": "R",
+                    "batter_hand": "R",
+                    "venue": venue,
+                    "game_date": game.get("gameDate",""),
+                    "game_pk": game["gamePk"],
                 })
 
     ubids = list({b["id"] for b in batters})
@@ -692,17 +985,29 @@ def main():
     utids = list(team_ids)
     print(f"✓  {len(batters)} batters · {len(upids)} pitchers · {len(utids)} teams")
 
-    # Stats (all parallel)
-    print("→ Fetching stats…", end=" ", flush=True)
+    # Stats — first parallel batch
+    print("→ Fetching stats (batch 1)…", end=" ", flush=True)
     nb, np_, nt = len(ubids), len(upids), len(utids)
     raw = fetch_many(
+        # Batter season hitting
         [f"{MLB_API}/people/{i}/stats?stats=season&group=hitting&season={yr}"            for i in ubids] +
+        # Batter splits (vs L/R)
         [f"{MLB_API}/people/{i}/stats?stats=statSplits&group=hitting&season={yr}&sitCodes=vl,vr" for i in ubids] +
+        # Batter hot last 14 days
         [f"{MLB_API}/people/{i}/stats?stats=byDateRange&group=hitting&season={yr}&startDate={d14}&endDate={date}" for i in ubids] +
+        # Pitcher season
         [f"{MLB_API}/people/{i}/stats?stats=season&group=pitching&season={yr}"           for i in upids] +
+        # Pitcher hand
         [f"{MLB_API}/people/{i}"                                                          for i in upids] +
-        [f"{MLB_API}/teams/{i}/stats?stats=season&group=pitching&season={yr}&gameType=R" for i in utids],
-        workers=20
+        # Pitcher splits (vl/vr)
+        [f"{MLB_API}/people/{i}/stats?stats=statSplits&group=pitching&season={yr}&sitCodes=vl,vr" for i in upids] +
+        # Team pitching season
+        [f"{MLB_API}/teams/{i}/stats?stats=season&group=pitching&season={yr}&gameType=R" for i in utids] +
+        # Batter hand (people endpoint)
+        [f"{MLB_API}/people/{i}"                                                          for i in ubids] +
+        # Team roster (for bullpen identification)
+        [f"{MLB_API}/teams/{i}/roster?rosterType=active"                                 for i in utids],
+        workers=25
     )
 
     def first_season(r):
@@ -711,24 +1016,134 @@ def main():
                 return s["splits"][0]["stat"]
         return None
 
-    bsm  = {i: first_season(r) for i,r in zip(ubids, raw[0:nb])}
+    # Slice out each block
+    off0 = 0
+    bsm  = {i: first_season(r) for i, r in zip(ubids, raw[off0:off0+nb])}
+
+    off0 += nb
     bspm = {}
-    for i,r in zip(ubids, raw[nb:2*nb]):
+    for i, r in zip(ubids, raw[off0:off0+nb]):
         s  = next((x for x in (r or {}).get("stats",[]) if x.get("type",{}).get("displayName")=="statSplits"), None)
         sp = s["splits"] if s else []
         bspm[i] = {
             "L": next((x["stat"] for x in sp if x.get("split",{}).get("code")=="vl"), None),
             "R": next((x["stat"] for x in sp if x.get("split",{}).get("code")=="vr"), None),
         }
+
+    off0 += nb
     bhotm = {}
-    for i,r in zip(ubids, raw[2*nb:3*nb]):
+    for i, r in zip(ubids, raw[off0:off0+nb]):
         found = next((x for x in (r or {}).get("stats",[]) if x.get("splits")), None)
         bhotm[i] = found["splits"][0]["stat"] if found and found.get("splits") else None
-    psm  = {i: first_season(r) for i,r in zip(upids, raw[3*nb:3*nb+np_])}
-    phm  = {i:(r or {}).get("people",[{}])[0].get("pitchHand",{}).get("code","R") for i,r in zip(upids, raw[3*nb+np_:3*nb+2*np_])}
-    tsm  = {i: first_season(r) for i,r in zip(utids, raw[3*nb+2*np_:])}
-    for b in batters: b["pitcher_hand"] = phm.get(b["pitcher_id"],"R")
+
+    off0 += nb
+    psm  = {i: first_season(r) for i, r in zip(upids, raw[off0:off0+np_])}
+
+    off0 += np_
+    phm  = {i: (r or {}).get("people",[{}])[0].get("pitchHand",{}).get("code","R") for i, r in zip(upids, raw[off0:off0+np_])}
+
+    off0 += np_
+    # Pitcher splits: {pitcher_id: {"vl": stat_or_None, "vr": stat_or_None}}
+    psp_m = {}
+    for i, r in zip(upids, raw[off0:off0+np_]):
+        s  = next((x for x in (r or {}).get("stats",[]) if x.get("type",{}).get("displayName")=="statSplits"), None)
+        sp = s["splits"] if s else []
+        psp_m[i] = {
+            "vl": next((x["stat"] for x in sp if x.get("split",{}).get("code")=="vl"), None),
+            "vr": next((x["stat"] for x in sp if x.get("split",{}).get("code")=="vr"), None),
+        }
+
+    off0 += np_
+    tsm  = {i: first_season(r) for i, r in zip(utids, raw[off0:off0+nt])}
+
+    off0 += nt
+    # Batter hand: {batter_id: "L"|"R"|"S"}
+    bhandm = {}
+    for i, r in zip(ubids, raw[off0:off0+nb]):
+        bhandm[i] = (r or {}).get("people",[{}])[0].get("batSide",{}).get("code","R") or "R"
+
+    off0 += nb
+    # Team roster: {team_id: [player_id, ...]} — pitchers only
+    team_roster_m = {}
+    for i, r in zip(utids, raw[off0:off0+nt]):
+        roster = (r or {}).get("roster", [])
+        pitcher_ids_on_team = [
+            pl["person"]["id"]
+            for pl in roster
+            if pl.get("position",{}).get("type","") == "Pitcher"
+        ]
+        team_roster_m[i] = pitcher_ids_on_team
+
+    # Update batter hand and pitcher hand
+    for b in batters:
+        b["pitcher_hand"] = phm.get(b["pitcher_id"], "R")
+        b["batter_hand"]  = bhandm.get(b["id"], "R")
+
     print("✓")
+
+    # Identify all unique reliever IDs
+    # Exclude probable starters from each team's roster
+    starter_by_team = {}
+    for b in batters:
+        if b.get("opp_team_id") and b.get("pitcher_id"):
+            starter_by_team.setdefault(b["opp_team_id"], set()).add(b["pitcher_id"])
+
+    all_reliever_ids = []
+    reliever_to_team = {}
+    for tid in utids:
+        starters = starter_by_team.get(tid, set())
+        for rid in team_roster_m.get(tid, []):
+            if rid not in starters:
+                all_reliever_ids.append(rid)
+                reliever_to_team[rid] = tid
+    all_reliever_ids = list(set(all_reliever_ids))
+
+    # Second parallel batch: reliever splits + reliever season stats
+    rel_splits_m  = {}
+    rel_season_m  = {}
+    if all_reliever_ids:
+        print("→ Fetching reliever stats (batch 2)…", end=" ", flush=True)
+        nr = len(all_reliever_ids)
+        raw2 = fetch_many(
+            [f"{MLB_API}/people/{i}/stats?stats=statSplits&group=pitching&season={yr}&sitCodes=vl,vr" for i in all_reliever_ids] +
+            [f"{MLB_API}/people/{i}/stats?stats=season&group=pitching&season={yr}"                    for i in all_reliever_ids],
+            workers=25
+        )
+        for i, r in zip(all_reliever_ids, raw2[:nr]):
+            s  = next((x for x in (r or {}).get("stats",[]) if x.get("type",{}).get("displayName")=="statSplits"), None)
+            sp = s["splits"] if s else []
+            rel_splits_m[i] = {
+                "vl": next((x["stat"] for x in sp if x.get("split",{}).get("code")=="vl"), None),
+                "vr": next((x["stat"] for x in sp if x.get("split",{}).get("code")=="vr"), None),
+            }
+        for i, r in zip(all_reliever_ids, raw2[nr:]):
+            rel_season_m[i] = first_season(r)
+        print(f"✓  {nr} relievers")
+
+    # Build per-team bullpen aggregates (weighted, regressed, platoon-aware)
+    bp_splits_m = {}  # {team_id: {"L": hr_pa_rate, "R": hr_pa_rate}}
+    for tid in utids:
+        starters = starter_by_team.get(tid, set())
+        rel_ids  = [r for r in team_roster_m.get(tid, []) if r not in starters]
+        for side in ["L", "R"]:
+            sitcode = "vl" if side == "L" else "vr"
+            total_ip = 0.0
+            weighted_rate = 0.0
+            for rid in rel_ids:
+                sp = rel_season_m.get(rid)
+                ip = safe_float((sp or {}).get("inningsPitched"))
+                if ip < 5:
+                    continue
+                rs   = rel_splits_m.get(rid, {}).get(sitcode)
+                r_hr = safe_int((rs or {}).get("homeRuns"))
+                r_ip = safe_float((rs or {}).get("inningsPitched"))
+                if r_ip < 3:
+                    r_ip = ip * 0.5  # fallback
+                rate = regressed_hr_pa(r_hr, r_ip)
+                weighted_rate += rate * ip
+                total_ip      += ip
+            bp_splits_m.setdefault(tid, {})
+            bp_splits_m[tid][side] = (weighted_rate / total_ip) if total_ip > 0 else LG_HR_PA
 
     # Statcast
     sc_by_id, sc_by_name = get_statcast(int(yr))
@@ -739,21 +1154,46 @@ def main():
     print(f"✓  {len(wmap)} venues")
 
     # Odds
+    game_totals = {}
     if args.key:
         print("→ Fetching odds…", end=" ", flush=True)
-        odds_map = get_odds(args.key, date)
-        print(f"✓  {len(odds_map)} players")
+        odds_map, game_totals = get_odds(args.key, date)
+        print(f"✓  {len(odds_map)} players · {len(game_totals)} game totals")
     else:
         odds_map = {}
         print("   (no odds key — model only)")
+
+    # Build game O/U lookup per batter by matching away team name
+    # game_totals keyed by norm(away_team) from Odds API
+    # Each game has teams.away.team.name we can normalize and look up
+    def get_game_ou(game):
+        away_name = game.get("teams",{}).get("away",{}).get("team",{}).get("name","")
+        key = norm(away_name)
+        return game_totals.get(key, 8.5)
+
+    game_pk_ou = {}
+    for gpk, game in game_pk_map.items():
+        game_pk_ou[gpk] = get_game_ou(game)
 
     # Model
     print("→ Computing model…", end=" ", flush=True)
     results = []
     for b in batters:
-        r = run_model(b, bsm.get(b["id"]), bspm.get(b["id"],{}), bhotm.get(b["id"]),
-                      psm.get(b["pitcher_id"]), tsm.get(b["opp_team_id"]),
-                      wmap.get(b["venue"]), sc_by_id, sc_by_name, odds_map)
+        ou = game_pk_ou.get(b.get("game_pk"), 8.5)
+        r = run_model(
+            b,
+            bsm.get(b["id"]),
+            bspm.get(b["id"], {}),
+            bhotm.get(b["id"]),
+            psm.get(b["pitcher_id"]),
+            psp_m.get(b["pitcher_id"]),
+            bp_splits_m.get(b["opp_team_id"]),
+            tsm.get(b["opp_team_id"]),
+            wmap.get(b["venue"]),
+            sc_by_id, sc_by_name,
+            odds_map,
+            ou=ou,
+        )
         if r: results.append(r)
     results.sort(key=lambda x:(x["edge"] is not None, x.get("edge") or x["game_prob"]), reverse=True)
     if args.min_edge > 0:
@@ -770,18 +1210,32 @@ def main():
             e = r.get("edge") or 0
             print(f"  {r['name'][:25]:<26} {r['game_prob']*100:.1f}%  {fo(r['best_odds']):>7}  {e*100:+.1f}%  {(r.get('best_book') or '')[:14]}{'  🔥' if e>.05 else ''}")
 
+    # Save picks
+    save_picks(results, date, args.window)
+
+    # Load season stats for report
+    season_stats = None
+    try:
+        with open("results/picks.json") as f:
+            all_picks = json.load(f)
+        season_stats = compute_stats(all_picks)
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
     # HTML report — standalone window file
     os.makedirs("reports", exist_ok=True)
     window_suffix = f"_{args.window}" if args.window else ""
     report_path   = os.path.abspath(f"reports/report_{date}{window_suffix}.html")
-    html = build_report(results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key), window=args.window)
+    html = build_report(results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key),
+                        window=args.window, stats=season_stats, bankroll=args.bankroll)
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(html)
 
     # Combined daily report for GitHub Pages (append this window's section)
     os.makedirs("docs", exist_ok=True)
     combined_path = f"docs/report_{date}.html"
-    append_to_combined(combined_path, results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key), window=args.window)
+    append_to_combined(combined_path, results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key),
+                       window=args.window, stats=season_stats, bankroll=args.bankroll)
     shutil.copy2(combined_path, "docs/index.html")
 
     print(f"\n  ✓  Report: {report_path}")

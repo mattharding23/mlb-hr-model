@@ -2,9 +2,10 @@ name: Daily MLB HR Model
 
 on:
   schedule:
-    - cron: '0 16 * * *'   # Early window: 12pm ET (16:00 UTC / EDT)
-    - cron: '0 19 * * *'   # Mid window:   3pm ET  (19:00 UTC / EDT) — runs before 4pm games start
-    - cron: '0 23 * * *'   # Late window:  7pm ET  (23:00 UTC / EDT)
+    - cron: '30 15 * * *'   # Early window: 11:30am ET (15:30 UTC / EDT)
+    - cron: '45 21 * * *'   # Mid window:    5:45pm ET (21:45 UTC / EDT)
+    - cron: '45 0 * * *'    # Late window:   8:45pm ET (00:45 UTC next day / EDT)
+    - cron: '0 13 * * *'    # Results check: 9:00am ET (13:00 UTC / EDT)
 
   workflow_dispatch:
     inputs:
@@ -13,7 +14,7 @@ on:
         required: false
         default: ''
       window:
-        description: 'Window to run: early | mid | late (leave blank for all)'
+        description: 'Window to run: early | mid | late | check-results (leave blank for all model windows)'
         required: false
         default: ''
 
@@ -23,7 +24,7 @@ jobs:
     name: Early window (12–3:59 pm ET)
     runs-on: ubuntu-latest
     if: >-
-      (github.event_name == 'schedule' && github.event.schedule == '0 16 * * *') ||
+      (github.event_name == 'schedule' && github.event.schedule == '30 15 * * *') ||
       (github.event_name == 'workflow_dispatch' && (github.event.inputs.window == 'early' || github.event.inputs.window == ''))
     steps:
       - uses: actions/checkout@v4
@@ -55,7 +56,16 @@ jobs:
           REPORT_PHONE:        ${{ secrets.REPORT_PHONE }}
           CARRIER:             ${{ secrets.CARRIER }}
           PAGES_URL:           ${{ secrets.PAGES_URL }}
+          BANKROLL:            ${{ secrets.BANKROLL }}
         run: python mlb_hr_model.py -k "$ODDS_API_KEY" -d "$RUN_DATE" --window early
+
+      - name: Commit picks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/picks.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "picks: $RUN_DATE early [skip ci]"
+          git push 2>/dev/null || true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -69,7 +79,7 @@ jobs:
     name: Mid window (4–6:59 pm ET)
     runs-on: ubuntu-latest
     if: >-
-      (github.event_name == 'schedule' && github.event.schedule == '0 19 * * *') ||
+      (github.event_name == 'schedule' && github.event.schedule == '45 21 * * *') ||
       (github.event_name == 'workflow_dispatch' && (github.event.inputs.window == 'mid' || github.event.inputs.window == ''))
     steps:
       - uses: actions/checkout@v4
@@ -101,7 +111,16 @@ jobs:
           REPORT_PHONE:        ${{ secrets.REPORT_PHONE }}
           CARRIER:             ${{ secrets.CARRIER }}
           PAGES_URL:           ${{ secrets.PAGES_URL }}
+          BANKROLL:            ${{ secrets.BANKROLL }}
         run: python mlb_hr_model.py -k "$ODDS_API_KEY" -d "$RUN_DATE" --window mid
+
+      - name: Commit picks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/picks.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "picks: $RUN_DATE mid [skip ci]"
+          git push 2>/dev/null || true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -115,7 +134,7 @@ jobs:
     name: Late window (7 pm+ ET)
     runs-on: ubuntu-latest
     if: >-
-      (github.event_name == 'schedule' && github.event.schedule == '0 23 * * *') ||
+      (github.event_name == 'schedule' && github.event.schedule == '45 0 * * *') ||
       (github.event_name == 'workflow_dispatch' && (github.event.inputs.window == 'late' || github.event.inputs.window == ''))
     steps:
       - uses: actions/checkout@v4
@@ -147,7 +166,16 @@ jobs:
           REPORT_PHONE:        ${{ secrets.REPORT_PHONE }}
           CARRIER:             ${{ secrets.CARRIER }}
           PAGES_URL:           ${{ secrets.PAGES_URL }}
+          BANKROLL:            ${{ secrets.BANKROLL }}
         run: python mlb_hr_model.py -k "$ODDS_API_KEY" -d "$RUN_DATE" --window late
+
+      - name: Commit picks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/picks.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "picks: $RUN_DATE late [skip ci]"
+          git push 2>/dev/null || true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -156,3 +184,36 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           keep_files: true
+
+  check-results:
+    name: Check yesterday's results (9 am ET)
+    runs-on: ubuntu-latest
+    if: >-
+      (github.event_name == 'schedule' && github.event.schedule == '0 13 * * *') ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.window == 'check-results')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Fetch existing picks
+        run: |
+          git fetch origin main --depth=5 2>/dev/null || true
+          mkdir -p results
+          git show origin/main:results/picks.json > results/picks.json 2>/dev/null || true
+
+      - name: Check results
+        run: python check_results.py
+
+      - name: Commit updated picks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/picks.json
+          git diff --cached --quiet || git commit -m "results: resolved picks [skip ci]"
+          git push
