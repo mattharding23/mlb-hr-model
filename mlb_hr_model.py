@@ -908,7 +908,7 @@ def main():
     p.add_argument("--gmail-pass",     default="", help="Gmail App Password (or set GMAIL_APP_PASSWORD)")
     p.add_argument("--window",         choices=["early","mid","late"], default=None, help="Game time window: early(12-4pm ET) mid(4-7pm ET) late(7pm+ ET)")
     p.add_argument("--pages-url",      default="", help="GitHub Pages URL for SMS link")
-    p.add_argument("--bankroll",       type=float, default=float(os.environ.get("BANKROLL", "0")))
+    p.add_argument("--bankroll",       type=float, default=float(os.environ.get("BANKROLL") or "0"))
     args = p.parse_args()
 
     date = args.date
