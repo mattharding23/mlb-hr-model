@@ -31,7 +31,7 @@ Setup:
   pip install requests pybaseball pandas
 """
 
-import sys, os, math, argparse, smtplib, webbrowser, shutil, json
+import sys, os, math, argparse, smtplib, webbrowser, shutil, json, unicodedata
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.multipart import MIMEMultipart
@@ -55,6 +55,7 @@ MLB_API      = "https://statsapi.mlb.com/api/v1"
 LG_HR_PA     = 0.034
 LG_BARREL    = 0.067
 LG_HARD_HIT  = 0.385
+VIG_FACTOR   = 1.055  # typical single-outcome prop overround (~5.5%)
 
 PA_BY_SPOT = {1:4.7,2:4.6,3:4.5,4:4.4,5:4.3,6:4.1,7:4.0,8:3.9,9:3.8}
 
@@ -153,7 +154,19 @@ def implied_to_american(p):
     return f"+{round(((1-p) / p) * 100)}"
 
 def norm(s):
-    return (s or "").lower().replace(".", "").replace("'", "").replace(",", "").strip()
+    """Lowercase, strip accents, remove punctuation for fuzzy name matching."""
+    s = (s or "").strip()
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(c for c in s if unicodedata.category(c) != "Mn")
+    return s.lower().replace(".", "").replace("'", "").replace(",", "").strip()
+
+def norm_reverse(s):
+    """'Last, First' → 'First Last' after normalizing."""
+    n = norm(s)
+    parts = n.split(" ", 1)
+    if len(parts) == 2:
+        return parts[1] + " " + parts[0]
+    return n
 
 def safe_float(x):
     try: return float(x or 0)
@@ -272,9 +285,12 @@ def get_odds(api_key, date):
             mkt = next((m for m in book.get("markets", []) if m["key"] == "batter_home_runs"), None)
             if not mkt: continue
             for o in mkt.get("outcomes", []):
-                key = norm(o.get("description") or o.get("name", ""))
-                if key not in odds_map: odds_map[key] = {"books": []}
-                odds_map[key]["books"].append({"book": book["title"], "odds": o["price"]})
+                raw_name = o.get("description") or o.get("name", "")
+                keys = {norm(raw_name), norm_reverse(raw_name)}
+                for key in keys:
+                    if not key: continue
+                    if key not in odds_map: odds_map[key] = {"books": [], "_raw": raw_name}
+                    odds_map[key]["books"].append({"book": book["title"], "odds": o["price"]})
     for key in odds_map:
         best = max(odds_map[key]["books"], key=lambda x: x["odds"])
         odds_map[key]["best"]      = best["odds"]
@@ -331,7 +347,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         s_pa = safe_int(rel.get("plateAppearances"))
         s_hr = safe_int(rel.get("homeRuns"))
         if s_pa >= 20 and sr > 0:
-            w = min(s_pa / 150, 0.45)
+            w = min(s_pa / 130, 0.55)
             split_adj = max(0.5, min(2.5, ((s_hr/s_pa)*w + sr*(1-w)) / sr))
 
     # 2. Hotness — last 14 days (regressed)
@@ -339,8 +355,8 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     if hot and sr > 0:
         r_pa = safe_int(hot.get("plateAppearances"))
         r_hr = safe_int(hot.get("homeRuns"))
-        if r_pa >= 8:
-            w = min(r_pa / 55, 0.35)
+        if r_pa >= 5:
+            w = min(r_pa / 45, 0.45)
             hot_adj = max(0.65, min(1.5, ((r_hr/r_pa)*w + sr*(1-w)) / sr))
 
     # 3. Statcast (barrel% + hard-hit%)
@@ -361,9 +377,9 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     if sp_split:
         s_hr_sp = safe_int(sp_split.get("homeRuns"))
         s_ip_sp = safe_float(sp_split.get("inningsPitched"))
-        sp_rate = regressed_hr_pa(s_hr_sp, s_ip_sp)
+        sp_rate = regressed_hr_pa(s_hr_sp, s_ip_sp, min_ip=5)
     elif sp_stat:
-        sp_rate = regressed_hr_pa(safe_int(sp_stat.get("homeRuns")), safe_float(sp_stat.get("inningsPitched")))
+        sp_rate = regressed_hr_pa(safe_int(sp_stat.get("homeRuns")), safe_float(sp_stat.get("inningsPitched")), min_ip=5)
     else:
         sp_rate = LG_HR_PA
     sp_adj = max(0.4, min(3.0, sp_rate / LG_HR_PA))
@@ -387,11 +403,17 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     per_pa = max(0.001, min(0.12, sr * split_adj * hot_adj * sc_adj * pitch_blend * park_adj * temp_adj * wind_adj))
     gp     = 1 - (1 - per_pa) ** pp
 
-    od        = odds_map.get(norm(batter["name"]), {})
-    best_odds = od.get("best")
-    best_book = od.get("best_book")
-    implied   = american_to_implied(best_odds) if best_odds is not None else None
-    edge      = (gp - implied) if implied is not None else None
+    name_keys = [norm(batter["name"]), norm_reverse(batter["name"])]
+    od = {}
+    for key in name_keys:
+        od = odds_map.get(key, {})
+        if od: break
+
+    best_odds    = od.get("best")
+    best_book    = od.get("best_book")
+    implied      = american_to_implied(best_odds) if best_odds is not None else None
+    fair_implied = (implied / VIG_FACTOR) if implied is not None else None
+    edge         = (gp - fair_implied) if fair_implied is not None else None
 
     # Kelly fraction
     kelly = None
@@ -421,7 +443,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         "park_adj": park_adj, "temp_adj": temp_adj, "wind_adj": wind_adj,
         "proj_pa": round(pp, 1), "game_prob": gp, "fair_line": implied_to_american(gp),
         "best_odds": best_odds, "best_book": best_book,
-        "implied": implied, "edge": edge,
+        "implied": implied, "fair_implied": fair_implied, "edge": edge,
         "kelly": kelly, "quarter_kelly": quarter_kelly,
         "recommendation": rec,
         "all_books": od.get("books", []), "weather": weather,
@@ -892,6 +914,44 @@ def send_notifications(results, date, html_content, args):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
+# Debug
+# ──────────────────────────────────────────────────────────────────────────────
+
+def print_debug_summary(results, odds_map, has_key):
+    print("\n" + "="*70)
+    print("  DEBUG SUMMARY")
+    print("="*70)
+    if not has_key:
+        print("  ⚠  No ODDS_API_KEY — edge cannot be calculated for anyone.")
+    else:
+        matched   = sum(1 for r in results if r["best_odds"] is not None)
+        unmatched = [r["name"] for r in results if r["best_odds"] is None]
+        print(f"  Odds matched: {matched}/{len(results)} players")
+        if unmatched:
+            print("  Unmatched players:")
+            for n in unmatched[:15]:
+                print(f"    · {n}  →  norm='{norm(n)}'")
+            print(f"  Odds map sample keys: {list(odds_map.keys())[:10]}")
+
+    hot_active           = sum(1 for r in results if r["r_pa"] >= 5)
+    split_adj_nontrivial = sum(1 for r in results if abs(r["split_adj"] - 1.0) > 0.05)
+    sc_active            = sum(1 for r in results if r.get("sc_info"))
+    print(f"  Hot factor active (≥5 PA in L14): {hot_active}/{len(results)}")
+    print(f"  Split adj non-trivial (>5%):       {split_adj_nontrivial}/{len(results)}")
+    print(f"  Statcast data found:               {sc_active}/{len(results)}")
+    print(f"\n  Top-10 by model probability:")
+    print(f"  {'Player':<26} {'Prob':>6}  {'Fair%':>6}  {'Edge':>7}  Adjustments")
+    print("  " + "-"*72)
+    for r in sorted(results, key=lambda x: x["game_prob"], reverse=True)[:10]:
+        e_str  = f"{r['edge']*100:+.1f}%" if r["edge"] is not None else "no line"
+        fi_str = f"{r.get('fair_implied',0)*100:.1f}%" if r.get("fair_implied") else "—"
+        adjs   = (f"split×{r['split_adj']:.2f} hot×{r['hot_adj']:.2f} "
+                  f"sc×{r['sc_adj']:.2f} pitch×{r['pitch_blend']:.2f} park×{r['park_adj']:.2f}")
+        print(f"  {r['name'][:25]:<26} {r['game_prob']*100:.1f}%  {fi_str:>6}  {e_str:>7}  {adjs}")
+    print("="*70 + "\n")
+
+
+# ──────────────────────────────────────────────────────────────────────────────
 # Main
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -909,6 +969,7 @@ def main():
     p.add_argument("--window",         choices=["early","mid","late"], default=None, help="Game time window: early(12-4pm ET) mid(4-7pm ET) late(7pm+ ET)")
     p.add_argument("--pages-url",      default="", help="GitHub Pages URL for SMS link")
     p.add_argument("--bankroll",       type=float, default=float(os.environ.get("BANKROLL") or "0"))
+    p.add_argument("--debug",          action="store_true", help="Print diagnostic info to diagnose zero-bet issues")
     args = p.parse_args()
 
     date = args.date
@@ -1033,8 +1094,15 @@ def main():
     off0 += nb
     bhotm = {}
     for i, r in zip(ubids, raw[off0:off0+nb]):
-        found = next((x for x in (r or {}).get("stats",[]) if x.get("splits")), None)
-        bhotm[i] = found["splits"][0]["stat"] if found and found.get("splits") else None
+        all_splits = []
+        for stat_group in (r or {}).get("stats", []):
+            all_splits.extend(stat_group.get("splits", []))
+        if all_splits:
+            total_pa = sum(safe_int(sp.get("stat", {}).get("plateAppearances", 0)) for sp in all_splits)
+            total_hr = sum(safe_int(sp.get("stat", {}).get("homeRuns", 0)) for sp in all_splits)
+            bhotm[i] = {"plateAppearances": total_pa, "homeRuns": total_hr} if total_pa > 0 else None
+        else:
+            bhotm[i] = None
 
     off0 += nb
     psm  = {i: first_season(r) for i, r in zip(upids, raw[off0:off0+np_])}
@@ -1242,6 +1310,9 @@ def main():
 
     if args.open:
         webbrowser.open(f"file://{report_path}")
+
+    if args.debug:
+        print_debug_summary(results, odds_map, bool(args.key))
 
     # Notifications
     send_notifications(results, date, html, args)
