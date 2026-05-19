@@ -590,6 +590,16 @@ section+section{border-top:2px solid #1e293b;margin-top:40px;padding-top:30px;}
 .cal-table{font-size:11px;margin-top:8px;border-collapse:collapse;}
 .cal-table th,.cal-table td{padding:3px 8px;text-align:right;border:1px solid #334155;}
 .cal-table th{color:#64748b;font-weight:500;font-size:10px;}
+.top5{background:#1e293b;border-radius:8px;padding:14px 18px;margin-bottom:16px;}
+.top5 h3{font-size:13px;color:#94a3b8;margin-bottom:10px;font-weight:600;letter-spacing:.02em;}
+.top5-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #1a2234;}
+.top5-row:last-child{border-bottom:none;}
+.top5-rank{font-size:11px;color:#475569;width:16px;flex-shrink:0;text-align:right;}
+.top5-name{font-size:13px;font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.top5-prob{font-size:11px;color:#94a3b8;width:44px;text-align:right;flex-shrink:0;}
+.top5-odds{font-size:12px;font-weight:600;width:50px;text-align:right;flex-shrink:0;}
+.top5-edge{font-size:13px;font-weight:700;width:56px;text-align:right;flex-shrink:0;}
+.top5-badge{width:44px;text-align:right;flex-shrink:0;}
 """
 
 def cfactor(adj, label, thresh=0.04):
@@ -733,6 +743,37 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
     sc_note   = f"Statcast: barrel% + hard-hit% (barrel ratio vs {LG_BARREL*100:.1f}% league avg, exp 0.40)." if has_statcast else "Statcast disabled — install pybaseball."
     wh = f'<div class="wh">{WINDOW_LABELS[window]}</div>' if window else ""
 
+    # Top-5 by edge panel (only when odds are available)
+    top5_html = ""
+    if has_odds:
+        lined = [r for r in results if r.get("edge") is not None]
+        top5  = sorted(lined, key=lambda r: r["edge"], reverse=True)[:5]
+        if top5:
+            t5rows = ""
+            for rank, r in enumerate(top5, 1):
+                e   = r["edge"]
+                ec  = "#22c55e" if e > .05 else "#86efac" if e > .02 else "#94a3b8" if e > -.02 else "#f87171"
+                rec = r.get("recommendation", "—")
+                if rec == "Bet":
+                    tbadge = '<span class="badge bet" style="font-size:10px;padding:1px 5px">Bet</span>'
+                elif rec == "Lean":
+                    tbadge = '<span class="badge lean" style="font-size:10px;padding:1px 5px">Lean</span>'
+                elif rec == "Skip":
+                    tbadge = '<span class="badge skip" style="font-size:10px;padding:1px 5px">Skip</span>'
+                else:
+                    tbadge = '<span style="color:#475569;font-size:10px">—</span>'
+                t5rows += (
+                    f'<div class="top5-row">'
+                    f'<span class="top5-rank">{rank}</span>'
+                    f'<span class="top5-name">{r["name"]}{" "+r["hot_label"] if r.get("hot_label") else ""}</span>'
+                    f'<span class="top5-prob">{r["game_prob"]*100:.1f}%</span>'
+                    f'<span class="top5-odds">{fo(r["best_odds"])}</span>'
+                    f'<span class="top5-edge" style="color:{ec}">{e*100:+.1f}%</span>'
+                    f'<span class="top5-badge">{tbadge}</span>'
+                    f'</div>'
+                )
+            top5_html = f'<div class="top5"><h3>Top 5 by Edge</h3>{t5rows}</div>'
+
     return f"""<section>
 {wh}{perf_html}<div class="g5">
   <div class="metric"><div class="ml">Players</div><div class="mv">{total}</div></div>
@@ -741,7 +782,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
   <div class="metric"><div class="ml">Avg prob</div><div class="mv">{avg_prob*100:.1f}%</div></div>
   <div class="metric"><div class="ml">Weather</div><div class="mv">{weather_count}</div></div>
 </div>
-<div class="legend">
+{top5_html}<div class="legend">
   <span>🔥 Hot ≥+20%</span><span>↗ Warm +8–19%</span>
   <span>↘ Cool −10–22%</span><span>🧊 Cold ≤−22%</span>
   <span style="margin-left:8px">↑ raises prob &nbsp; ↓ lowers prob</span>
