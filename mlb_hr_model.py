@@ -102,8 +102,8 @@ CARRIER_GATEWAYS = {
 }
 
 WINDOW_LABELS = {
-    "early": "🕐 Early Window (12–3:59 pm ET)",
-    "mid":   "🕓 Mid Window (4–6:59 pm ET)",
+    "early": "🕐 Early Window (12–5 pm ET)",
+    "mid":   "🕓 Mid Window (4–8 pm ET)",
     "late":  "🕖 Late Window (7 pm+ ET)",
 }
 
@@ -113,8 +113,8 @@ def in_window(game_date_str, window):
     try:
         dt = datetime.fromisoformat(game_date_str.replace("Z", "+00:00"))
         hour = (dt.hour - 4) % 24  # EDT = UTC-4 for the full baseball season
-        if window == "early": return 12 <= hour < 16
-        if window == "mid":   return 16 <= hour < 19
+        if window == "early": return 12 <= hour < 17
+        if window == "mid":   return 16 <= hour < 20
         if window == "late":  return hour >= 19
     except Exception:
         pass
@@ -966,7 +966,7 @@ def main():
     p.add_argument("--carrier",        default="", help="att|verizon|tmobile|sprint|boost|cricket")
     p.add_argument("--gmail-from",     default="", help="Gmail sender address (or set GMAIL_ADDRESS)")
     p.add_argument("--gmail-pass",     default="", help="Gmail App Password (or set GMAIL_APP_PASSWORD)")
-    p.add_argument("--window",         choices=["early","mid","late"], default=None, help="Game time window: early(12-4pm ET) mid(4-7pm ET) late(7pm+ ET)")
+    p.add_argument("--window",         choices=["early","mid","late"], default=None, help="Game time window: early(12-5pm ET) mid(4-8pm ET) late(7pm+ ET)")
     p.add_argument("--pages-url",      default="", help="GitHub Pages URL for SMS link")
     p.add_argument("--bankroll",       type=float, default=float(os.environ.get("BANKROLL") or "0"))
     p.add_argument("--debug",          action="store_true", help="Print diagnostic info to diagnose zero-bet issues")
