@@ -265,7 +265,7 @@ def get_odds(api_key, date):
     hr_urls = [
         f"https://api.the-odds-api.com/v4/sports/baseball_mlb/events/{e['id']}/odds"
         f"?apiKey={api_key}&markets=batter_home_runs&oddsFormat=american"
-        f"&bookmakers=draftkings,fanduel,betmgm,caesars,betrivers"
+        f"&bookmakers=draftkings,fanduel,betmgm,caesars"
         for e in events
     ]
     totals_urls = [
