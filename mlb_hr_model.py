@@ -403,7 +403,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         wind_adj = max(0.92, min(1.12, 1 + max(0, weather["wind_mph"] - 5) * 0.005))
 
     pp     = proj_pa(batter["batting_order"], ou)
-    per_pa = max(0.001, min(0.12, sr * split_adj * hot_adj * sc_adj * pitch_blend * park_adj * temp_adj * wind_adj))
+    per_pa = max(0.001, min(0.08, sr * split_adj * hot_adj * sc_adj * pitch_blend * park_adj * temp_adj * wind_adj))
     gp     = 1 - (1 - per_pa) ** pp
 
     name_keys = [norm(batter["name"]), norm_reverse(batter["name"])]
@@ -612,7 +612,7 @@ def cfactor(adj, label, thresh=0.04):
     return f'<span style="color:{color}">{"↑" if d>0 else "↓"}{label} {d*100:+.0f}%</span>'
 
 def _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
-                   window=None, stats=None, bankroll=0):
+                   window=None, stats=None, bankroll=0, reset_date=""):
     total      = len(results)
     with_lines = sum(1 for r in results if r["best_odds"] is not None)
     value_bets = sum(1 for r in results if (r.get("edge") or 0) > 0.02)
@@ -620,6 +620,8 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
 
     # Performance panel
     perf_html = ""
+    if stats is not None and stats.get("total_lined", 0) == 0 and reset_date:
+        perf_html = f'<div class="perf-panel"><h3>Season Performance</h3><p style="color:#64748b;font-size:12px;margin:0">Stats reset {reset_date} — no results tracked yet for this season.</p></div>'
     if stats is not None and stats.get("total_lined", 0) > 0:
         s = stats
         bet_rec  = f'{s["bet_w"]}-{s["bet_l"]}'
@@ -700,7 +702,18 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         odds_cols = ""
         if has_odds:
             bo = r["best_odds"]
-            bo_str = fo(bo) if bo is not None else '<span style="color:#334155">—</span>'
+            if bo is not None:
+                implied_pct = r.get("implied")
+                sub = f'<div style="font-size:10px;color:#64748b">implied: {implied_pct*100:.1f}%</div>' if implied_pct else ""
+                bo_str = f'<strong>{fo(bo)}</strong>{sub}'
+            else:
+                bo_str = '<span style="color:#475569;font-size:13px;font-weight:400">—</span>'
+            book = r.get("best_book") or ""
+            if book:
+                bk_bg = "#16a34a" if any(x in book.lower() for x in ("draftkings", "fanduel")) else "#475569"
+                book_html = f'<span style="font-size:10px;background:{bk_bg};color:#fff;padding:1px 6px;border-radius:3px;white-space:nowrap">{book}</span>'
+            else:
+                book_html = '<span style="color:#334155">—</span>'
             edge_str = f"{e*100:+.1f}%" if e is not None else "—"
             # Stake display
             stake_str = ""
@@ -708,8 +721,8 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
             if bankroll > 0 and qk is not None:
                 stake_str = f'<div style="font-size:10px;color:#64748b">${qk*bankroll:.2f}</div>'
             odds_cols = (
-                f'<td style="text-align:right;font-weight:600">{bo_str}{stake_str}</td>'
-                f'<td style="font-size:11px;color:#64748b">{r.get("best_book") or "—"}</td>'
+                f'<td style="text-align:right">{bo_str}{stake_str}</td>'
+                f'<td>{book_html}</td>'
                 f'<td style="text-align:right;font-weight:700;color:{ec}">{edge_str}</td>'
                 f'<td>{badge}</td>'
             )
@@ -777,10 +790,11 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
                 )
             top5_html = f'<div class="top5"><h3>Top 5 by Edge</h3>{t5rows}</div>'
 
+    odds_match_color = "#22c55e" if (total > 0 and with_lines / total >= 0.5) else "#f59e0b" if with_lines > 0 else "#f87171"
     return f"""<section>
 {wh}{perf_html}<div class="g5">
   <div class="metric"><div class="ml">Players</div><div class="mv">{total}</div></div>
-  <div class="metric"><div class="ml">With lines</div><div class="mv">{with_lines}</div></div>
+  <div class="metric"><div class="ml">Odds matched</div><div class="mv" style="color:{odds_match_color}">{with_lines}/{total}</div></div>
   <div class="metric"><div class="ml">Value bets</div><div class="mv g">{value_bets}</div></div>
   <div class="metric"><div class="ml">Avg prob</div><div class="mv">{avg_prob*100:.1f}%</div></div>
   <div class="metric"><div class="ml">Weather</div><div class="mv">{weather_count}</div></div>
@@ -810,9 +824,9 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
 
 
 def build_report(results, date, has_odds, has_statcast, weather_count, has_key,
-                 window=None, stats=None, bankroll=0):
+                 window=None, stats=None, bankroll=0, reset_date=""):
     section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
-                             window=window, stats=stats, bankroll=bankroll)
+                             window=window, stats=stats, bankroll=bankroll, reset_date=reset_date)
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -825,9 +839,9 @@ def build_report(results, date, has_odds, has_statcast, weather_count, has_key,
 
 
 def append_to_combined(html_path, results, date, has_odds, has_statcast, weather_count, has_key,
-                       window=None, stats=None, bankroll=0):
+                       window=None, stats=None, bankroll=0, reset_date=""):
     section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
-                             window=window, stats=stats, bankroll=bankroll)
+                             window=window, stats=stats, bankroll=bankroll, reset_date=reset_date)
     if not os.path.exists(html_path):
         content = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/>
@@ -1330,11 +1344,17 @@ def main():
 
     # Load season stats for report
     season_stats = None
+    reset_date = ""
     try:
         with open("results/picks.json") as f:
             all_picks = json.load(f)
         season_stats = compute_stats(all_picks)
     except (FileNotFoundError, json.JSONDecodeError):
+        pass
+    try:
+        with open("results/reset_date.txt") as f:
+            reset_date = f.read().strip()
+    except FileNotFoundError:
         pass
 
     # HTML report — standalone window file
@@ -1342,7 +1362,7 @@ def main():
     window_suffix = f"_{args.window}" if args.window else ""
     report_path   = os.path.abspath(f"reports/report_{date}{window_suffix}.html")
     html = build_report(results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key),
-                        window=args.window, stats=season_stats, bankroll=args.bankroll)
+                        window=args.window, stats=season_stats, bankroll=args.bankroll, reset_date=reset_date)
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(html)
 
@@ -1350,7 +1370,7 @@ def main():
     os.makedirs("docs", exist_ok=True)
     combined_path = f"docs/report_{date}.html"
     append_to_combined(combined_path, results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key),
-                       window=args.window, stats=season_stats, bankroll=args.bankroll)
+                       window=args.window, stats=season_stats, bankroll=args.bankroll, reset_date=reset_date)
     shutil.copy2(combined_path, "docs/index.html")
 
     print(f"\n  ✓  Report: {report_path}")
