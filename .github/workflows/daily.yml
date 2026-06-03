@@ -2,30 +2,21 @@ name: Daily MLB HR Model
 
 on:
   schedule:
-    - cron: '30 15 * * *'   # Early window: 11:30am ET (15:30 UTC / EDT)
-    - cron: '45 21 * * *'   # Mid window:    5:45pm ET (21:45 UTC / EDT)
-    - cron: '45 0 * * *'    # Late window:   8:45pm ET (00:45 UTC next day / EDT)
-    - cron: '0 13 * * *'    # Results check: 9:00am ET (13:00 UTC / EDT)
-
+    - cron: '30 15 * * *'   # Early window:  11:30am ET (15:30 UTC)
+    - cron: '45 21 * * *'   # Mid window:     5:45pm ET (21:45 UTC)
+    - cron: '45 0 * * *'    # Late window:    8:45pm ET (00:45 UTC next day)
   workflow_dispatch:
-    inputs:
-      date:
-        description: 'Date to run (YYYY-MM-DD, leave blank for today)'
-        required: false
-        default: ''
-      window:
-        description: 'Window to run: early | mid | late | check-results (leave blank for all model windows)'
-        required: false
-        default: ''
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
 
-  early-window:
-    name: Early window (12–3:59 pm ET)
+  build:
+    name: Run model
     runs-on: ubuntu-latest
-    if: >-
-      (github.event_name == 'schedule' && github.event.schedule == '30 15 * * *') ||
-      (github.event_name == 'workflow_dispatch' && (github.event.inputs.window == 'early' || github.event.inputs.window == ''))
     steps:
       - uses: actions/checkout@v4
 
@@ -34,186 +25,37 @@ jobs:
           python-version: '3.11'
           cache: pip
 
-      - run: pip install -r requirements.txt
-
-      - name: Set run date
-        run: |
-          D="${{ github.event.inputs.date }}"
-          echo "RUN_DATE=${D:-$(date +%Y-%m-%d)}" >> $GITHUB_ENV
-
-      - name: Fetch existing daily report
-        run: |
-          git fetch origin gh-pages --depth=1 2>/dev/null || true
-          mkdir -p docs
-          git show origin/gh-pages:report_${RUN_DATE}.html > "docs/report_${RUN_DATE}.html" 2>/dev/null || true
+      - run: pip install requests pybaseball pandas
 
       - name: Run model
         env:
-          ODDS_API_KEY:        ${{ secrets.ODDS_API_KEY }}
-          GMAIL_ADDRESS:       ${{ secrets.GMAIL_ADDRESS }}
-          GMAIL_APP_PASSWORD:  ${{ secrets.GMAIL_APP_PASSWORD }}
-          REPORT_EMAIL:        ${{ secrets.REPORT_EMAIL }}
-          REPORT_PHONE:        ${{ secrets.REPORT_PHONE }}
-          CARRIER:             ${{ secrets.CARRIER }}
-          PAGES_URL:           ${{ secrets.PAGES_URL }}
-          BANKROLL:            ${{ secrets.BANKROLL }}
-        run: python mlb_hr_model.py -k "$ODDS_API_KEY" -d "$RUN_DATE" --window early
-
-      - name: Commit picks
+          ODDS_API_KEY:       ${{ secrets.ODDS_API_KEY }}
+          GMAIL_ADDRESS:      ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          REPORT_EMAIL:       ${{ secrets.REPORT_EMAIL }}
+          REPORT_PHONE:       ${{ secrets.REPORT_PHONE }}
+          CARRIER:            ${{ secrets.CARRIER }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/picks.json 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "picks: $RUN_DATE early [skip ci]"
-          git push 2>/dev/null || true
+          python mlb_hr_model.py \
+            -k "$ODDS_API_KEY" \
+            --pages-url https://mattharding23.github.io/mlb-hr-model/ || true
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        if: hashFiles('docs/index.html') != ''
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          keep_files: true
+          path: docs/
 
-  mid-window:
-    name: Mid window (4–6:59 pm ET)
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
     runs-on: ubuntu-latest
-    if: >-
-      (github.event_name == 'schedule' && github.event.schedule == '45 21 * * *') ||
-      (github.event_name == 'workflow_dispatch' && (github.event.inputs.window == 'mid' || github.event.inputs.window == ''))
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: pip
-
-      - run: pip install -r requirements.txt
-
-      - name: Set run date
-        run: |
-          D="${{ github.event.inputs.date }}"
-          echo "RUN_DATE=${D:-$(date +%Y-%m-%d)}" >> $GITHUB_ENV
-
-      - name: Fetch existing daily report
-        run: |
-          git fetch origin gh-pages --depth=1 2>/dev/null || true
-          mkdir -p docs
-          git show origin/gh-pages:report_${RUN_DATE}.html > "docs/report_${RUN_DATE}.html" 2>/dev/null || true
-
-      - name: Run model
-        env:
-          ODDS_API_KEY:        ${{ secrets.ODDS_API_KEY }}
-          GMAIL_ADDRESS:       ${{ secrets.GMAIL_ADDRESS }}
-          GMAIL_APP_PASSWORD:  ${{ secrets.GMAIL_APP_PASSWORD }}
-          REPORT_EMAIL:        ${{ secrets.REPORT_EMAIL }}
-          REPORT_PHONE:        ${{ secrets.REPORT_PHONE }}
-          CARRIER:             ${{ secrets.CARRIER }}
-          PAGES_URL:           ${{ secrets.PAGES_URL }}
-          BANKROLL:            ${{ secrets.BANKROLL }}
-        run: python mlb_hr_model.py -k "$ODDS_API_KEY" -d "$RUN_DATE" --window mid
-
-      - name: Commit picks
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/picks.json 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "picks: $RUN_DATE mid [skip ci]"
-          git push 2>/dev/null || true
-
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        if: hashFiles('docs/index.html') != ''
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          keep_files: true
-
-  late-window:
-    name: Late window (7 pm+ ET)
-    runs-on: ubuntu-latest
-    if: >-
-      (github.event_name == 'schedule' && github.event.schedule == '45 0 * * *') ||
-      (github.event_name == 'workflow_dispatch' && (github.event.inputs.window == 'late' || github.event.inputs.window == ''))
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: pip
-
-      - run: pip install -r requirements.txt
-
-      - name: Set run date
-        run: |
-          D="${{ github.event.inputs.date }}"
-          echo "RUN_DATE=${D:-$(date +%Y-%m-%d)}" >> $GITHUB_ENV
-
-      - name: Fetch existing daily report
-        run: |
-          git fetch origin gh-pages --depth=1 2>/dev/null || true
-          mkdir -p docs
-          git show origin/gh-pages:report_${RUN_DATE}.html > "docs/report_${RUN_DATE}.html" 2>/dev/null || true
-
-      - name: Run model
-        env:
-          ODDS_API_KEY:        ${{ secrets.ODDS_API_KEY }}
-          GMAIL_ADDRESS:       ${{ secrets.GMAIL_ADDRESS }}
-          GMAIL_APP_PASSWORD:  ${{ secrets.GMAIL_APP_PASSWORD }}
-          REPORT_EMAIL:        ${{ secrets.REPORT_EMAIL }}
-          REPORT_PHONE:        ${{ secrets.REPORT_PHONE }}
-          CARRIER:             ${{ secrets.CARRIER }}
-          PAGES_URL:           ${{ secrets.PAGES_URL }}
-          BANKROLL:            ${{ secrets.BANKROLL }}
-        run: python mlb_hr_model.py -k "$ODDS_API_KEY" -d "$RUN_DATE" --window late
-
-      - name: Commit picks
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/picks.json 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "picks: $RUN_DATE late [skip ci]"
-          git push 2>/dev/null || true
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        if: hashFiles('docs/index.html') != ''
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          keep_files: true
-
-  check-results:
-    name: Check yesterday's results (9 am ET)
-    runs-on: ubuntu-latest
-    if: >-
-      (github.event_name == 'schedule' && github.event.schedule == '0 13 * * *') ||
-      (github.event_name == 'workflow_dispatch' && github.event.inputs.window == 'check-results')
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: pip
-
-      - run: pip install -r requirements.txt
-
-      - name: Fetch existing picks
-        run: |
-          git fetch origin main --depth=5 2>/dev/null || true
-          mkdir -p results
-          git show origin/main:results/picks.json > results/picks.json 2>/dev/null || true
-
-      - name: Check results
-        run: python check_results.py
-
-      - name: Commit updated picks
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/picks.json
-          git diff --cached --quiet || git commit -m "results: resolved picks [skip ci]"
-          git push
+        id: deployment
+        uses: actions/deploy-pages@v4
