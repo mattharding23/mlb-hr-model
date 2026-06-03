@@ -265,7 +265,7 @@ def get_odds(api_key, date):
     hr_urls = [
         f"https://api.the-odds-api.com/v4/sports/baseball_mlb/events/{e['id']}/odds"
         f"?apiKey={api_key}&markets=batter_home_runs&oddsFormat=american"
-        f"&bookmakers=draftkings,fanduel,betmgm,thescore,caesars,bovada"
+        f"&bookmakers=draftkings,fanduel,betmgm,caesars,betrivers"
         for e in events
     ]
     totals_urls = [
@@ -699,33 +699,31 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         pk = (r.get("venue","")).replace(" Stadium","").replace(" Ball Park","").replace(" Park","").replace(" Field","").replace(" Centre","").replace(" Coliseum","")
         pitcher_disp = f'{r["pitcher_name"].split()[-1]} ({r.get("pitcher_hand","?")})' if r.get("pitcher_name") else "TBD"
 
-        odds_cols = ""
-        if has_odds:
-            bo = r["best_odds"]
-            if bo is not None:
-                implied_pct = r.get("implied")
-                sub = f'<div style="font-size:10px;color:#64748b">implied: {implied_pct*100:.1f}%</div>' if implied_pct else ""
-                bo_str = f'<strong>{fo(bo)}</strong>{sub}'
-            else:
-                bo_str = '<span style="color:#475569;font-size:13px;font-weight:400">—</span>'
-            book = r.get("best_book") or ""
-            if book:
-                bk_bg = "#16a34a" if any(x in book.lower() for x in ("draftkings", "fanduel")) else "#475569"
-                book_html = f'<span style="font-size:10px;background:{bk_bg};color:#fff;padding:1px 6px;border-radius:3px;white-space:nowrap">{book}</span>'
-            else:
-                book_html = '<span style="color:#334155">—</span>'
-            edge_str = f"{e*100:+.1f}%" if e is not None else "—"
-            # Stake display
-            stake_str = ""
-            qk = r.get("quarter_kelly")
-            if bankroll > 0 and qk is not None:
-                stake_str = f'<div style="font-size:10px;color:#64748b">${qk*bankroll:.2f}</div>'
-            odds_cols = (
-                f'<td style="text-align:right">{bo_str}{stake_str}</td>'
-                f'<td>{book_html}</td>'
-                f'<td style="text-align:right;font-weight:700;color:{ec}">{edge_str}</td>'
-                f'<td>{badge}</td>'
-            )
+        bo = r.get("best_odds")
+        if bo is not None:
+            implied_pct = r.get("implied")
+            sub = f'<div style="font-size:10px;color:#64748b">implied: {implied_pct*100:.1f}%</div>' if implied_pct else ""
+            bo_str = f'<strong>{fo(bo)}</strong>{sub}'
+        else:
+            bo_str = '<span style="color:#475569">—</span>'
+        book = r.get("best_book") or ""
+        if book:
+            bk_bg = "#16a34a" if any(x in book.lower() for x in ("draftkings", "fanduel")) else "#475569"
+            book_html = f'<span style="font-size:10px;background:{bk_bg};color:#fff;padding:1px 6px;border-radius:3px;white-space:nowrap">{book}</span>'
+        else:
+            book_html = '<span style="color:#475569">—</span>'
+        edge_str = f"{e*100:+.1f}%" if e is not None else "—"
+        # Stake display
+        stake_str = ""
+        qk = r.get("quarter_kelly")
+        if bankroll > 0 and qk is not None:
+            stake_str = f'<div style="font-size:10px;color:#64748b">${qk*bankroll:.2f}</div>'
+        odds_cols = (
+            f'<td style="text-align:right">{bo_str}{stake_str}</td>'
+            f'<td>{book_html}</td>'
+            f'<td style="text-align:right;font-weight:700;color:{ec}">{edge_str}</td>'
+            f'<td>{badge}</td>'
+        )
 
         sc_col = ""
         if has_statcast:
@@ -753,7 +751,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         </tr>""")
 
     sc_th    = '<th style="text-align:right">Barrel%</th>' if has_statcast else ""
-    odds_ths = '<th style="text-align:right">Best line</th><th>Book</th><th style="text-align:right">Edge</th><th>Rec</th>' if has_odds else ""
+    odds_ths = '<th style="text-align:right">Best line</th><th>Book</th><th style="text-align:right">Edge</th><th>Rec</th>'
     all_books = list({b["book"] for r in results for b in r.get("all_books", [])})
     odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Lean +2–5pp · Skip ≤−4pp." if has_key else "Run with -k YOUR_ODDS_KEY for live line comparison."
     sc_note   = f"Statcast: barrel% + hard-hit% (barrel ratio vs {LG_BARREL*100:.1f}% league avg, exp 0.40)." if has_statcast else "Statcast disabled — install pybaseball."
