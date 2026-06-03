@@ -56,6 +56,7 @@ LG_HR_PA     = 0.034
 LG_BARREL    = 0.067
 LG_HARD_HIT  = 0.385
 VIG_FACTOR   = 1.055  # typical single-outcome prop overround (~5.5%)
+MAX_PROP_ODDS = 2500  # filter out longshot/alternate lines above this threshold
 
 PA_BY_SPOT = {1:4.7,2:4.6,3:4.5,4:4.4,5:4.3,6:4.1,7:4.0,8:3.9,9:3.8}
 
@@ -264,7 +265,7 @@ def get_odds(api_key, date):
     hr_urls = [
         f"https://api.the-odds-api.com/v4/sports/baseball_mlb/events/{e['id']}/odds"
         f"?apiKey={api_key}&markets=batter_home_runs&oddsFormat=american"
-        f"&bookmakers=draftkings,fanduel,betmgm,caesars,pointsbetus,betrivers"
+        f"&bookmakers=draftkings,fanduel,betmgm,thescore,caesars,bovada"
         for e in events
     ]
     totals_urls = [
@@ -285,6 +286,8 @@ def get_odds(api_key, date):
             mkt = next((m for m in book.get("markets", []) if m["key"] == "batter_home_runs"), None)
             if not mkt: continue
             for o in mkt.get("outcomes", []):
+                if o["price"] > MAX_PROP_ODDS:
+                    continue
                 raw_name = o.get("description") or o.get("name", "")
                 keys = {norm(raw_name), norm_reverse(raw_name)}
                 for key in keys:
@@ -1308,6 +1311,9 @@ def main():
     if args.min_edge > 0:
         results = [r for r in results if r.get("edge") is None or r["edge"] >= args.min_edge]
     print(f"✓  {len(results)} players")
+    if args.key:
+        matched = sum(1 for r in results if r.get("best_odds") is not None)
+        print(f"   Odds match rate: {matched}/{len(results)} players")
 
     # Console summary
     value_bets = [r for r in results if (r.get("edge") or 0) > 0.02]
