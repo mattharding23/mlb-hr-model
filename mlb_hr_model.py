@@ -958,6 +958,7 @@ def send_notifications(results, date, html_content, args):
 
     # ── SMS via carrier email-to-text gateway (free) ──────────────
     if to_phone and carrier and carrier in CARRIER_GATEWAYS:
+        print(f"  [sms-debug] gmail_addr repr: {repr(gmail_addr)}")
         value_bets_sorted = sorted(value_bets, key=lambda r: r.get("edge") or 0, reverse=True)
         top10 = value_bets_sorted[:10]
 
@@ -987,6 +988,11 @@ def send_notifications(results, date, html_content, args):
                 msg2["Subject"] = sms_subject
                 msg2["From"]    = clean_from
                 msg2["To"]      = sms_addr
+
+                full_sms_string = msg2.as_string()
+                for i, c in enumerate(full_sms_string):
+                    if ord(c) > 127:
+                        print(f"  [sms-debug] non-ASCII at pos {i}: {repr(c)} — context: {repr(full_sms_string[max(0,i-20):i+20])}")
 
                 with smtplib.SMTP("smtp.gmail.com", 587) as s:
                     s.starttls()
