@@ -963,17 +963,11 @@ def send_notifications(results, date, html_content, args):
         def ascii_clean(s):
             return "".join(c if ord(c) < 128 else "?" for c in str(s))
 
-        value_bets_sorted = sorted(value_bets, key=lambda r: r.get("edge") or 0, reverse=True)
-        top5 = value_bets_sorted[:5]
-
-        lines = [ascii_clean(f"HR Props {date} ({len(value_bets)} bets)")]
-        for r in top5:
-            e    = (r.get("edge") or 0) * 100
-            name = ascii_clean(r["name"].split()[-1])
-            lines.append(ascii_clean(f"{name} {fo(r['best_odds'])} +{e:.0f}%"))
-        if pages_url:
-            lines.append(ascii_clean(pages_url))
-
+        lines = [
+            ascii_clean(f"MLB HR Props {date}"),
+            ascii_clean(f"{len(value_bets)} value bets found."),
+            ascii_clean(f"View report: {pages_url}") if pages_url else ascii_clean("Check report for details.")
+        ]
         sms_body = "\n".join(lines)
 
         for digits_raw in [d.strip() for d in to_phone.split(",") if d.strip()]:
