@@ -973,6 +973,9 @@ def send_notifications(results, date, html_content, args):
             lines.append("-----------------")
             lines.append(pages_url)
 
+        sms_subject = "".join(c if ord(c) < 128 else "?" for c in subject)
+        clean_from  = "".join(c if ord(c) < 128 else "?" for c in gmail_addr)
+
         for digits_raw in [d.strip() for d in to_phone.split(",") if d.strip()]:
             try:
                 digits   = "".join(c for c in digits_raw if c.isdigit())
@@ -981,8 +984,9 @@ def send_notifications(results, date, html_content, args):
                 sms_body = "".join(c if ord(c) < 128 else "?" for c in sms_body)
 
                 msg2 = MIMEText(sms_body, "plain", "us-ascii")
-                msg2["From"] = gmail_addr
-                msg2["To"]   = sms_addr
+                msg2["Subject"] = sms_subject
+                msg2["From"]    = clean_from
+                msg2["To"]      = sms_addr
 
                 with smtplib.SMTP("smtp.gmail.com", 587) as s:
                     s.starttls()
