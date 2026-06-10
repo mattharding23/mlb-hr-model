@@ -981,28 +981,18 @@ def send_notifications(results, date, html_content, args):
 
         sms_body = "\n".join(lines)
 
-        sms_subject = ascii_clean(subject)
-        clean_from  = ascii_clean(gmail_addr)
-
         for digits_raw in [d.strip() for d in to_phone.split(",") if d.strip()]:
             try:
                 digits   = "".join(c for c in digits_raw if c.isdigit())
                 sms_addr = digits + CARRIER_GATEWAYS[carrier]
 
-                msg2 = MIMEText(sms_body, "plain", "us-ascii")
-                msg2["Subject"] = sms_subject
-                msg2["From"]    = clean_from
-                msg2["To"]      = sms_addr
-
-                full_sms_string = msg2.as_string()
-                for i, c in enumerate(full_sms_string):
-                    if ord(c) > 127:
-                        print(f"  [sms-debug] non-ASCII at pos {i}: {repr(c)} — context: {repr(full_sms_string[max(0,i-20):i+20])}")
+                raw_message = f"From: {gmail_addr}\r\nTo: {sms_addr}\r\n\r\n{sms_body}"
+                raw_message = "".join(c if ord(c) < 128 else "?" for c in raw_message)
 
                 with smtplib.SMTP("smtp.gmail.com", 587) as s:
                     s.starttls()
                     s.login(gmail_addr, gmail_pass)
-                    s.sendmail(gmail_addr, [sms_addr], msg2.as_string())
+                    s.sendmail(gmail_addr, [sms_addr], raw_message)
                 print(f"  ✓  SMS -> {digits_raw} ({carrier})")
             except Exception as e:
                 print(f"  ✗  SMS failed: {e}")
