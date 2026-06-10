@@ -964,19 +964,14 @@ def send_notifications(results, date, html_content, args):
             return "".join(c if ord(c) < 128 else "?" for c in str(s))
 
         value_bets_sorted = sorted(value_bets, key=lambda r: r.get("edge") or 0, reverse=True)
-        top10 = value_bets_sorted[:10]
+        top5 = value_bets_sorted[:5]
 
-        lines = [ascii_clean(f"HR Props {date} - {len(value_bets)} value bets")]
-        lines.append("-----------------")
-        for r in top10:
+        lines = [ascii_clean(f"HR Props {date} ({len(value_bets)} bets)")]
+        for r in top5:
             e    = (r.get("edge") or 0) * 100
-            prob = r["game_prob"] * 100
-            book = ascii_clean((r.get("best_book") or "")[:6])
             name = ascii_clean(r["name"].split()[-1])
-            lines.append(ascii_clean(f"{name}: {fo(r['best_odds'])} {book}"))
-            lines.append(ascii_clean(f"  {prob:.1f}% prob | edge {e:+.1f}%"))
+            lines.append(ascii_clean(f"{name} {fo(r['best_odds'])} +{e:.0f}%"))
         if pages_url:
-            lines.append("-----------------")
             lines.append(ascii_clean(pages_url))
 
         sms_body = "\n".join(lines)
