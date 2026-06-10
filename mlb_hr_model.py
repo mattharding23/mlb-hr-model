@@ -910,7 +910,7 @@ def send_notifications(results, date, html_content, args):
     subject    = f"⚾ MLB HR Props {date}{window_tag} — {len(value_bets)} value bet{'s' if len(value_bets)!=1 else ''}"
 
     # ── Full HTML email ───────────────────────────────────────────
-    if to_email:
+    if to_email and not getattr(args, "sms_only", False):
         try:
             recipients = [addr.strip() for addr in to_email.split(",") if addr.strip()]
             msg = MIMEMultipart("alternative")
@@ -962,16 +962,19 @@ def send_notifications(results, date, html_content, args):
             digits   = "".join(c for c in to_phone.strip() if c.isdigit())
             sms_addr = digits + CARRIER_GATEWAYS[carrier]
 
-            lines = [f"⚾ HR Props {date}{window_tag}"]
-            if season_stats and season_stats.get("total_lined", 0) > 0:
-                s = season_stats
-                lines.append(f"📊 Season: {s['bet_w']}-{s['bet_l']} Bet · {s['units_net']:+.1f}u · ROI {s['roi_pct']:+.1f}%")
-            for r in value_bets[:4]:
-                e     = (r.get("edge") or 0) * 100
-                label = "🔥 Strong" if e > 5 else "✅ Lean"
-                book  = (r.get("best_book") or "")[:3]
-                lines.append(f"• {r['name'].split()[-1]} {fo(r['best_odds'])} {book} {label} {e:+.1f}%")
+            value_bets_sorted = sorted(value_bets, key=lambda r: r.get("edge") or 0, reverse=True)
+            top10 = value_bets_sorted[:10]
+
+            lines = [f"⚾ HR Props {date} — {len(value_bets)} value bets"]
+            lines.append("─────────────────")
+            for r in top10:
+                e    = (r.get("edge") or 0) * 100
+                prob = r["game_prob"] * 100
+                book = (r.get("best_book") or "")[:6]
+                lines.append(f"{r['name'].split()[-1]}: {fo(r['best_odds'])} {book}")
+                lines.append(f"  {prob:.1f}% prob | edge {e:+.1f}%")
             if pages_url:
+                lines.append("─────────────────")
                 lines.append(pages_url)
 
             sms = MIMEText("\n".join(lines))
@@ -1044,6 +1047,7 @@ def main():
     p.add_argument("--pages-url",      default="", help="GitHub Pages URL for SMS link")
     p.add_argument("--bankroll",       type=float, default=float(os.environ.get("BANKROLL") or "0"))
     p.add_argument("--debug",          action="store_true", help="Print diagnostic info to diagnose zero-bet issues")
+    p.add_argument("--sms-only",       action="store_true", help="Skip email, send SMS only")
     args = p.parse_args()
 
     for env_var in ["GMAIL_ADDRESS", "GMAIL_APP_PASSWORD", "REPORT_EMAIL", "REPORT_PHONE", "CARRIER"]:
