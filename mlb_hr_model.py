@@ -265,7 +265,7 @@ def get_odds(api_key, date):
     hr_urls = [
         f"https://api.the-odds-api.com/v4/sports/baseball_mlb/events/{e['id']}/odds"
         f"?apiKey={api_key}&markets=batter_home_runs&oddsFormat=american"
-        f"&bookmakers=draftkings,fanduel,betmgm,caesars"
+        f"&regions=us"
         for e in events
     ]
     totals_urls = [
@@ -283,9 +283,15 @@ def get_odds(api_key, date):
     for res in hr_responses:
         if not res: continue
         for book in res.get("bookmakers", []):
+            if book.get("key") == "betrivers":
+                continue
             mkt = next((m for m in book.get("markets", []) if m["key"] == "batter_home_runs"), None)
             if not mkt: continue
             for o in mkt.get("outcomes", []):
+                if o.get("point", 0.5) != 0.5:
+                    continue
+                if o.get("name") != "Over":
+                    continue
                 if o["price"] > MAX_PROP_ODDS:
                     continue
                 raw_name = o.get("description") or o.get("name", "")
