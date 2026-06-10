@@ -977,7 +977,9 @@ def send_notifications(results, date, html_content, args):
                 lines.append("─────────────────")
                 lines.append(pages_url)
 
-            sms_body = "\n".join(lines).encode("ascii", errors="replace").decode("ascii")
+            sms_body = "\n".join(lines)
+            sms_body = sms_body.replace('\xa0', ' ')  # replace non-breaking spaces
+            sms_body = sms_body.encode("ascii", errors="replace").decode("ascii")
             sms = MIMEText(sms_body)
             sms["Subject"] = ""
             sms["From"]    = gmail_addr
