@@ -882,6 +882,12 @@ def send_notifications(results, date, html_content, args):
     carrier    = os.environ.get("CARRIER", "").lower()  or (args.carrier or "").lower()
     pages_url  = os.environ.get("PAGES_URL", "")        or args.pages_url
 
+    gmail_addr = gmail_addr.strip()
+    gmail_pass = gmail_pass.strip()
+    to_email   = to_email.strip()
+    to_phone   = to_phone.strip()
+    carrier    = carrier.strip()
+
     print(f"  [notify] gmail_addr={bool(gmail_addr)}, gmail_pass={bool(gmail_pass)}, to_email={repr(to_email)}, to_phone={repr(to_phone)}")
 
     if not value_bets:
@@ -906,10 +912,11 @@ def send_notifications(results, date, html_content, args):
     # ── Full HTML email ───────────────────────────────────────────
     if to_email:
         try:
+            recipients = [addr.strip() for addr in to_email.split(",") if addr.strip()]
             msg = MIMEMultipart("alternative")
             msg["Subject"] = subject
             msg["From"]    = f"MLB HR Model Value <{gmail_addr}>"
-            msg["To"]      = to_email
+            msg["To"]      = ", ".join(recipients)
 
             # Build plain text with performance prefix
             plain_lines = [f"MLB HR Props — {date}{window_tag}", ""]
@@ -944,7 +951,7 @@ def send_notifications(results, date, html_content, args):
             with smtplib.SMTP("smtp.gmail.com", 587) as s:
                 s.starttls()
                 s.login(gmail_addr, gmail_pass)
-                s.sendmail(gmail_addr, [to_email], msg.as_string())
+                s.sendmail(gmail_addr, recipients, msg.as_string())
             print(f"  ✓  Email → {to_email}")
         except Exception as e:
             print(f"  ✗  Email failed: {e}")
@@ -952,7 +959,7 @@ def send_notifications(results, date, html_content, args):
     # ── SMS via carrier email-to-text gateway (free) ──────────────
     if to_phone and carrier and carrier in CARRIER_GATEWAYS:
         try:
-            digits   = "".join(c for c in to_phone if c.isdigit())
+            digits   = "".join(c for c in to_phone.strip() if c.isdigit())
             sms_addr = digits + CARRIER_GATEWAYS[carrier]
 
             lines = [f"⚾ HR Props {date}{window_tag}"]
