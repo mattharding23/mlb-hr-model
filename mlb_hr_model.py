@@ -867,8 +867,7 @@ def send_notifications(results, date, html_content, args):
     """Send HTML report by email and a short summary by SMS."""
 
     value_bets = [r for r in results if (r.get("edge") or 0) > 0.02]
-    if not value_bets:
-        return
+    print(f"  [notify] send_notifications called: {len(results)} results, {len(value_bets)} value bets")
 
     gmail_addr = os.environ.get("GMAIL_ADDRESS", "")    or args.gmail_from
     gmail_pass = os.environ.get("GMAIL_APP_PASSWORD","") or args.gmail_pass
@@ -877,7 +876,13 @@ def send_notifications(results, date, html_content, args):
     carrier    = os.environ.get("CARRIER", "").lower()  or (args.carrier or "").lower()
     pages_url  = os.environ.get("PAGES_URL", "")        or args.pages_url
 
+    print(f"  [notify] gmail_addr={bool(gmail_addr)}, gmail_pass={bool(gmail_pass)}, to_email={repr(to_email)}, to_phone={repr(to_phone)}")
+
+    if not value_bets:
+        print("  [notify] Exiting early — no value bets")
+        return
     if not gmail_addr or not gmail_pass:
+        print("  [notify] Exiting early — missing Gmail credentials")
         return
 
     # Load season stats for notifications
@@ -1027,6 +1032,11 @@ def main():
     p.add_argument("--bankroll",       type=float, default=float(os.environ.get("BANKROLL") or "0"))
     p.add_argument("--debug",          action="store_true", help="Print diagnostic info to diagnose zero-bet issues")
     args = p.parse_args()
+
+    for env_var in ["GMAIL_ADDRESS", "GMAIL_APP_PASSWORD", "REPORT_EMAIL", "REPORT_PHONE", "CARRIER"]:
+        val = os.environ.get(env_var, "")
+        if val:
+            os.environ[env_var] = val.strip()
 
     date = args.date
     yr   = date.split("-")[0]
