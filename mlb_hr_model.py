@@ -959,30 +959,35 @@ def send_notifications(results, date, html_content, args):
     # ── SMS via carrier email-to-text gateway (free) ──────────────
     if to_phone and carrier and carrier in CARRIER_GATEWAYS:
         print(f"  [sms-debug] gmail_addr repr: {repr(gmail_addr)}")
+
+        def ascii_clean(s):
+            return "".join(c if ord(c) < 128 else "?" for c in str(s))
+
         value_bets_sorted = sorted(value_bets, key=lambda r: r.get("edge") or 0, reverse=True)
         top10 = value_bets_sorted[:10]
 
-        lines = [f"HR Props {date} - {len(value_bets)} value bets"]
+        lines = [ascii_clean(f"HR Props {date} - {len(value_bets)} value bets")]
         lines.append("-----------------")
         for r in top10:
             e    = (r.get("edge") or 0) * 100
             prob = r["game_prob"] * 100
-            book = (r.get("best_book") or "")[:6]
-            lines.append(f"{r['name'].split()[-1]}: {fo(r['best_odds'])} {book}")
-            lines.append(f"  {prob:.1f}% prob | edge {e:+.1f}%")
+            book = ascii_clean((r.get("best_book") or "")[:6])
+            name = ascii_clean(r["name"].split()[-1])
+            lines.append(ascii_clean(f"{name}: {fo(r['best_odds'])} {book}"))
+            lines.append(ascii_clean(f"  {prob:.1f}% prob | edge {e:+.1f}%"))
         if pages_url:
             lines.append("-----------------")
-            lines.append(pages_url)
+            lines.append(ascii_clean(pages_url))
 
-        sms_subject = "".join(c if ord(c) < 128 else "?" for c in subject)
-        clean_from  = "".join(c if ord(c) < 128 else "?" for c in gmail_addr)
+        sms_body = "\n".join(lines)
+
+        sms_subject = ascii_clean(subject)
+        clean_from  = ascii_clean(gmail_addr)
 
         for digits_raw in [d.strip() for d in to_phone.split(",") if d.strip()]:
             try:
                 digits   = "".join(c for c in digits_raw if c.isdigit())
                 sms_addr = digits + CARRIER_GATEWAYS[carrier]
-                sms_body = "\n".join(lines)
-                sms_body = "".join(c if ord(c) < 128 else "?" for c in sms_body)
 
                 msg2 = MIMEText(sms_body, "plain", "us-ascii")
                 msg2["Subject"] = sms_subject
