@@ -883,7 +883,7 @@ def send_notifications(results, date, html_content, args):
     pages_url  = os.environ.get("PAGES_URL", "")        or args.pages_url
 
     gmail_addr = gmail_addr.strip()
-    gmail_pass = gmail_pass.strip()
+    gmail_pass = "".join(c for c in gmail_pass if ord(c) < 128 and not c.isspace())
     to_email   = to_email.strip()
     to_phone   = to_phone.strip()
     carrier    = carrier.strip()
