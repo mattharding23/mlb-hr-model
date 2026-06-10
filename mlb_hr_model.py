@@ -958,39 +958,39 @@ def send_notifications(results, date, html_content, args):
 
     # ── SMS via carrier email-to-text gateway (free) ──────────────
     if to_phone and carrier and carrier in CARRIER_GATEWAYS:
-        try:
-            digits   = "".join(c for c in to_phone.strip() if c.isdigit())
-            sms_addr = digits + CARRIER_GATEWAYS[carrier]
+        value_bets_sorted = sorted(value_bets, key=lambda r: r.get("edge") or 0, reverse=True)
+        top10 = value_bets_sorted[:10]
 
-            value_bets_sorted = sorted(value_bets, key=lambda r: r.get("edge") or 0, reverse=True)
-            top10 = value_bets_sorted[:10]
+        lines = [f"HR Props {date} - {len(value_bets)} value bets"]
+        lines.append("-----------------")
+        for r in top10:
+            e    = (r.get("edge") or 0) * 100
+            prob = r["game_prob"] * 100
+            book = (r.get("best_book") or "")[:6]
+            lines.append(f"{r['name'].split()[-1]}: {fo(r['best_odds'])} {book}")
+            lines.append(f"  {prob:.1f}% prob | edge {e:+.1f}%")
+        if pages_url:
+            lines.append("-----------------")
+            lines.append(pages_url)
 
-            lines = [f"⚾ HR Props {date} — {len(value_bets)} value bets"]
-            lines.append("─────────────────")
-            for r in top10:
-                e    = (r.get("edge") or 0) * 100
-                prob = r["game_prob"] * 100
-                book = (r.get("best_book") or "")[:6]
-                lines.append(f"{r['name'].split()[-1]}: {fo(r['best_odds'])} {book}")
-                lines.append(f"  {prob:.1f}% prob | edge {e:+.1f}%")
-            if pages_url:
-                lines.append("─────────────────")
-                lines.append(pages_url)
+        for digits_raw in [d.strip() for d in to_phone.split(",") if d.strip()]:
+            try:
+                digits   = "".join(c for c in digits_raw if c.isdigit())
+                sms_addr = digits + CARRIER_GATEWAYS[carrier]
+                sms_body = "\n".join(lines)
+                sms_body = "".join(c if ord(c) < 128 else "?" for c in sms_body)
 
-            sms_body = "\n".join(lines)
-            sms_body = sms_body.replace('\xa0', ' ')  # replace non-breaking spaces
-            sms_body = sms_body.encode("ascii", errors="replace").decode("ascii")
-            sms = MIMEText(sms_body)
-            sms["Subject"] = ""
-            sms["From"]    = gmail_addr
-            sms["To"]      = sms_addr
-            with smtplib.SMTP("smtp.gmail.com", 587) as s:
-                s.starttls()
-                s.login(gmail_addr, gmail_pass)
-                s.sendmail(gmail_addr, [sms_addr], sms.as_string())
-            print(f"  ✓  SMS  → {to_phone} ({carrier})")
-        except Exception as e:
-            print(f"  ✗  SMS failed: {e}")
+                msg2 = MIMEText(sms_body, "plain", "us-ascii")
+                msg2["From"] = gmail_addr
+                msg2["To"]   = sms_addr
+
+                with smtplib.SMTP("smtp.gmail.com", 587) as s:
+                    s.starttls()
+                    s.login(gmail_addr, gmail_pass)
+                    s.sendmail(gmail_addr, [sms_addr], msg2.as_string())
+                print(f"  ✓  SMS -> {digits_raw} ({carrier})")
+            except Exception as e:
+                print(f"  ✗  SMS failed: {e}")
 
 
 # ──────────────────────────────────────────────────────────────────────────────
