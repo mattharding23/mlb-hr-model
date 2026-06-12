@@ -2,13 +2,14 @@ name: Daily MLB HR Model
 
 on:
   schedule:
-    - cron: '30 15 * * *'   # Early window:  11:30am ET (15:30 UTC)
-    - cron: '45 21 * * *'   # Mid window:     5:45pm ET (21:45 UTC)
-    - cron: '45 0 * * *'    # Late window:    8:45pm ET (00:45 UTC next day)
+    - cron: '30 15 * * *'   # Early window:   11:30am ET (15:30 UTC)
+    - cron: '45 21 * * *'   # Mid window:      5:45pm ET (21:45 UTC)
+    - cron: '45 0 * * *'    # Late window:     8:45pm ET (00:45 UTC next day)
+    - cron: '0 13 * * *'    # Results check:   9:00am ET (13:00 UTC)
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -17,6 +18,7 @@ jobs:
   build:
     name: Run model
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule != '0 13 * * *'
     steps:
       - uses: actions/checkout@v4
 
@@ -40,6 +42,14 @@ jobs:
             -k "$ODDS_API_KEY" \
             --pages-url https://mattharding23.github.io/mlb-hr-model/ || true
 
+      - name: Commit results and report
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add docs/ results/
+          git diff --staged --quiet || git commit -m "Auto: update report and results $(date +%Y-%m-%d)"
+          git push
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -52,6 +62,7 @@ jobs:
     name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule != '0 13 * * *'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -59,3 +70,28 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  check-results:
+    name: Check yesterday's results
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 13 * * *'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - run: pip install requests
+
+      - name: Resolve picks
+        run: python check_results.py
+
+      - name: Commit updated results
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add results/
+          git diff --staged --quiet || git commit -m "Auto: update results $(date +%Y-%m-%d)"
+          git push

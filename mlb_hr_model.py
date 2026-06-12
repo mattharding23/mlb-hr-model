@@ -55,7 +55,7 @@ MLB_API      = "https://statsapi.mlb.com/api/v1"
 LG_HR_PA     = 0.034
 LG_BARREL    = 0.067
 LG_HARD_HIT  = 0.385
-VIG_FACTOR   = 1.055  # typical single-outcome prop overround (~5.5%)
+VIG_FACTOR   = 0.92   # devig: sportsbooks typically have ~8% overround on HR props
 MAX_PROP_ODDS = 2500  # filter out longshot/alternate lines above this threshold
 
 PA_BY_SPOT = {1:4.7,2:4.6,3:4.5,4:4.4,5:4.3,6:4.1,7:4.0,8:3.9,9:3.8}
@@ -357,7 +357,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         s_hr = safe_int(rel.get("homeRuns"))
         if s_pa >= 20 and sr > 0:
             w = min(s_pa / 130, 0.55)
-            split_adj = max(0.5, min(2.5, ((s_hr/s_pa)*w + sr*(1-w)) / sr))
+            split_adj = max(0.75, min(1.40, ((s_hr/s_pa)*w + sr*(1-w)) / sr))
 
     # 2. Hotness — last 14 days (regressed)
     hot_adj = 1.0; r_hr = r_pa = 0
@@ -366,7 +366,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         r_hr = safe_int(hot.get("homeRuns"))
         if r_pa >= 5:
             w = min(r_pa / 45, 0.45)
-            hot_adj = max(0.65, min(1.5, ((r_hr/r_pa)*w + sr*(1-w)) / sr))
+            hot_adj = max(0.78, min(1.28, ((r_hr/r_pa)*w + sr*(1-w)) / sr))
 
     # 3. Statcast (barrel% + hard-hit%)
     sc_adj  = 1.0
@@ -374,7 +374,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     if sc_info:
         b = sc_info["barrel_pct"]; hh = sc_info["hard_hit_pct"]
         if b > 0:
-            sc_adj = max(0.70, min(1.50,
+            sc_adj = max(0.78, min(1.35,
                 (b / LG_BARREL) ** 0.40 * ((hh / LG_HARD_HIT) ** 0.20 if hh > 0 else 1.0)
             ))
 
@@ -391,11 +391,11 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         sp_rate = regressed_hr_pa(safe_int(sp_stat.get("homeRuns")), safe_float(sp_stat.get("inningsPitched")), min_ip=5)
     else:
         sp_rate = LG_HR_PA
-    sp_adj = max(0.4, min(3.0, sp_rate / LG_HR_PA))
+    sp_adj = max(0.55, min(2.20, sp_rate / LG_HR_PA))
 
     # 5. Bullpen (regressed, platoon-aware)
     bp_rate = (bp_splits or {}).get(bh, LG_HR_PA)
-    bp_adj = max(0.5, min(2.5, bp_rate / LG_HR_PA))
+    bp_adj = max(0.65, min(1.80, bp_rate / LG_HR_PA))
 
     pitch_blend = 0.55 * sp_adj + 0.45 * bp_adj
 
@@ -420,9 +420,9 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
 
     best_odds    = od.get("best")
     best_book    = od.get("best_book")
-    implied      = american_to_implied(best_odds) if best_odds is not None else None
-    fair_implied = (implied / VIG_FACTOR) if implied is not None else None
-    edge         = (gp - fair_implied) if fair_implied is not None else None
+    implied_raw  = american_to_implied(best_odds) if best_odds is not None else None
+    implied      = (implied_raw * VIG_FACTOR) if implied_raw is not None else None  # devigged
+    edge         = (gp - implied) if implied is not None else None
 
     # Kelly fraction
     kelly = None
@@ -452,7 +452,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         "park_adj": park_adj, "temp_adj": temp_adj, "wind_adj": wind_adj,
         "proj_pa": round(pp, 1), "game_prob": gp, "fair_line": implied_to_american(gp),
         "best_odds": best_odds, "best_book": best_book,
-        "implied": implied, "fair_implied": fair_implied, "edge": edge,
+        "implied": implied, "edge": edge,
         "kelly": kelly, "quarter_kelly": quarter_kelly,
         "recommendation": rec,
         "all_books": od.get("books", []), "weather": weather,
@@ -1018,7 +1018,7 @@ def print_debug_summary(results, odds_map, has_key):
     print("  " + "-"*72)
     for r in sorted(results, key=lambda x: x["game_prob"], reverse=True)[:10]:
         e_str  = f"{r['edge']*100:+.1f}%" if r["edge"] is not None else "no line"
-        fi_str = f"{r.get('fair_implied',0)*100:.1f}%" if r.get("fair_implied") else "—"
+        fi_str = f"{r.get('implied',0)*100:.1f}%" if r.get("implied") else "—"
         adjs   = (f"split×{r['split_adj']:.2f} hot×{r['hot_adj']:.2f} "
                   f"sc×{r['sc_adj']:.2f} pitch×{r['pitch_blend']:.2f} park×{r['park_adj']:.2f}")
         print(f"  {r['name'][:25]:<26} {r['game_prob']*100:.1f}%  {fi_str:>6}  {e_str:>7}  {adjs}")
