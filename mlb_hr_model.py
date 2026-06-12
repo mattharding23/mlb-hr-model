@@ -991,38 +991,103 @@ def send_notifications(results, date, html_content, args):
 # Debug
 # ──────────────────────────────────────────────────────────────────────────────
 
-def print_debug_summary(results, odds_map, has_key):
-    print("\n" + "="*70)
-    print("  DEBUG SUMMARY")
-    print("="*70)
-    if not has_key:
-        print("  ⚠  No ODDS_API_KEY — edge cannot be calculated for anyone.")
-    else:
-        matched   = sum(1 for r in results if r["best_odds"] is not None)
-        unmatched = [r["name"] for r in results if r["best_odds"] is None]
-        print(f"  Odds matched: {matched}/{len(results)} players")
-        if unmatched:
-            print("  Unmatched players:")
-            for n in unmatched[:15]:
-                print(f"    · {n}  →  norm='{norm(n)}'")
-            print(f"  Odds map sample keys: {list(odds_map.keys())[:10]}")
+def print_debug_summary(results, odds_map):
+    if not results:
+        print("  (no results to summarise)")
+        return
 
-    hot_active           = sum(1 for r in results if r["r_pa"] >= 5)
-    split_adj_nontrivial = sum(1 for r in results if abs(r["split_adj"] - 1.0) > 0.05)
-    sc_active            = sum(1 for r in results if r.get("sc_info"))
-    print(f"  Hot factor active (≥5 PA in L14): {hot_active}/{len(results)}")
-    print(f"  Split adj non-trivial (>5%):       {split_adj_nontrivial}/{len(results)}")
-    print(f"  Statcast data found:               {sc_active}/{len(results)}")
-    print(f"\n  Top-10 by model probability:")
-    print(f"  {'Player':<26} {'Prob':>6}  {'Fair%':>6}  {'Edge':>7}  Adjustments")
-    print("  " + "-"*72)
-    for r in sorted(results, key=lambda x: x["game_prob"], reverse=True)[:10]:
-        e_str  = f"{r['edge']*100:+.1f}%" if r["edge"] is not None else "no line"
-        fi_str = f"{r.get('implied',0)*100:.1f}%" if r.get("implied") else "—"
-        adjs   = (f"split×{r['split_adj']:.2f} hot×{r['hot_adj']:.2f} "
-                  f"sc×{r['sc_adj']:.2f} pitch×{r['pitch_blend']:.2f} park×{r['park_adj']:.2f}")
-        print(f"  {r['name'][:25]:<26} {r['game_prob']*100:.1f}%  {fi_str:>6}  {e_str:>7}  {adjs}")
-    print("="*70 + "\n")
+    def _pctiles(vals):
+        if not vals:
+            return None, None, None, None, None
+        s = sorted(vals)
+        n = len(s)
+        def _p(frac):
+            i = (n - 1) * frac
+            lo, hi = int(i), min(int(i) + 1, n - 1)
+            return s[lo] + (s[hi] - s[lo]) * (i - lo)
+        return s[0], _p(0.25), _p(0.50), _p(0.75), s[-1]
+
+    hr = "─" * 48
+
+    # ── ODDS MATCHING ──────────────────────────────
+    print(f"\n── ODDS MATCHING {hr}")
+    matched   = [r for r in results if r["best_odds"] is not None]
+    unmatched = [r for r in results if r["best_odds"] is None]
+    pct = len(matched) / len(results) * 100 if results else 0
+    print(f"  Players in model:         {len(results)}")
+    print(f"  Players with odds match:  {len(matched)}  ({pct:.1f}%)")
+    if unmatched:
+        print(f"  Unmatched players (sample of up to 10):")
+        for r in unmatched[:10]:
+            print(f"    • {norm(r['name'])}")
+
+    # ── EDGE DISTRIBUTION ──────────────────────────
+    print(f"\n── EDGE DISTRIBUTION {hr}")
+    lined = [r for r in results if r.get("edge") is not None]
+    if lined:
+        edges = [r["edge"] for r in lined]
+        print(f"  Strong value  (edge >+5pp):    {sum(1 for e in edges if e > 0.05)} players")
+        print(f"  Lean value    (edge +2–5pp):   {sum(1 for e in edges if 0.02 < e <= 0.05)} players")
+        print(f"  Neutral       (edge -2–+2pp):  {sum(1 for e in edges if -0.02 <= e <= 0.02)} players")
+        print(f"  Negative      (-2pp to -10pp): {sum(1 for e in edges if -0.10 <= e < -0.02)} players")
+        print(f"  Strong neg    (<-10pp):        {sum(1 for e in edges if e < -0.10)} players")
+        print(f"\n  Min edge: {min(edges)*100:.1f}%   Max edge: {max(edges)*100:.1f}%   Mean edge: {sum(edges)/len(edges)*100:.1f}%")
+    else:
+        print("  No players with odds lines.")
+
+    # ── PER-PA RATE DISTRIBUTION ───────────────────
+    print(f"\n── PER-PA RATE DISTRIBUTION {hr}")
+    per_pas = []
+    for r in results:
+        pp = r["proj_pa"]
+        per_pas.append(1 - (1 - r["game_prob"]) ** (1.0 / pp) if pp > 0 else 0)
+    print(f"  Hit per-PA cap (≥7.9%): {sum(1 for x in per_pas if x >= 0.079)} players  ← if many are hitting cap, cap may be too high")
+    print(f"  Above 5%:   {sum(1 for x in per_pas if x >= 0.05)}")
+    print(f"  3–5%:       {sum(1 for x in per_pas if 0.03 <= x < 0.05)}")
+    print(f"  1–3%:       {sum(1 for x in per_pas if 0.01 <= x < 0.03)}")
+    print(f"  Below 1%:   {sum(1 for x in per_pas if x < 0.01)}")
+    if per_pas:
+        print(f"\n  Min: {min(per_pas)*100:.1f}%   Max: {max(per_pas)*100:.1f}%   Mean: {sum(per_pas)/len(per_pas)*100:.1f}%")
+
+    # ── GAME PROBABILITY DISTRIBUTION ──────────────
+    print(f"\n── GAME PROBABILITY DISTRIBUTION {hr}")
+    gps = [r["game_prob"] for r in results]
+    print(f"  Above 25%:    {sum(1 for g in gps if g > 0.25)}  ← should be rare/zero after tightening")
+    print(f"  20–25%:       {sum(1 for g in gps if 0.20 <= g <= 0.25)}")
+    print(f"  15–20%:       {sum(1 for g in gps if 0.15 <= g < 0.20)}")
+    print(f"  10–15%:       {sum(1 for g in gps if 0.10 <= g < 0.15)}")
+    print(f"  Below 10%:    {sum(1 for g in gps if g < 0.10)}")
+
+    # ── TOP 5 VALUE BETS (detail) ──────────────────
+    print(f"\n── TOP 5 VALUE BETS (detail) {hr}")
+    top5 = sorted(lined, key=lambda r: r["edge"], reverse=True)[:5]
+    if top5:
+        for r in top5:
+            impl_dv  = r["implied"]
+            impl_raw = american_to_implied(r["best_odds"]) if r["best_odds"] is not None else None
+            raw_str  = f"{impl_raw*100:.1f}%" if impl_raw is not None else "—"
+            dv_str   = f"{impl_dv*100:.1f}%"  if impl_dv  is not None else "—"
+            e_str    = f"{r['edge']*100:+.1f}pp"
+            print(f"  {r['name']} | model {r['game_prob']*100:.1f}% | fair {fo(r['fair_line'])} | best {fo(r['best_odds'])} @ {r.get('best_book','—')} | implied {raw_str} (devigged {dv_str}) | edge {e_str}")
+            sr  = r["season_rate"]
+            pp  = r["proj_pa"]
+            gp  = r["game_prob"]
+            per_pa_eff  = 1 - (1 - gp) ** (1.0 / pp) if pp > 0 else 0
+            weather_adj = r.get("temp_adj", 1.0) * r.get("wind_adj", 1.0)
+            print(f"    base {sr*100:.2f}% | split ×{r['split_adj']:.2f} | hot ×{r['hot_adj']:.2f} | statcast ×{r['sc_adj']:.2f} | sp ×{r['sp_adj']:.2f} | bp ×{r['bp_adj']:.2f} | park ×{r['park_adj']:.2f} | weather ×{weather_adj:.2f} → per-PA {per_pa_eff*100:.2f}% × {pp:.1f} PA")
+    else:
+        print("  No value bets found.")
+
+    # ── ADJUSTMENT FACTOR DISTRIBUTION ────────────
+    print(f"\n── ADJUSTMENT FACTOR DISTRIBUTION {hr}")
+    for label, key in [("split_adj", "split_adj"), ("hot_adj", "hot_adj"),
+                       ("sc_adj", "sc_adj"), ("sp_adj", "sp_adj"),
+                       ("bp_adj", "bp_adj"), ("park_adj", "park_adj")]:
+        vals = [r[key] for r in results if r.get(key) is not None]
+        mn, p25, med, p75, mx = _pctiles(vals)
+        if mn is not None:
+            print(f"  {label:<12}  min {mn:.2f}  p25 {p25:.2f}  median {med:.2f}  p75 {p75:.2f}  max {mx:.2f}")
+    print()
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1401,7 +1466,7 @@ def main():
         webbrowser.open(f"file://{report_path}")
 
     if args.debug:
-        print_debug_summary(results, odds_map, bool(args.key))
+        print_debug_summary(results, odds_map)
 
     # Notifications
     send_notifications(results, date, html, args)
