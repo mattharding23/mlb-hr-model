@@ -16543,9 +16543,9 @@
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
     "units_staked": 0.03,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16564,9 +16564,9 @@
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
     "units_staked": 0.03,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16585,9 +16585,9 @@
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
     "units_staked": 0.03,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16606,9 +16606,9 @@
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
     "units_staked": 0.03,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16627,9 +16627,9 @@
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
     "units_staked": 0.03,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": true,
+    "units_returned": 0.135,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16648,9 +16648,9 @@
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
     "units_staked": 0.03,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16669,9 +16669,9 @@
     "kelly_fraction": 0.0986,
     "quarter_kelly": 0.0246,
     "units_staked": 0.0246,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0246,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16690,9 +16690,9 @@
     "kelly_fraction": 0.0887,
     "quarter_kelly": 0.0222,
     "units_staked": 0.0222,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0222,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16711,9 +16711,9 @@
     "kelly_fraction": 0.0754,
     "quarter_kelly": 0.0189,
     "units_staked": 0.0189,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0189,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16732,9 +16732,9 @@
     "kelly_fraction": 0.0654,
     "quarter_kelly": 0.0164,
     "units_staked": 0.0164,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0164,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16753,9 +16753,9 @@
     "kelly_fraction": 0.0635,
     "quarter_kelly": 0.0159,
     "units_staked": 0.0159,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0159,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16774,9 +16774,9 @@
     "kelly_fraction": 0.063,
     "quarter_kelly": 0.0157,
     "units_staked": 0.0157,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0157,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16795,9 +16795,9 @@
     "kelly_fraction": 0.0588,
     "quarter_kelly": 0.0147,
     "units_staked": 0.0147,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0147,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16816,9 +16816,9 @@
     "kelly_fraction": 0.0372,
     "quarter_kelly": 0.0093,
     "units_staked": 0.0093,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": true,
+    "units_returned": 0.0628,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16837,9 +16837,9 @@
     "kelly_fraction": 0.0198,
     "quarter_kelly": 0.005,
     "units_staked": 0.005,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.005,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16858,9 +16858,9 @@
     "kelly_fraction": 0.0185,
     "quarter_kelly": 0.0046,
     "units_staked": 0.0046,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0046,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16879,9 +16879,9 @@
     "kelly_fraction": 0.0155,
     "quarter_kelly": 0.0039,
     "units_staked": 0.0039,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0039,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16900,9 +16900,9 @@
     "kelly_fraction": 0.0094,
     "quarter_kelly": 0.0024,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16921,9 +16921,9 @@
     "kelly_fraction": 0.0064,
     "quarter_kelly": 0.0016,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16942,9 +16942,9 @@
     "kelly_fraction": 0,
     "quarter_kelly": 0.0,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16963,9 +16963,9 @@
     "kelly_fraction": 0,
     "quarter_kelly": 0.0,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -16984,9 +16984,9 @@
     "kelly_fraction": 0,
     "quarter_kelly": 0.0,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17005,9 +17005,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17026,9 +17026,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17047,9 +17047,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17068,9 +17068,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17089,9 +17089,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17110,9 +17110,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17131,9 +17131,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17152,9 +17152,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17173,9 +17173,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17194,9 +17194,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17215,9 +17215,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17236,9 +17236,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17257,9 +17257,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17278,9 +17278,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17299,9 +17299,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17320,9 +17320,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17341,9 +17341,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17362,9 +17362,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17383,9 +17383,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17404,9 +17404,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17425,9 +17425,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17446,9 +17446,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17467,9 +17467,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17488,9 +17488,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17509,9 +17509,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17530,9 +17530,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17551,9 +17551,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17572,9 +17572,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17593,9 +17593,9 @@
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
     "units_staked": 0.03,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17614,9 +17614,9 @@
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
     "units_staked": 0.03,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17635,9 +17635,9 @@
     "kelly_fraction": 0.1183,
     "quarter_kelly": 0.0296,
     "units_staked": 0.0296,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0296,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17656,9 +17656,9 @@
     "kelly_fraction": 0.1046,
     "quarter_kelly": 0.0262,
     "units_staked": 0.0262,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0262,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17677,9 +17677,9 @@
     "kelly_fraction": 0.0987,
     "quarter_kelly": 0.0247,
     "units_staked": 0.0247,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0247,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17698,9 +17698,9 @@
     "kelly_fraction": 0.0931,
     "quarter_kelly": 0.0233,
     "units_staked": 0.0233,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0233,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17719,9 +17719,9 @@
     "kelly_fraction": 0.0722,
     "quarter_kelly": 0.0181,
     "units_staked": 0.0181,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0181,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17740,9 +17740,9 @@
     "kelly_fraction": 0.0519,
     "quarter_kelly": 0.013,
     "units_staked": 0.013,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.013,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17761,9 +17761,9 @@
     "kelly_fraction": 0.0504,
     "quarter_kelly": 0.0126,
     "units_staked": 0.0126,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0126,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17782,9 +17782,9 @@
     "kelly_fraction": 0.0494,
     "quarter_kelly": 0.0124,
     "units_staked": 0.0124,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0124,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17803,9 +17803,9 @@
     "kelly_fraction": 0.0468,
     "quarter_kelly": 0.0117,
     "units_staked": 0.0117,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0117,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17824,9 +17824,9 @@
     "kelly_fraction": 0.0335,
     "quarter_kelly": 0.0084,
     "units_staked": 0.0084,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0084,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17845,9 +17845,9 @@
     "kelly_fraction": 0.0103,
     "quarter_kelly": 0.0026,
     "units_staked": 0.0026,
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null
+    "result": false,
+    "units_returned": -0.0026,
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17866,9 +17866,9 @@
     "kelly_fraction": 0.0103,
     "quarter_kelly": 0.0026,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17887,9 +17887,9 @@
     "kelly_fraction": 0.0015,
     "quarter_kelly": 0.0004,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17908,9 +17908,9 @@
     "kelly_fraction": 0.0016,
     "quarter_kelly": 0.0004,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17929,9 +17929,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17950,9 +17950,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17971,9 +17971,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -17992,9 +17992,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18013,9 +18013,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18034,9 +18034,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18055,9 +18055,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18076,9 +18076,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18097,9 +18097,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18118,9 +18118,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18139,9 +18139,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18160,9 +18160,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18181,9 +18181,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18202,9 +18202,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18223,9 +18223,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18244,9 +18244,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18265,9 +18265,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18286,9 +18286,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18307,9 +18307,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18328,9 +18328,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18349,9 +18349,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18370,9 +18370,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18391,9 +18391,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18412,9 +18412,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18433,9 +18433,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18454,9 +18454,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18475,9 +18475,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18496,9 +18496,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18517,9 +18517,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18538,9 +18538,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18559,9 +18559,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18580,9 +18580,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18601,9 +18601,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18622,9 +18622,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18643,9 +18643,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18664,9 +18664,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18685,9 +18685,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18706,9 +18706,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18727,9 +18727,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18748,9 +18748,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18769,9 +18769,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18790,9 +18790,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18811,9 +18811,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18832,9 +18832,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18853,9 +18853,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18874,9 +18874,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18895,9 +18895,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18916,9 +18916,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18937,9 +18937,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18958,9 +18958,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -18979,9 +18979,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19000,9 +19000,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19021,9 +19021,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19042,9 +19042,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19063,9 +19063,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19084,9 +19084,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19105,9 +19105,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19126,9 +19126,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19147,9 +19147,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19168,9 +19168,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19189,9 +19189,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19210,9 +19210,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19231,9 +19231,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19252,9 +19252,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19273,9 +19273,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19294,9 +19294,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19315,9 +19315,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19336,9 +19336,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19357,9 +19357,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19378,9 +19378,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19399,9 +19399,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19420,9 +19420,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19441,9 +19441,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19462,9 +19462,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19483,9 +19483,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19504,9 +19504,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19525,9 +19525,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19546,9 +19546,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19567,9 +19567,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19588,9 +19588,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19609,9 +19609,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19630,9 +19630,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19651,9 +19651,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19672,9 +19672,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19693,9 +19693,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19714,9 +19714,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19735,9 +19735,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19756,9 +19756,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19777,9 +19777,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19798,9 +19798,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19819,9 +19819,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19840,9 +19840,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19861,9 +19861,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19882,9 +19882,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19903,9 +19903,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19924,9 +19924,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19945,9 +19945,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19966,9 +19966,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -19987,9 +19987,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -20008,9 +20008,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -20029,9 +20029,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -20050,9 +20050,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -20071,9 +20071,9 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   },
   {
     "date": "2026-06-15",
@@ -20092,8 +20092,8 @@
     "kelly_fraction": null,
     "quarter_kelly": null,
     "units_staked": null,
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null
+    "resolved_at": "2026-06-16T18:05:22Z"
   }
 ]
