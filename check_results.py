@@ -130,13 +130,16 @@ def resolve_picks(picks, today_str):
         workers=15,
     )
 
-    # Build game_pk -> hr_map
+    # Build game_pk -> hr_map and pa_map
     game_hr_maps = {}
+    game_pa_maps = {}
     for pk, box in zip(all_game_pks, box_responses):
         if not box:
             game_hr_maps[pk] = {}
+            game_pa_maps[pk] = {}
             continue
         hr_map = {}
+        pa_map = {}
         teams = box.get("teams", {})
         for side in ("home", "away"):
             players = teams.get(side, {}).get("players", {})
@@ -148,19 +151,24 @@ def resolve_picks(picks, today_str):
                 except ValueError:
                     continue
                 batting = pdata.get("stats", {}).get("batting", {})
-                hrs = safe_int(batting.get("homeRuns"))
-                hr_map[pid] = hrs
+                hr_map[pid] = safe_int(batting.get("homeRuns"))
+                pa_map[pid] = safe_int(batting.get("plateAppearances"))
         game_hr_maps[pk] = hr_map
+        game_pa_maps[pk] = pa_map
 
-    # Build player_id -> hr_count for each date by merging all games on that date
+    # Build player_id -> hr_count and pa_count for each date
     date_player_hr = {}
+    date_player_pa = {}
     for d, pks in date_to_game_pks.items():
-        merged = {}
+        merged_hr = {}
+        merged_pa = {}
         for pk in pks:
             for pid, hrs in game_hr_maps.get(pk, {}).items():
-                # A player only appears in one game; just assign
-                merged[pid] = hrs
-        date_player_hr[d] = merged
+                merged_hr[pid] = hrs
+            for pid, pa in game_pa_maps.get(pk, {}).items():
+                merged_pa[pid] = pa
+        date_player_hr[d] = merged_hr
+        date_player_pa[d] = merged_pa
 
     print("✓")
 
@@ -190,6 +198,12 @@ def resolve_picks(picks, today_str):
         hrs = hr_by_player[player_id]
         result = hrs > 0
         pick["result"] = result
+
+        # Fill actual_pa into factors if present (enables PA-projection accuracy analysis)
+        if pick.get("factors") is not None:
+            pa_by_player = date_player_pa.get(d, {})
+            if player_id in pa_by_player:
+                pick["factors"]["actual_pa"] = pa_by_player[player_id]
 
         # Fill units_returned
         units_staked = pick.get("units_staked")

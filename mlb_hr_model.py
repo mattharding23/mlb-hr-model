@@ -129,6 +129,22 @@ def in_window(game_date_str, window):
     return True
 
 
+def detect_run_window():
+    """Infer which schedule window we're in from current UTC time.
+
+    Maps to the three GitHub Actions crons:
+      15:30 UTC (11:30am ET) → "early"
+      21:45 UTC ( 5:45pm ET) → "mid"
+      00:45 UTC ( 8:45pm ET) → "late"
+    """
+    hour = datetime.utcnow().hour
+    if 13 <= hour < 19:
+        return "early"
+    if 19 <= hour < 23:
+        return "mid"
+    return "late"
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Utility
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1478,8 +1494,12 @@ def main():
             e = r.get("edge") or 0
             print(f"  {r['name'][:25]:<26} {r['game_prob']*100:.1f}%  {fo(r['best_odds']):>7}  {e*100:+.1f}%  {(r.get('best_book') or '')[:14]}{'  🔥' if e>.05 else ''}")
 
-    # Save picks
-    save_picks(results, date, args.window)
+    # Save picks — auto-detect window for logging when not explicitly passed.
+    # The dedup key is (date, player_id, window), so each named window saves its
+    # own records independently. Without this, all three daily runs share key=None
+    # and only the first run (11:30am, before books post props) ever saves picks.
+    picks_window = args.window or detect_run_window()
+    save_picks(results, date, picks_window)
 
     # Load season stats for report
     season_stats = None
