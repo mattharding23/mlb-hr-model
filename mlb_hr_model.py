@@ -58,6 +58,13 @@ LG_HARD_HIT  = 0.385
 VIG_FACTOR   = 0.92   # devig: sportsbooks typically have ~8% overround on HR props
 MAX_PROP_ODDS = 2500  # filter out longshot/alternate lines above this threshold
 
+# Multi-book corroboration: before a pick qualifies as Bet/Lean, at least this many
+# books must have implied probability within MULTI_BOOK_MAX_IMPLIED_SPREAD of the
+# best available line. Prevents single-book outlier lines (typically Caesars at
+# long odds) from generating phantom edge.
+MULTI_BOOK_CORROBORATION_MIN   = 2     # minimum corroborating books (including best)
+MULTI_BOOK_MAX_IMPLIED_SPREAD  = 0.03  # max pp spread between corroborating books
+
 PA_BY_SPOT = {1:4.7,2:4.6,3:4.5,4:4.4,5:4.3,6:4.1,7:4.0,8:3.9,9:3.8}
 
 VENUES = {
@@ -408,9 +415,11 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         temp_adj = max(0.92, min(1.10, 1 + (weather["temp_f"]   - 72) * 0.0015))
         wind_adj = max(0.92, min(1.12, 1 + max(0, weather["wind_mph"] - 5) * 0.005))
 
-    pp     = proj_pa(batter["batting_order"], ou)
-    per_pa = max(0.001, min(0.08, sr * split_adj * hot_adj * sc_adj * pitch_blend * park_adj * temp_adj * wind_adj))
-    gp     = 1 - (1 - per_pa) ** pp
+    pp         = proj_pa(batter["batting_order"], ou)
+    per_pa_raw = sr * split_adj * hot_adj * sc_adj * pitch_blend * park_adj * temp_adj * wind_adj
+    per_pa_capped = per_pa_raw > 0.08  # True when the hard cap is binding
+    per_pa     = max(0.001, min(0.08, per_pa_raw))
+    gp         = 1 - (1 - per_pa) ** pp
 
     name_keys = [norm(batter["name"]), norm_reverse(batter["name"])]
     od = {}
@@ -436,6 +445,30 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
 
     rec = "Bet" if (edge or -1) > 0.05 else "Lean" if (edge or -1) > 0.02 else "Skip" if (edge or -1) < -0.04 else "—"
 
+    # Multi-book corroboration: require ≥MULTI_BOOK_CORROBORATION_MIN books with
+    # implied probability within MULTI_BOOK_MAX_IMPLIED_SPREAD of the best line.
+    # A single outlier book at long odds generates phantom edge; downgrade to "—".
+    book_corroboration = None
+    if best_odds is not None:
+        best_impl_raw  = american_to_implied(best_odds)
+        all_books_list = od.get("books", [])
+        corroborating  = [
+            b["book"] for b in all_books_list
+            if abs(american_to_implied(b["odds"]) - best_impl_raw) <= MULTI_BOOK_MAX_IMPLIED_SPREAD
+        ]
+        corroborated = len(corroborating) >= MULTI_BOOK_CORROBORATION_MIN
+        book_corroboration = {
+            "corroborated": corroborated,
+            "n_corroborating": len(corroborating),
+            "books_with_line": [b["book"] for b in all_books_list],
+            "corroborating_books": corroborating,
+        }
+        if not corroborated:
+            book_corroboration["excluded_outlier"] = best_book
+            book_corroboration["excluded_line"]    = best_odds
+            if rec in ("Bet", "Lean"):
+                rec = "—"
+
     hot_label = ""
     if r_pa >= 8:
         if   hot_adj >= 1.20: hot_label = "🔥"
@@ -450,11 +483,13 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         "sc_adj": sc_adj, "sc_info": sc_info,
         "sp_adj": sp_adj, "bp_adj": bp_adj, "pitch_blend": pitch_blend,
         "park_adj": park_adj, "temp_adj": temp_adj, "wind_adj": wind_adj,
-        "proj_pa": round(pp, 1), "game_prob": gp, "fair_line": implied_to_american(gp),
+        "proj_pa": round(pp, 1), "per_pa_capped": per_pa_capped,
+        "game_prob": gp, "fair_line": implied_to_american(gp),
         "best_odds": best_odds, "best_book": best_book,
         "implied": implied, "edge": edge,
         "kelly": kelly, "quarter_kelly": quarter_kelly,
         "recommendation": rec,
+        "book_corroboration": book_corroboration,
         "all_books": od.get("books", []), "weather": weather,
     }
 
@@ -482,6 +517,7 @@ def save_picks(results, date, window):
         rec = r.get("recommendation", "—")
         qk = r.get("quarter_kelly")
         has_line = r.get("best_odds") is not None
+        sc = r.get("sc_info") or {}
         pick = {
             "date": date,
             "window": window,
@@ -499,6 +535,22 @@ def save_picks(results, date, window):
             "kelly_fraction": round(r["kelly"], 4) if r.get("kelly") is not None else None,
             "quarter_kelly": round(qk, 4) if qk is not None else None,
             "units_staked": round(qk, 4) if (qk is not None and rec in ("Bet", "Lean") and has_line) else None,
+            "book_corroboration": r.get("book_corroboration"),
+            "factors": {
+                "barrel_pct":   round(sc.get("barrel_pct",   0), 4) if sc.get("barrel_pct")   else None,
+                "hard_hit_pct": round(sc.get("hard_hit_pct", 0), 4) if sc.get("hard_hit_pct") else None,
+                "split_adj":    round(r.get("split_adj",  1.0), 4),
+                "hot_adj":      round(r.get("hot_adj",    1.0), 4),
+                "sc_adj":       round(r.get("sc_adj",     1.0), 4),
+                "sp_adj":       round(r.get("sp_adj",     1.0), 4),
+                "bp_adj":       round(r.get("bp_adj",     1.0), 4),
+                "park_adj":     round(r.get("park_adj",   1.0), 4),
+                "temp_adj":     round(r.get("temp_adj",   1.0), 4),
+                "wind_adj":     round(r.get("wind_adj",   1.0), 4),
+                "proj_pa":      r.get("proj_pa"),
+                "per_pa_capped": r.get("per_pa_capped", False),
+                "actual_pa":    None,  # filled by check_results.py post-game
+            },
             "result": None,
             "units_returned": None,
             "resolved_at": None,
