@@ -1,0 +1,832 @@
+{
+  "generated_at": "2026-06-23T18:14:14.744643Z",
+  "analysis_scope": "All picks from 2026-06-12 onward (post-commit 766b013)",
+  "headline": {
+    "date_range": {
+      "start": "2026-06-12",
+      "end": "2026-06-23"
+    },
+    "game_days": 12,
+    "total_picks": 2549,
+    "unresolved_picks": 8,
+    "tier_counts": {
+      "Bet": 446,
+      "Lean": 166,
+      "\u2014_borderline": 506,
+      "Skip": 1431
+    },
+    "tier_resolved": {
+      "Bet": 445,
+      "Lean": 164
+    },
+    "Bet_performance": {
+      "wins": 64,
+      "losses": 381,
+      "win_rate": 0.14382022471910114,
+      "units_staked": 10.0826,
+      "units_net": -1.0391,
+      "roi_pct": -10.31
+    },
+    "Lean_performance": {
+      "wins": 19,
+      "losses": 145,
+      "win_rate": 0.11585365853658537,
+      "units_staked": 1.0716,
+      "units_net": -0.1167,
+      "roi_pct": -10.89
+    },
+    "Bet_plus_Lean_performance": {
+      "wins": 83,
+      "losses": 526,
+      "win_rate": 0.13628899835796388,
+      "units_staked": 11.1542,
+      "units_net": -1.1558,
+      "roi_pct": -10.36
+    },
+    "odds_match_by_date": {
+      "2026-06-12": {
+        "total_picks": 243,
+        "picks_with_odds": 169,
+        "match_rate_pct": 69.5,
+        "below_80pct": true
+      },
+      "2026-06-13": {
+        "total_picks": 259,
+        "picks_with_odds": 130,
+        "match_rate_pct": 50.2,
+        "below_80pct": true
+      },
+      "2026-06-14": {
+        "total_picks": 285,
+        "picks_with_odds": 235,
+        "match_rate_pct": 82.5,
+        "below_80pct": false
+      },
+      "2026-06-15": {
+        "total_picks": 170,
+        "picks_with_odds": 66,
+        "match_rate_pct": 38.8,
+        "below_80pct": true
+      },
+      "2026-06-16": {
+        "total_picks": 230,
+        "picks_with_odds": 134,
+        "match_rate_pct": 58.3,
+        "below_80pct": true
+      },
+      "2026-06-17": {
+        "total_picks": 260,
+        "picks_with_odds": 159,
+        "match_rate_pct": 61.2,
+        "below_80pct": true
+      },
+      "2026-06-18": {
+        "total_picks": 139,
+        "picks_with_odds": 114,
+        "match_rate_pct": 82.0,
+        "below_80pct": false
+      },
+      "2026-06-19": {
+        "total_picks": 227,
+        "picks_with_odds": 104,
+        "match_rate_pct": 45.8,
+        "below_80pct": true
+      },
+      "2026-06-20": {
+        "total_picks": 241,
+        "picks_with_odds": 134,
+        "match_rate_pct": 55.6,
+        "below_80pct": true
+      },
+      "2026-06-21": {
+        "total_picks": 279,
+        "picks_with_odds": 190,
+        "match_rate_pct": 68.1,
+        "below_80pct": true
+      },
+      "2026-06-22": {
+        "total_picks": 208,
+        "picks_with_odds": 136,
+        "match_rate_pct": 65.4,
+        "below_80pct": true
+      },
+      "2026-06-23": {
+        "total_picks": 8,
+        "picks_with_odds": 8,
+        "match_rate_pct": 100.0,
+        "below_80pct": false
+      }
+    }
+  },
+  "calibration": {
+    "total_tracked": 2541,
+    "overall_hr_rate": 0.1279,
+    "brier_score": 0.11228,
+    "baseline_brier_naive": 0.11154,
+    "brier_skill_score": -0.0066,
+    "bins": [
+      {
+        "bin": "0\u20135%",
+        "n": 500,
+        "avg_predicted_prob": 0.0234,
+        "actual_hr_rate": 0.074,
+        "hits": 37,
+        "flag_small_sample": false
+      },
+      {
+        "bin": "5\u201310%",
+        "n": 517,
+        "avg_predicted_prob": 0.0737,
+        "actual_hr_rate": 0.1083,
+        "hits": 56,
+        "flag_small_sample": false
+      },
+      {
+        "bin": "10\u201315%",
+        "n": 443,
+        "avg_predicted_prob": 0.1238,
+        "actual_hr_rate": 0.1061,
+        "hits": 47,
+        "flag_small_sample": false
+      },
+      {
+        "bin": "15\u201320%",
+        "n": 391,
+        "avg_predicted_prob": 0.1753,
+        "actual_hr_rate": 0.1483,
+        "hits": 58,
+        "flag_small_sample": false
+      },
+      {
+        "bin": "20%+",
+        "n": 690,
+        "avg_predicted_prob": 0.2666,
+        "actual_hr_rate": 0.1841,
+        "hits": 127,
+        "flag_small_sample": false
+      }
+    ]
+  },
+  "edge_analysis": {
+    "total_with_edge": 1571,
+    "edge_buckets": [
+      {
+        "bucket": "-20 to -8pp",
+        "n": 140,
+        "hits": 12,
+        "hit_rate": 0.0857,
+        "units_net": 0,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "-8 to -6pp",
+        "n": 129,
+        "hits": 19,
+        "hit_rate": 0.1473,
+        "units_net": 0,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "-6 to -4pp",
+        "n": 191,
+        "hits": 27,
+        "hit_rate": 0.1414,
+        "units_net": 0,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "-4 to -2pp",
+        "n": 173,
+        "hits": 23,
+        "hit_rate": 0.1329,
+        "units_net": 0,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "-2 to 0pp",
+        "n": 153,
+        "hits": 13,
+        "hit_rate": 0.085,
+        "units_net": 0,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "0 to +2pp",
+        "n": 175,
+        "hits": 24,
+        "hit_rate": 0.1371,
+        "units_net": 0,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "+2 to +4pp",
+        "n": 112,
+        "hits": 12,
+        "hit_rate": 0.1071,
+        "units_net": -0.1548,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "+4 to +6pp",
+        "n": 118,
+        "hits": 19,
+        "hit_rate": 0.161,
+        "units_net": 0.1436,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "+6 to +8pp",
+        "n": 116,
+        "hits": 18,
+        "hit_rate": 0.1552,
+        "units_net": 0.0183,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "+8 to +10pp",
+        "n": 79,
+        "hits": 13,
+        "hit_rate": 0.1646,
+        "units_net": 0.0342,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "+10 to +15pp",
+        "n": 141,
+        "hits": 18,
+        "hit_rate": 0.1277,
+        "units_net": -0.7546,
+        "flag_small_sample": false
+      },
+      {
+        "bucket": "+15pp+",
+        "n": 44,
+        "hits": 4,
+        "hit_rate": 0.0909,
+        "units_net": -0.4425,
+        "flag_small_sample": false
+      }
+    ],
+    "positive_edge_monotonic": false,
+    "high_edge_outliers_gt15pp": [
+      {
+        "date": "2026-06-13",
+        "player": "James Wood",
+        "team": "WSH",
+        "model_prob": 0.3464,
+        "best_odds": 950,
+        "best_book": "Caesars",
+        "edge": 0.2588,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 1
+      },
+      {
+        "date": "2026-06-14",
+        "player": "Zach Neto",
+        "team": "LAA",
+        "model_prob": 0.2899,
+        "best_odds": 1500,
+        "best_book": "Caesars",
+        "edge": 0.2324,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 1
+      },
+      {
+        "date": "2026-06-17",
+        "player": "JJ Bleday",
+        "team": "CIN",
+        "model_prob": 0.3409,
+        "best_odds": 700,
+        "best_book": "Caesars",
+        "edge": 0.2259,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 2
+      },
+      {
+        "date": "2026-06-22",
+        "player": "Paul Goldschmidt",
+        "team": "NYY",
+        "model_prob": 0.3071,
+        "best_odds": 950,
+        "best_book": "Caesars",
+        "edge": 0.2195,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Mark Vientos",
+        "team": "NYM",
+        "model_prob": 0.3136,
+        "best_odds": 750,
+        "best_book": "Caesars",
+        "edge": 0.2054,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 5
+      },
+      {
+        "date": "2026-06-14",
+        "player": "Jackson Chourio",
+        "team": "MIL",
+        "model_prob": 0.3114,
+        "best_odds": 700,
+        "best_book": "Caesars",
+        "edge": 0.1964,
+        "recommendation": "Bet",
+        "result": true,
+        "batting_order": 1
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Nathaniel Lowe",
+        "team": "CIN",
+        "model_prob": 0.2825,
+        "best_odds": 950,
+        "best_book": "Caesars",
+        "edge": 0.1949,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 4
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Esteury Ruiz",
+        "team": "MIA",
+        "model_prob": 0.2822,
+        "best_odds": 850,
+        "best_book": "Caesars",
+        "edge": 0.1853,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 9
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Bo Bichette",
+        "team": "NYM",
+        "model_prob": 0.2821,
+        "best_odds": 850,
+        "best_book": "Caesars",
+        "edge": 0.1852,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 2
+      },
+      {
+        "date": "2026-06-21",
+        "player": "Ty France",
+        "team": "SD",
+        "model_prob": 0.2806,
+        "best_odds": 850,
+        "best_book": "Caesars",
+        "edge": 0.1838,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 7
+      },
+      {
+        "date": "2026-06-21",
+        "player": "Spencer Horwitz",
+        "team": "PIT",
+        "model_prob": 0.3409,
+        "best_odds": 475,
+        "best_book": "Caesars",
+        "edge": 0.1809,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 1
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Noelvi Marte",
+        "team": "CIN",
+        "model_prob": 0.2668,
+        "best_odds": 950,
+        "best_book": "Caesars",
+        "edge": 0.1792,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 7
+      },
+      {
+        "date": "2026-06-12",
+        "player": "Curtis Mead",
+        "team": "WSH",
+        "model_prob": 0.3062,
+        "best_odds": 600,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1748,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-15",
+        "player": "Rodolfo Dur\u00e1n",
+        "team": "SD",
+        "model_prob": 0.2716,
+        "best_odds": 850,
+        "best_book": "Caesars",
+        "edge": 0.1747,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 9
+      },
+      {
+        "date": "2026-06-16",
+        "player": "Rodolfo Dur\u00e1n",
+        "team": "SD",
+        "model_prob": 0.2716,
+        "best_odds": 850,
+        "best_book": "Caesars",
+        "edge": 0.1747,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 9
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Juan Soto",
+        "team": "NYM",
+        "model_prob": 0.328,
+        "best_odds": 500,
+        "best_book": "Caesars",
+        "edge": 0.1747,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Curtis Mead",
+        "team": "WSH",
+        "model_prob": 0.3003,
+        "best_odds": 625,
+        "best_book": "Caesars",
+        "edge": 0.1734,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-21",
+        "player": "Cole Carrigg",
+        "team": "COL",
+        "model_prob": 0.3186,
+        "best_odds": 525,
+        "best_book": "Caesars",
+        "edge": 0.1714,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 5
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Rodolfo Dur\u00e1n",
+        "team": "SD",
+        "model_prob": 0.2836,
+        "best_odds": 700,
+        "best_book": "Caesars",
+        "edge": 0.1686,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 9
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Randal Grichuk",
+        "team": "CWS",
+        "model_prob": 0.3186,
+        "best_odds": 500,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1652,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 2
+      },
+      {
+        "date": "2026-06-21",
+        "player": "TJ Rumfield",
+        "team": "COL",
+        "model_prob": 0.3237,
+        "best_odds": 475,
+        "best_book": "Caesars",
+        "edge": 0.1637,
+        "recommendation": "Bet",
+        "result": true,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-16",
+        "player": "Alec Burleson",
+        "team": "STL",
+        "model_prob": 0.3041,
+        "best_odds": 550,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1625,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-14",
+        "player": "Jasson Dom\u00ednguez",
+        "team": "NYY",
+        "model_prob": 0.3086,
+        "best_odds": 525,
+        "best_book": "Caesars",
+        "edge": 0.1614,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-14",
+        "player": "Mike Trout",
+        "team": "LAA",
+        "model_prob": 0.2266,
+        "best_odds": 1300,
+        "best_book": "Caesars",
+        "edge": 0.1609,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 2
+      },
+      {
+        "date": "2026-06-21",
+        "player": "Rodolfo Dur\u00e1n",
+        "team": "SD",
+        "model_prob": 0.2685,
+        "best_odds": 750,
+        "best_book": "Caesars",
+        "edge": 0.1603,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 9
+      },
+      {
+        "date": "2026-06-15",
+        "player": "Jared Young",
+        "team": "NYM",
+        "model_prob": 0.3071,
+        "best_odds": 525,
+        "best_book": "Caesars",
+        "edge": 0.1599,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 4
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Jackson Chourio",
+        "team": "MIL",
+        "model_prob": 0.3129,
+        "best_odds": 500,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1595,
+        "recommendation": "Bet",
+        "result": true,
+        "batting_order": 2
+      },
+      {
+        "date": "2026-06-19",
+        "player": "Drake Baldwin",
+        "team": "ATL",
+        "model_prob": 0.3186,
+        "best_odds": 475,
+        "best_book": "Caesars",
+        "edge": 0.1586,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 1
+      },
+      {
+        "date": "2026-06-12",
+        "player": "Jared Young",
+        "team": "NYM",
+        "model_prob": 0.3042,
+        "best_odds": 525,
+        "best_book": "BetOnline.ag",
+        "edge": 0.157,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 4
+      },
+      {
+        "date": "2026-06-14",
+        "player": "Paul Goldschmidt",
+        "team": "NYY",
+        "model_prob": 0.3242,
+        "best_odds": 450,
+        "best_book": "BetOnline.ag",
+        "edge": 0.157,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 1
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Paul Goldschmidt",
+        "team": "NYY",
+        "model_prob": 0.3242,
+        "best_odds": 450,
+        "best_book": "BetOnline.ag",
+        "edge": 0.157,
+        "recommendation": "Bet",
+        "result": true,
+        "batting_order": 1
+      },
+      {
+        "date": "2026-06-14",
+        "player": "Dillon Dingler",
+        "team": "DET",
+        "model_prob": 0.2984,
+        "best_odds": 550,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1568,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 4
+      },
+      {
+        "date": "2026-06-13",
+        "player": "Derek Hill",
+        "team": "PHI",
+        "model_prob": 0.253,
+        "best_odds": 850,
+        "best_book": "Caesars",
+        "edge": 0.1562,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 9
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Alec Burleson",
+        "team": "STL",
+        "model_prob": 0.3232,
+        "best_odds": 450,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1559,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-15",
+        "player": "Jac Caglianone",
+        "team": "KC",
+        "model_prob": 0.2867,
+        "best_odds": 600,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1553,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      },
+      {
+        "date": "2026-06-18",
+        "player": "Jared Young",
+        "team": "NYM",
+        "model_prob": 0.3081,
+        "best_odds": 500,
+        "best_book": "Caesars",
+        "edge": 0.1548,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 4
+      },
+      {
+        "date": "2026-06-18",
+        "player": "Willson Contreras",
+        "team": "BOS",
+        "model_prob": 0.3071,
+        "best_odds": 500,
+        "best_book": "Caesars",
+        "edge": 0.1538,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 4
+      },
+      {
+        "date": "2026-06-18",
+        "player": "Derek Hill",
+        "team": "PHI",
+        "model_prob": 0.2414,
+        "best_odds": 950,
+        "best_book": "Caesars",
+        "edge": 0.1538,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 9
+      },
+      {
+        "date": "2026-06-18",
+        "player": "Jackson Chourio",
+        "team": "MIL",
+        "model_prob": 0.3129,
+        "best_odds": 475,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1529,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 2
+      },
+      {
+        "date": "2026-06-14",
+        "player": "Justin Foscue",
+        "team": "TEX",
+        "model_prob": 0.289,
+        "best_odds": 575,
+        "best_book": "Caesars",
+        "edge": 0.1527,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 6
+      },
+      {
+        "date": "2026-06-16",
+        "player": "Heriberto Hern\u00e1ndez",
+        "team": "MIA",
+        "model_prob": 0.2785,
+        "best_odds": 625,
+        "best_book": "Caesars",
+        "edge": 0.1516,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 4
+      },
+      {
+        "date": "2026-06-13",
+        "player": "Colson Montgomery",
+        "team": "CWS",
+        "model_prob": 0.3042,
+        "best_odds": 500,
+        "best_book": "BetOnline.ag",
+        "edge": 0.1509,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 4
+      },
+      {
+        "date": "2026-06-21",
+        "player": "Jonah Heim",
+        "team": "ATH",
+        "model_prob": 0.3042,
+        "best_odds": 500,
+        "best_book": "Caesars",
+        "edge": 0.1509,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 5
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Sal Stewart",
+        "team": "CIN",
+        "model_prob": 0.2586,
+        "best_odds": 750,
+        "best_book": "Caesars",
+        "edge": 0.1504,
+        "recommendation": "Bet",
+        "result": false,
+        "batting_order": 3
+      }
+    ]
+  },
+  "factor_proxy_diagnostics": {
+    "note": "Individual factor values (barrel_pct, split_factor, hot_factor, etc.) are not logged in picks.json. Only proxy metrics available.",
+    "n_hits": 83,
+    "n_misses": 526,
+    "hit_avg_model_prob": 0.2535,
+    "miss_avg_model_prob": 0.2336,
+    "hit_avg_edge": 0.0798,
+    "miss_avg_edge": 0.0809,
+    "hit_avg_batting_order": 3.4699,
+    "miss_avg_batting_order": 4.2262,
+    "hit_lineup_confirmed_rate": 1.0,
+    "miss_lineup_confirmed_rate": 1.0
+  },
+  "window_analysis": {
+    "note": "All 2549 records have window=null. Window field was not logged in this period. Per-window breakdown is not possible until mlb_hr_model.py writes window into picks.json.",
+    "unique_window_values": [
+      null
+    ]
+  },
+  "caveats": {
+    "sample_size_bet_lean_resolved": 609,
+    "sample_size_bet_resolved": 445,
+    "sample_size_lean_resolved": 164,
+    "preliminary_flag": false,
+    "preliminary_note": "With ~609 resolved Bet/Lean picks across 12 game-days this is a reasonably large sample for headline ROI, but splits (per-tier, per-edge-bucket) can be thin. Any bucket <30 picks is preliminary-only.",
+    "factor_diagnostics_unavailable": true,
+    "window_comparison_unavailable": true,
+    "odds_match_concern": "Majority of days (10/12) have <80% odds match rate. Picks without odds are auto-Skip regardless of model prob, so the true universe of actionable picks may be smaller than model output suggests.",
+    "duplicate_player_picks": "Same player may appear 1-3 times per date across run windows (all null here), inflating pick counts. De-duplication was not applied."
+  }
+}
