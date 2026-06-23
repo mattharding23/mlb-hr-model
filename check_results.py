@@ -22,6 +22,10 @@ import requests
 
 MLB_API = "https://statsapi.mlb.com/api/v1"
 
+# Window ordering for ROI dedup: later windows have more accurate lineup/odds data
+# and should be the authoritative pick for each player+date combination.
+WINDOW_ORDER = {"early": 0, "mid": 1, "late": 2}
+
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Helpers
@@ -234,6 +238,39 @@ def resolve_picks(picks, today_str):
     return picks, summary_lines
 
 
+def apply_roi_dedup(picks):
+    """Mark counts_toward_roi on all resolved picks.
+
+    When the same player appears in multiple windows on the same date (early,
+    mid, late), only the latest window counts toward staked ROI.  Earlier-window
+    picks are still stored for per-window diagnostics but are excluded from
+    win/loss and unit-return calculations so the same logical bet isn't counted
+    multiple times.
+
+    Picks without a window value (window=None) are treated as the lowest priority
+    and will be superseded by any named-window pick for the same player+date.
+    This function is idempotent — safe to call on every check_results run.
+    """
+    from collections import defaultdict
+
+    # Group resolved picks by (date, player_id)
+    resolved_groups = defaultdict(list)
+    for i, pick in enumerate(picks):
+        if pick.get("result") is not None:
+            resolved_groups[(pick.get("date"), pick.get("player_id"))].append(i)
+
+    for (date, pid), indices in resolved_groups.items():
+        if len(indices) == 1:
+            picks[indices[0]]["counts_toward_roi"] = True
+        else:
+            # Latest window wins; window=None ranks below all named windows
+            latest_i = max(indices, key=lambda i: WINDOW_ORDER.get(picks[i].get("window"), -1))
+            for i in indices:
+                picks[i]["counts_toward_roi"] = (i == latest_i)
+
+    return picks
+
+
 def main():
     ap = argparse.ArgumentParser(description="Resolve MLB HR prop picks against boxscores")
     ap.add_argument("--date", default=None, help="Only resolve this specific date (YYYY-MM-DD)")
@@ -270,6 +307,11 @@ def main():
     else:
         all_picks, summary = resolve_picks(picks, today_str)
 
+    # Apply ROI dedup: for each (date, player_id) group, mark only the latest-
+    # window pick as counts_toward_roi=True so multi-window picks don't inflate
+    # the staked unit count. Always re-runs so existing picks stay consistent.
+    all_picks = apply_roi_dedup(all_picks)
+
     # Save back
     with open(picks_path, "w") as f:
         json.dump(all_picks, f, indent=2)
@@ -280,14 +322,17 @@ def main():
         for line in summary:
             print(line)
 
-        # Print aggregate for resolved session
-        resolved = [p for p in all_picks if p.get("result") is not None and p.get("units_staked") is not None]
+        # Season totals: exclude multi-window duplicates via counts_toward_roi
+        resolved = [p for p in all_picks
+                    if p.get("result") is not None
+                    and p.get("units_staked") is not None
+                    and p.get("counts_toward_roi") != False]
         if resolved:
             net = sum(p.get("units_returned") or 0 for p in resolved)
             staked = sum(p.get("units_staked") or 0 for p in resolved)
             roi = (net / staked * 100) if staked > 0 else 0
             wins = sum(1 for p in resolved if p["result"])
-            print(f"\n  Season totals (all resolved lined picks):")
+            print(f"\n  Season totals (latest-window picks only):")
             print(f"  {wins}-{len(resolved)-wins}  net {net:+.2f}u  ROI {roi:+.1f}%  (staked {staked:.2f}u)")
     else:
         print("  No picks to resolve.")

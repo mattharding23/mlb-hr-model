@@ -328,22 +328,30 @@ def get_odds(api_key, date):
         odds_map[key]["best"]      = best["odds"]
         odds_map[key]["best_book"] = best["book"]
 
-    # Parse totals
+    # Parse totals — take the minimum valid Over point per game.
+    # Books sometimes return alternate totals (e.g. 12.5, 14.5) alongside the
+    # standard game total in the same "totals" market. Taking the first "Over"
+    # outcome (old approach) would pick up an alternate if it appeared first.
+    # The standard game total is always the lowest qualifying line; alternates
+    # and F5 totals are filtered by requiring point ≥ 7.0 (excludes first-five-
+    # inning and shortened-game props).
     for ev, res in zip(events, totals_responses):
         if not res: continue
-        home_team = ev.get("home_team", "")
         away_team = ev.get("away_team", "")
-        pair_key  = norm(away_team)  # use away team as primary key
+        pair_key  = norm(away_team)
+        if pair_key in game_totals:
+            continue
         for book in res.get("bookmakers", []):
             mkt = next((m for m in book.get("markets", []) if m["key"] == "totals"), None)
             if not mkt: continue
-            for o in mkt.get("outcomes", []):
-                if (o.get("name") or "").lower() == "over":
-                    pt = o.get("point")
-                    if pt is not None and pair_key not in game_totals:
-                        game_totals[pair_key] = float(pt)
-                    break
-            if pair_key in game_totals:
+            valid_overs = [
+                float(o["point"]) for o in mkt.get("outcomes", [])
+                if (o.get("name") or "").lower() == "over"
+                and o.get("point") is not None
+                and float(o.get("point")) >= 7.0
+            ]
+            if valid_overs:
+                game_totals[pair_key] = min(valid_overs)
                 break
 
     return odds_map, game_totals
@@ -499,7 +507,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         "sc_adj": sc_adj, "sc_info": sc_info,
         "sp_adj": sp_adj, "bp_adj": bp_adj, "pitch_blend": pitch_blend,
         "park_adj": park_adj, "temp_adj": temp_adj, "wind_adj": wind_adj,
-        "proj_pa": round(pp, 1), "per_pa_capped": per_pa_capped,
+        "proj_pa": round(pp, 1), "game_ou": ou, "per_pa_capped": per_pa_capped,
         "game_prob": gp, "fair_line": implied_to_american(gp),
         "best_odds": best_odds, "best_book": best_book,
         "implied": implied, "edge": edge,
@@ -563,6 +571,7 @@ def save_picks(results, date, window):
                 "park_adj":     round(r.get("park_adj",   1.0), 4),
                 "temp_adj":     round(r.get("temp_adj",   1.0), 4),
                 "wind_adj":     round(r.get("wind_adj",   1.0), 4),
+                "game_ou":      r.get("game_ou"),
                 "proj_pa":      r.get("proj_pa"),
                 "per_pa_capped": r.get("per_pa_capped", False),
                 "actual_pa":    None,  # filled by check_results.py post-game
@@ -570,6 +579,7 @@ def save_picks(results, date, window):
             "result": None,
             "units_returned": None,
             "resolved_at": None,
+            "counts_toward_roi": None,  # set by check_results.py after dedup
         }
         picks.append(pick)
 
@@ -579,7 +589,11 @@ def save_picks(results, date, window):
 
 def compute_stats(picks):
     resolved   = [p for p in picks if p.get("result") is not None]
-    lined      = [p for p in resolved if p.get("units_staked") is not None]
+    # counts_toward_roi=False excludes earlier-window duplicate picks for the same
+    # player+date. None (unset) is treated as True for backward compat.
+    lined      = [p for p in resolved
+                  if p.get("units_staked") is not None
+                  and p.get("counts_toward_roi") != False]
     bet_picks  = [p for p in lined if p.get("recommendation") == "Bet"]
     lean_picks = [p for p in lined if p.get("recommendation") == "Lean"]
 
