@@ -418,14 +418,25 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         s_hr_sp = safe_int(sp_split.get("homeRuns"))
         s_ip_sp = safe_float(sp_split.get("inningsPitched"))
         sp_rate = regressed_hr_pa(s_hr_sp, s_ip_sp, min_ip=5)
+        sp_data_missing = False
     elif sp_stat:
         sp_rate = regressed_hr_pa(safe_int(sp_stat.get("homeRuns")), safe_float(sp_stat.get("inningsPitched")), min_ip=5)
+        sp_data_missing = False
     else:
+        # No probable pitcher announced (pitcher_id=None) or stats unavailable.
+        # Defaulting to league average silently hides the information gap — flag it.
         sp_rate = LG_HR_PA
+        sp_data_missing = True
     sp_adj = max(0.55, min(2.20, sp_rate / LG_HR_PA))
 
     # 5. Bullpen (regressed, platoon-aware)
-    bp_rate = (bp_splits or {}).get(bh, LG_HR_PA)
+    bp_rate_raw = (bp_splits or {}).get(bh)
+    if bp_rate_raw is not None:
+        bp_rate = bp_rate_raw
+        bp_data_missing = False
+    else:
+        bp_rate = LG_HR_PA
+        bp_data_missing = True
     bp_adj = max(0.65, min(1.80, bp_rate / LG_HR_PA))
 
     pitch_blend = 0.55 * sp_adj + 0.45 * bp_adj
@@ -469,6 +480,13 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
 
     rec = "Bet" if (edge or -1) > 0.05 else "Lean" if (edge or -1) > 0.02 else "Skip" if (edge or -1) < -0.04 else "—"
 
+    # Missing pitcher data: downgrade Bet/Lean when no SP or BP stats are available.
+    # The model defaults both to league average in that case, so the edge calculation
+    # rests on a neutral pitcher assumption that may be wildly wrong. Log the reason.
+    pitcher_data_missing = sp_data_missing or bp_data_missing
+    if pitcher_data_missing and rec in ("Bet", "Lean"):
+        rec = "—"
+
     # Multi-book corroboration: require ≥MULTI_BOOK_CORROBORATION_MIN books with
     # implied probability within MULTI_BOOK_MAX_IMPLIED_SPREAD of the best line.
     # A single outlier book at long odds generates phantom edge; downgrade to "—".
@@ -506,6 +524,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         "split_adj": split_adj, "hot_adj": hot_adj, "r_hr": r_hr, "r_pa": r_pa, "hot_label": hot_label,
         "sc_adj": sc_adj, "sc_info": sc_info,
         "sp_adj": sp_adj, "bp_adj": bp_adj, "pitch_blend": pitch_blend,
+        "sp_data_missing": sp_data_missing, "bp_data_missing": bp_data_missing,
         "park_adj": park_adj, "temp_adj": temp_adj, "wind_adj": wind_adj,
         "proj_pa": round(pp, 1), "game_ou": ou, "per_pa_capped": per_pa_capped,
         "game_prob": gp, "fair_line": implied_to_american(gp),
@@ -567,7 +586,9 @@ def save_picks(results, date, window):
                 "hot_adj":      round(r.get("hot_adj",    1.0), 4),
                 "sc_adj":       round(r.get("sc_adj",     1.0), 4),
                 "sp_adj":       round(r.get("sp_adj",     1.0), 4),
+                "sp_data_missing": r.get("sp_data_missing", False),
                 "bp_adj":       round(r.get("bp_adj",     1.0), 4),
+                "bp_data_missing": r.get("bp_data_missing", False),
                 "park_adj":     round(r.get("park_adj",   1.0), 4),
                 "temp_adj":     round(r.get("temp_adj",   1.0), 4),
                 "wind_adj":     round(r.get("wind_adj",   1.0), 4),
