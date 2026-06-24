@@ -58,7 +58,7 @@ LG_HARD_HIT  = 0.385
 VIG_FACTOR   = 0.92   # devig: sportsbooks typically have ~8% overround on HR props
 MAX_PROP_ODDS = 2500  # filter out longshot/alternate lines above this threshold
 
-# Multi-book corroboration: before a pick qualifies as Bet/Lean, at least this many
+# Multi-book corroboration: before a pick qualifies as Bet, at least this many
 # books must have implied probability within MULTI_BOOK_MAX_IMPLIED_SPREAD of the
 # best available line. Prevents single-book outlier lines (typically Caesars at
 # long odds) from generating phantom edge.
@@ -478,13 +478,16 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         kelly = max(0, min(raw_kelly, 0.12))
         quarter_kelly = min(kelly * 0.25, 0.03)
 
-    rec = "Bet" if (edge or -1) > 0.05 else "Lean" if (edge or -1) > 0.02 else "Skip" if (edge or -1) < -0.04 else "—"
+    # Lean tier eliminated (v4.2): 40-pick retroactive sample on clean BetOnline lines
+    # showed 5.0% win rate and -67.5% ROI at +2-5pp edge — below the 12.8% base rate.
+    # No evidence of real value in the +2-5pp zone. Two tiers only: Bet (≥+5pp) or Skip.
+    rec = "Bet" if (edge or -1) > 0.05 else "Skip" if (edge or -1) < -0.04 else "—"
 
-    # Missing pitcher data: downgrade Bet/Lean when no SP or BP stats are available.
+    # Missing pitcher data: downgrade Bet picks when no SP or BP stats are available.
     # The model defaults both to league average in that case, so the edge calculation
     # rests on a neutral pitcher assumption that may be wildly wrong. Log the reason.
     pitcher_data_missing = sp_data_missing or bp_data_missing
-    if pitcher_data_missing and rec in ("Bet", "Lean"):
+    if pitcher_data_missing and rec == "Bet":
         rec = "—"
 
     # Multi-book corroboration: require ≥MULTI_BOOK_CORROBORATION_MIN books with
@@ -508,7 +511,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         if not corroborated:
             book_corroboration["excluded_outlier"] = best_book
             book_corroboration["excluded_line"]    = best_odds
-            if rec in ("Bet", "Lean"):
+            if rec == "Bet":
                 rec = "—"
 
     hot_label = ""
@@ -578,7 +581,7 @@ def save_picks(results, date, window):
             "recommendation": rec,
             "kelly_fraction": round(r["kelly"], 4) if r.get("kelly") is not None else None,
             "quarter_kelly": round(qk, 4) if qk is not None else None,
-            "units_staked": round(qk, 4) if (qk is not None and rec in ("Bet", "Lean") and has_line) else None,
+            "units_staked": round(qk, 4) if (qk is not None and rec == "Bet" and has_line) else None,
             "book_corroboration": r.get("book_corroboration"),
             "factors": {
                 "barrel_pct":   round(sc.get("barrel_pct",   0), 4) if sc.get("barrel_pct")   else None,
@@ -725,7 +728,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
                    window=None, stats=None, bankroll=0, reset_date=""):
     total      = len(results)
     with_lines = sum(1 for r in results if r["best_odds"] is not None)
-    value_bets = sum(1 for r in results if (r.get("edge") or 0) > 0.02)
+    value_bets = sum(1 for r in results if (r.get("edge") or 0) > 0.05)
     avg_prob   = sum(r["game_prob"] for r in results) / total if total else 0
 
     # Performance panel
@@ -735,7 +738,6 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
     if stats is not None and stats.get("total_lined", 0) > 0:
         s = stats
         bet_rec  = f'{s["bet_w"]}-{s["bet_l"]}'
-        lean_rec = f'{s["lean_w"]}-{s["lean_l"]}'
         net_cls  = "pos" if s["units_net"] >= 0 else "neg"
         roi_cls  = "pos" if s["roi_pct"]  >= 0 else "neg"
         streak_val = s["streak"]
@@ -757,7 +759,6 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
   <h3>Season Performance</h3>
   <div class="perf-row">
     <div class="perf-item"><span class="perf-label">Bet record</span><span class="perf-value">{bet_rec}</span></div>
-    <div class="perf-item"><span class="perf-label">Lean record</span><span class="perf-value">{lean_rec}</span></div>
     <div class="perf-item"><span class="perf-label">Net units</span><span class="perf-value {net_cls}">{s["units_net"]:+.2f}u</span></div>
     <div class="perf-item"><span class="perf-label">ROI</span><span class="perf-value {roi_cls}">{s["roi_pct"]:+.1f}%</span></div>
     <div class="perf-item"><span class="perf-label">Streak</span><span class="perf-value {streak_cls}">{streak_str}</span></div>
@@ -770,7 +771,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
     for r in results:
         e  = r.get("edge"); gp = r["game_prob"]
         rbg = "background:rgba(34,197,94,.05);" if (e or 0) > 0.05 else ""
-        ec = "#64748b" if e is None else "#22c55e" if e>.05 else "#86efac" if e>.02 else "#94a3b8" if e>-.02 else "#f87171"
+        ec = "#64748b" if e is None else "#22c55e" if e>.05 else "#94a3b8" if e>-.04 else "#f87171"
         pc = "#22c55e" if gp>.11 else "#f59e0b" if gp>.07 else "#e2e8f0"
         rec = r.get("recommendation", "—")
         if rec == "Bet":
@@ -863,7 +864,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
     sc_th    = '<th style="text-align:right">Barrel%</th>' if has_statcast else ""
     odds_ths = '<th style="text-align:right">Best line</th><th>Book</th><th style="text-align:right">Edge</th><th>Rec</th>'
     all_books = list({b["book"] for r in results for b in r.get("all_books", [])})
-    odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Lean +2–5pp · Skip ≤−4pp." if has_key else "Run with -k YOUR_ODDS_KEY for live line comparison."
+    odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp." if has_key else "Run with -k YOUR_ODDS_KEY for live line comparison."
     sc_note   = f"Statcast: barrel% + hard-hit% (barrel ratio vs {LG_BARREL*100:.1f}% league avg, exp 0.40)." if has_statcast else "Statcast disabled — install pybaseball."
     wh = f'<div class="wh">{WINDOW_LABELS[window]}</div>' if window else ""
 
@@ -876,7 +877,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
             t5rows = ""
             for rank, r in enumerate(top5, 1):
                 e   = r["edge"]
-                ec  = "#22c55e" if e > .05 else "#86efac" if e > .02 else "#94a3b8" if e > -.02 else "#f87171"
+                ec  = "#22c55e" if e > .05 else "#94a3b8" if e > -.04 else "#f87171"
                 rec = r.get("recommendation", "—")
                 if rec == "Bet":
                     tbadge = '<span class="badge bet" style="font-size:10px;padding:1px 5px">Bet</span>'
@@ -1027,7 +1028,7 @@ def send_notifications(results, date, html_content, args):
             if season_stats and season_stats.get("total_lined", 0) > 0:
                 s = season_stats
                 plain_lines.append("=== Season Performance ===")
-                plain_lines.append(f"Bet: {s['bet_w']}-{s['bet_l']}  Lean: {s['lean_w']}-{s['lean_l']}")
+                plain_lines.append(f"Bet: {s['bet_w']}-{s['bet_l']}")
                 plain_lines.append(f"Net units: {s['units_net']:+.2f}  ROI: {s['roi_pct']:+.1f}%")
                 plain_lines.append("")
                 # Yesterday's resolved picks
@@ -1130,11 +1131,10 @@ def print_debug_summary(results, odds_map):
     lined = [r for r in results if r.get("edge") is not None]
     if lined:
         edges = [r["edge"] for r in lined]
-        print(f"  Strong value  (edge >+5pp):    {sum(1 for e in edges if e > 0.05)} players")
-        print(f"  Lean value    (edge +2–5pp):   {sum(1 for e in edges if 0.02 < e <= 0.05)} players")
-        print(f"  Neutral       (edge -2–+2pp):  {sum(1 for e in edges if -0.02 <= e <= 0.02)} players")
-        print(f"  Negative      (-2pp to -10pp): {sum(1 for e in edges if -0.10 <= e < -0.02)} players")
-        print(f"  Strong neg    (<-10pp):        {sum(1 for e in edges if e < -0.10)} players")
+        print(f"  Bet           (edge >+5pp):    {sum(1 for e in edges if e > 0.05)} players")
+        print(f"  Borderline    (edge 0–+5pp):   {sum(1 for e in edges if 0 < e <= 0.05)} players")
+        print(f"  Neutral       (edge -4–0pp):   {sum(1 for e in edges if -0.04 <= e <= 0)} players")
+        print(f"  Skip          (edge <-4pp):    {sum(1 for e in edges if e < -0.04)} players")
         print(f"\n  Min edge: {min(edges)*100:.1f}%   Max edge: {max(edges)*100:.1f}%   Mean edge: {sum(edges)/len(edges)*100:.1f}%")
     else:
         print("  No players with odds lines.")

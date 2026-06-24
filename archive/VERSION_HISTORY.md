@@ -72,3 +72,61 @@ Retroactive re-scoring of v4.1 archive by applying two v4.2 filters without re-r
 v4.2 performance should be compared against the counterfactual set (143 picks, +10.2% ROI, 16.1% win rate) rather than the original v4.1 baseline, since the filters were not active during the v4.1 era and the v4.1 numbers reflect contaminated picks.
 
 ---
+
+## v4.2 (Jun 23, 2026 – present)
+
+**Base commits:** `ffec0af` (archive/reset) through `bcdf9ab` (doubleheader dedup)  
+**Tracking started:** 2026-06-23 (picks.json reset to [])
+
+### Changes from v4.1
+
+| # | Change | Commit | Rationale |
+|---|--------|--------|-----------|
+| 1 | Multi-book corroboration filter | `88fa471` | Caesars outlier contamination caused 73% of staked picks and all unit losses in v4.1 |
+| 2 | Window auto-detect (`early`/`mid`/`late`) | `74c3f0e` | Fixed window=null dedup bug; now each daily run saves picks independently |
+| 3 | Factor logging to picks.json | `74c3f0e` | Enables per-factor calibration; adds `barrel_pct`, `hard_hit_pct`, all adj fields, `actual_pa` |
+| 4 | Totals-parse bug fix (min qualifying Over ≥7.0) | `0436fca` | Alternate totals (e.g. 12.5) were parsed as game total, inflating proj_PA |
+| 5 | `counts_toward_roi` window dedup | `0436fca` | Prevents triple-counting the same logical bet across 3 daily windows |
+| 6 | `game_ou` in factors dict | `0436fca` | Game total now auditable per pick |
+| 7 | `sp_data_missing` / `bp_data_missing` flags | `65bdca9` | Missing probable-pitcher data was silently defaulting to league-average |
+| 8 | Missing-pitcher picks downgraded from Bet to "—" | `65bdca9` | Model cannot justify high-confidence picks without pitcher info |
+| 9 | `game_pk` in picks schema + dedup key | `bcdf9ab` | Fixes doubleheader ROI tracking (both games now count independently) |
+| 10 | **Lean tier eliminated** | `(this commit)` | See below |
+
+### Lean tier elimination
+
+**Evidence:** Retroactive backtest of v4.1 archive on corroborated BetOnline lines only:
+
+| Edge zone | N | Win% | ROI |
+|-----------|--:|-----:|----:|
+| +2–5pp (old Lean) | 40 | 5.0% | −67.5% |
+| +5–10pp (Bet) | 60 | 26.7% | +32.5% |
+| +10–15pp (Bet) | 36 | 13.9% | −3.3% |
+
+The +2–5pp zone shows win rate below the 12.8% unconditional HR base rate, meaning taking these bets destroys value. There is no evidence the model identifies real edge at this threshold.
+
+**Decision:** Eliminate Lean as a tier. Going forward, two tiers only:
+- **Bet** — edge ≥ +5pp, corroborated, pitcher data present → stake quarter-Kelly (capped 0.03u)
+- **Skip** — edge < −4pp → model sees clear negative value
+- **"—"** — everything else, including the former +2–5pp Lean zone → no stake, no signal
+
+The +2–5pp zone will remain visible in the report table (players in that range still appear with their model probability and edge) but will not generate a Bet badge or stake units. If future data accumulates evidence of genuine value at a different intermediate threshold, a tier can be reintroduced.
+
+**Code changes:**
+- `rec` formula: `"Lean" if edge > 0.02` branch removed
+- `pitcher_data_missing` and multi-book downgrade checks: `rec in ("Bet","Lean")` → `rec == "Bet"`
+- `units_staked`: only set for `rec == "Bet"` (was `rec in ("Bet","Lean")`)
+- HTML performance panel: "Lean record" row removed
+- Odds note footer: "Lean +2–5pp ·" removed
+- Edge color in report table: intermediate green (#86efac) for >+2pp edge removed; now binary green/gray/red at the ±4pp boundaries
+- SMS text: Lean W-L removed
+- Console edge distribution: "Lean value" line replaced with "Borderline (0–+5pp)"
+- `compute_stats()`: lean_w/lean_l retained in stats dict for backward compat with any legacy v4.1 display
+
+### Measurement target for v4.2
+
+Primary: beat the v4.1 counterfactual baseline — 16.1% win rate, +10.2% ROI on 143-pick proxy sample.  
+Secondary: demonstrate Lean-zone picks (now excluded) continue to underperform, validating the decision.  
+Minimum sample for conclusions: 50 resolved Bet picks.
+
+---
