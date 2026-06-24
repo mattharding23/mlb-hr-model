@@ -241,25 +241,30 @@ def resolve_picks(picks, today_str):
 def apply_roi_dedup(picks):
     """Mark counts_toward_roi on all resolved picks.
 
-    When the same player appears in multiple windows on the same date (early,
-    mid, late), only the latest window counts toward staked ROI.  Earlier-window
-    picks are still stored for per-window diagnostics but are excluded from
-    win/loss and unit-return calculations so the same logical bet isn't counted
-    multiple times.
+    When the same player appears in multiple windows for the same game, only the
+    latest window's pick counts toward staked ROI.  Earlier-window picks are
+    stored for per-window diagnostics but excluded from win/loss and unit-return
+    calculations so the same logical bet isn't counted multiple times.
 
-    Picks without a window value (window=None) are treated as the lowest priority
-    and will be superseded by any named-window pick for the same player+date.
+    Grouping key: (date, player_id, game_pk).  The game_pk component handles
+    doubleheaders — both games on the same date are tracked and counted
+    independently.  Old picks without game_pk fall back to game_pk=None, which
+    groups all window records for that player+date together (safe for single-
+    game days, and avoids splitting the group incorrectly for legacy data).
+
+    Picks without a named window (window=None) rank below all named windows.
     This function is idempotent — safe to call on every check_results run.
     """
     from collections import defaultdict
 
-    # Group resolved picks by (date, player_id)
+    # Group resolved picks by (date, player_id, game_pk)
     resolved_groups = defaultdict(list)
     for i, pick in enumerate(picks):
         if pick.get("result") is not None:
-            resolved_groups[(pick.get("date"), pick.get("player_id"))].append(i)
+            key = (pick.get("date"), pick.get("player_id"), pick.get("game_pk"))
+            resolved_groups[key].append(i)
 
-    for (date, pid), indices in resolved_groups.items():
+    for key, indices in resolved_groups.items():
         if len(indices) == 1:
             picks[indices[0]]["counts_toward_roi"] = True
         else:

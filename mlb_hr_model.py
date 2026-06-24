@@ -566,6 +566,7 @@ def save_picks(results, date, window):
             "window": window,
             "player": r["name"],
             "player_id": r["id"],
+            "game_pk": r.get("game_pk"),
             "team": r["team"],
             "batting_order": r["batting_order"],
             "lineup_confirmed": r.get("lineup_confirmed", True),
