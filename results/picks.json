@@ -119,21 +119,21 @@
     "best_odds": 475,
     "best_book": "Caesars",
     "edge": 0.1586,
-    "recommendation": "Bet",
+    "recommendation": "\u2014",
     "kelly_fraction": 0.12,
     "quarter_kelly": 0.03,
-    "units_staked": 0.03,
+    "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 475
     },
     "factors": {
       "barrel_pct": 0.118,
@@ -331,21 +331,21 @@
     "best_odds": 400,
     "best_book": "Caesars",
     "edge": 0.0985,
-    "recommendation": "Bet",
+    "recommendation": "\u2014",
     "kelly_fraction": 0.1032,
     "quarter_kelly": 0.0258,
-    "units_staked": 0.0258,
+    "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 400
     },
     "factors": {
       "barrel_pct": 0.108,
@@ -490,21 +490,21 @@
     "best_odds": 290,
     "best_book": "Caesars",
     "edge": 0.0855,
-    "recommendation": "Bet",
+    "recommendation": "\u2014",
     "kelly_fraction": 0.0874,
     "quarter_kelly": 0.0219,
-    "units_staked": 0.0219,
+    "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 290
     },
     "factors": {
       "barrel_pct": 0.156,
@@ -543,21 +543,21 @@
     "best_odds": 255,
     "best_book": "Caesars",
     "edge": 0.0622,
-    "recommendation": "Bet",
+    "recommendation": "\u2014",
     "kelly_fraction": 0.0553,
     "quarter_kelly": 0.0138,
-    "units_staked": 0.0138,
+    "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 255
     },
     "factors": {
       "barrel_pct": 0.127,
@@ -596,21 +596,21 @@
     "best_odds": 425,
     "best_book": "Caesars",
     "edge": 0.052,
-    "recommendation": "Bet",
+    "recommendation": "\u2014",
     "kelly_fraction": 0.0454,
     "quarter_kelly": 0.0114,
-    "units_staked": 0.0114,
+    "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 425
     },
     "factors": {
       "barrel_pct": 0.057,
@@ -654,16 +654,16 @@
     "quarter_kelly": 0.0094,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 265
     },
     "factors": {
       "barrel_pct": 0.143,
@@ -707,16 +707,16 @@
     "quarter_kelly": 0.0094,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 330
     },
     "factors": {
       "barrel_pct": 0.116,
@@ -866,16 +866,16 @@
     "quarter_kelly": 0.0058,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 525
     },
     "factors": {
       "barrel_pct": 0.05,
@@ -919,16 +919,16 @@
     "quarter_kelly": 0.0044,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 400
     },
     "factors": {
       "barrel_pct": 0.134,
@@ -1025,16 +1025,16 @@
     "quarter_kelly": 0.0037,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 425
     },
     "factors": {
       "barrel_pct": 0.127,
@@ -1078,16 +1078,16 @@
     "quarter_kelly": 0.0023,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 370
     },
     "factors": {
       "barrel_pct": 0.122,
@@ -1184,16 +1184,16 @@
     "quarter_kelly": 0.0014,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 475
     },
     "factors": {
       "barrel_pct": 0.06,
@@ -1237,16 +1237,16 @@
     "quarter_kelly": 0.0,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 370
     },
     "factors": {
       "barrel_pct": 0.159,
@@ -1979,16 +1979,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 330
     },
     "factors": {
       "barrel_pct": 0.148,
@@ -2032,16 +2032,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 525
     },
     "factors": {
       "barrel_pct": 0.086,
@@ -2191,16 +2191,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 575
     },
     "factors": {
       "barrel_pct": 0.067,
@@ -2244,16 +2244,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 575
     },
     "factors": {
       "barrel_pct": 0.111,
@@ -2403,16 +2403,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 575
     },
     "factors": {
       "barrel_pct": 0.082,
@@ -2456,16 +2456,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 390
     },
     "factors": {
       "barrel_pct": 0.107,
@@ -2562,16 +2562,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 500
     },
     "factors": {
       "barrel_pct": 0.056,
@@ -2986,16 +2986,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 425
     },
     "factors": {
       "barrel_pct": 0.118,
@@ -3145,16 +3145,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 575
     },
     "factors": {
       "barrel_pct": 0.07,
@@ -3198,16 +3198,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 500
     },
     "factors": {
       "barrel_pct": 0.06,
@@ -3251,16 +3251,16 @@
     "quarter_kelly": null,
     "units_staked": null,
     "book_corroboration": {
-      "corroborated": true,
-      "n_corroborating": 2,
+      "corroborated": false,
+      "n_corroborating": 1,
       "books_with_line": [
-        "Caesars",
         "Caesars"
       ],
       "corroborating_books": [
-        "Caesars",
         "Caesars"
-      ]
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 475
     },
     "factors": {
       "barrel_pct": 0.045,

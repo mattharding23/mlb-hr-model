@@ -496,7 +496,16 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     book_corroboration = None
     if best_odds is not None:
         best_impl_raw  = american_to_implied(best_odds)
-        all_books_list = od.get("books", [])
+        # Deduplicate by book name before corroboration check. The odds_map
+        # accumulates one entry per event (game) per book. A doubleheader causes
+        # the same book to appear twice for the same player (once per game),
+        # which would falsely satisfy MULTI_BOOK_CORROBORATION_MIN=2 with a
+        # single book. Keep the best (highest) odds from each unique book.
+        seen: dict = {}
+        for b in od.get("books", []):
+            if b["book"] not in seen or b["odds"] > seen[b["book"]]:
+                seen[b["book"]] = b["odds"]
+        all_books_list = [{"book": k, "odds": v} for k, v in seen.items()]
         corroborating  = [
             b["book"] for b in all_books_list
             if abs(american_to_implied(b["odds"]) - best_impl_raw) <= MULTI_BOOK_MAX_IMPLIED_SPREAD
