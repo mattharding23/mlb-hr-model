@@ -324,6 +324,16 @@ def get_odds(api_key, date):
                     if key not in odds_map: odds_map[key] = {"books": [], "_raw": raw_name}
                     odds_map[key]["books"].append({"book": book["title"], "odds": o["price"]})
     for key in odds_map:
+        # Collapse duplicate book-name entries before any downstream consumer
+        # reads this map. The same book can appear multiple times for a player
+        # when the Odds API returns several event records for the same date
+        # (doubleheaders, postponed/resumed games, or any other multi-event
+        # scenario). Keep the best (highest) odds from each unique book name.
+        seen: dict = {}
+        for b in odds_map[key]["books"]:
+            if b["book"] not in seen or b["odds"] > seen[b["book"]]:
+                seen[b["book"]] = b["odds"]
+        odds_map[key]["books"] = [{"book": k, "odds": v} for k, v in seen.items()]
         best = max(odds_map[key]["books"], key=lambda x: x["odds"])
         odds_map[key]["best"]      = best["odds"]
         odds_map[key]["best_book"] = best["book"]
@@ -496,16 +506,7 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     book_corroboration = None
     if best_odds is not None:
         best_impl_raw  = american_to_implied(best_odds)
-        # Deduplicate by book name before corroboration check. The odds_map
-        # accumulates one entry per event (game) per book. A doubleheader causes
-        # the same book to appear twice for the same player (once per game),
-        # which would falsely satisfy MULTI_BOOK_CORROBORATION_MIN=2 with a
-        # single book. Keep the best (highest) odds from each unique book.
-        seen: dict = {}
-        for b in od.get("books", []):
-            if b["book"] not in seen or b["odds"] > seen[b["book"]]:
-                seen[b["book"]] = b["odds"]
-        all_books_list = [{"book": k, "odds": v} for k, v in seen.items()]
+        all_books_list = od.get("books", [])
         corroborating  = [
             b["book"] for b in all_books_list
             if abs(american_to_implied(b["odds"]) - best_impl_raw) <= MULTI_BOOK_MAX_IMPLIED_SPREAD
