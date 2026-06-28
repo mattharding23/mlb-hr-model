@@ -333,11 +333,7 @@ def main():
                     and p.get("units_staked") is not None
                     and p.get("counts_toward_roi") != False]
         if resolved:
-            net = sum(
-                ((p["units_returned"] - p["units_staked"]) if p["result"] else p["units_returned"])
-                if p.get("units_returned") is not None else 0
-                for p in resolved
-            )
+            net = sum(p.get("units_returned") or 0 for p in resolved)
             staked = sum(p.get("units_staked") or 0 for p in resolved)
             roi = (net / staked * 100) if staked > 0 else 0
             wins = sum(1 for p in resolved if p["result"])

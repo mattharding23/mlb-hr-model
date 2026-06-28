@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MLB HR Prop Finder v4.3
+MLB HR Prop Finder v4
 ──────────────────────────────────────────────────────────────────────────────
 Model factors:
   • Season HR/PA rate (base, min 30 PA)
@@ -58,15 +58,12 @@ LG_HARD_HIT  = 0.385
 VIG_FACTOR   = 0.92   # devig: sportsbooks typically have ~8% overround on HR props
 MAX_PROP_ODDS = 2500  # filter out longshot/alternate lines above this threshold
 
-# v4.3 hard gates — replace multi-book corroboration (see VERSION_HISTORY.md)
-MAX_BET_ODDS         = 500   # Bet tier requires American odds ≤ +500
-MIN_DEVIGGED_IMPLIED = 0.16  # Bet tier requires devigged implied prob ≥ 16%
-
-# Corroboration constants kept for reference / future use but no longer gate picks.
-# Only one sportsbook (williamhill_us/Caesars) posts batter_home_runs at this
-# Odds API plan level, so MULTI_BOOK_CORROBORATION_MIN=2 can never be satisfied.
-MULTI_BOOK_CORROBORATION_MIN   = 2     # dormant — computed but not used as gate
-MULTI_BOOK_MAX_IMPLIED_SPREAD  = 0.03  # dormant
+# Multi-book corroboration: before a pick qualifies as Bet, at least this many
+# books must have implied probability within MULTI_BOOK_MAX_IMPLIED_SPREAD of the
+# best available line. Prevents single-book outlier lines (typically Caesars at
+# long odds) from generating phantom edge.
+MULTI_BOOK_CORROBORATION_MIN   = 2     # minimum corroborating books (including best)
+MULTI_BOOK_MAX_IMPLIED_SPREAD  = 0.03  # max pp spread between corroborating books
 
 PA_BY_SPOT = {1:4.7,2:4.6,3:4.5,4:4.4,5:4.3,6:4.1,7:4.0,8:3.9,9:3.8}
 
@@ -297,7 +294,7 @@ def get_odds(api_key, date):
     totals_urls = [
         f"https://api.the-odds-api.com/v4/sports/baseball_mlb/events/{e['id']}/odds"
         f"?apiKey={api_key}&markets=totals&oddsFormat=american"
-        f"&bookmakers=draftkings,fanduel,betmgm,williamhill_us"
+        f"&bookmakers=draftkings,fanduel,betmgm,caesars"
         for e in events
     ]
     all_urls = hr_urls + totals_urls
@@ -503,9 +500,9 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     if pitcher_data_missing and rec == "Bet":
         rec = "—"
 
-    # Corroboration: computed for diagnostics but NO LONGER gates picks (v4.3).
-    # Only williamhill_us (Caesars) posts batter_home_runs at this plan level,
-    # so MULTI_BOOK_CORROBORATION_MIN=2 can never be satisfied. Kept dormant.
+    # Multi-book corroboration: require ≥MULTI_BOOK_CORROBORATION_MIN books with
+    # implied probability within MULTI_BOOK_MAX_IMPLIED_SPREAD of the best line.
+    # A single outlier book at long odds generates phantom edge; downgrade to "—".
     book_corroboration = None
     if best_odds is not None:
         best_impl_raw  = american_to_implied(best_odds)
@@ -524,17 +521,8 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         if not corroborated:
             book_corroboration["excluded_outlier"] = best_book
             book_corroboration["excluded_line"]    = best_odds
-
-    # v4.3 hard gates: replace corroboration with two observable single-book checks.
-    # Both are applied only to Bet-tier picks; gated picks get gate_failed set.
-    gate_failed = None
-    if rec == "Bet" and best_odds is not None:
-        if best_odds > MAX_BET_ODDS:
-            gate_failed = "max_odds"
-            rec = "—"
-        elif implied is not None and implied < MIN_DEVIGGED_IMPLIED:
-            gate_failed = "implied_prob_floor"
-            rec = "—"
+            if rec == "Bet":
+                rec = "—"
 
     hot_label = ""
     if r_pa >= 8:
@@ -557,7 +545,6 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         "implied": implied, "edge": edge,
         "kelly": kelly, "quarter_kelly": quarter_kelly,
         "recommendation": rec,
-        "gate_failed": gate_failed,
         "book_corroboration": book_corroboration,
         "all_books": od.get("books", []), "weather": weather,
     }
@@ -605,7 +592,6 @@ def save_picks(results, date, window):
             "kelly_fraction": round(r["kelly"], 4) if r.get("kelly") is not None else None,
             "quarter_kelly": round(qk, 4) if qk is not None else None,
             "units_staked": round(qk, 4) if (qk is not None and rec == "Bet" and has_line) else None,
-            "gate_failed": r.get("gate_failed"),
             "book_corroboration": r.get("book_corroboration"),
             "factors": {
                 "barrel_pct":   round(sc.get("barrel_pct",   0), 4) if sc.get("barrel_pct")   else None,
@@ -652,13 +638,8 @@ def compute_stats(picks):
 
     bet_w,  bet_l  = wl(bet_picks)
     lean_w, lean_l = wl(lean_picks)
-    # Kelly-weighted net P&L: win profit = gross_return − stake; loss profit = −stake
-    # (units_returned on losses is already −stake; only wins need the stake deducted)
-    units_net    = sum(
-        (p["units_returned"] - p["units_staked"]) if p["result"] else p["units_returned"]
-        for p in lined if p.get("units_returned") is not None
-    )
-    total_staked = sum(p["units_staked"] for p in lined if p.get("units_staked") is not None)
+    units_net    = sum(p["units_returned"] for p in lined if p.get("units_returned") is not None)
+    total_staked = sum(p["units_staked"]   for p in lined if p.get("units_staked")   is not None)
     roi = (units_net / total_staked * 100) if total_staked > 0 else 0
 
     # streak on Bet+Lean lined picks sorted by date
@@ -720,10 +701,7 @@ th{padding:6px 8px;text-align:left;color:#64748b;font-weight:500;font-size:10.5p
 td{padding:6px 8px;border-bottom:1px solid #1a2234;vertical-align:top;}
 tr:hover td{background:#1e293b;}
 .badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;}
-.bet{background:#166534;color:#86efac;} .lean{background:#1c3a2a;color:#4ade80;} .skip{background:#3b0f0f;color:#f87171;} .gated{background:#1c2a3a;color:#93c5fd;}
-.gated-section{margin-top:24px;padding:14px 18px;background:#0f1a2a;border:1px solid #1e3a5f;border-radius:8px;}
-.gated-section h4{font-size:13px;color:#60a5fa;margin-bottom:6px;font-weight:600;}
-.gated-section p{font-size:11px;color:#475569;margin-bottom:10px;}
+.bet{background:#166534;color:#86efac;} .lean{background:#1c3a2a;color:#4ade80;} .skip{background:#3b0f0f;color:#f87171;}
 .factors{font-size:10px;color:#475569;line-height:1.7;margin-top:3px;}
 .note{font-size:12px;color:#64748b;margin-top:20px;padding:14px;background:#1e293b;border-radius:8px;line-height:1.8;}
 section+section{border-top:2px solid #1e293b;margin-top:40px;padding-top:30px;}
@@ -758,11 +736,10 @@ def cfactor(adj, label, thresh=0.04):
 
 def _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
                    window=None, stats=None, bankroll=0, reset_date=""):
-    total          = len(results)
-    with_lines     = sum(1 for r in results if r["best_odds"] is not None)
-    raw_edge_count = sum(1 for r in results if (r.get("edge") or 0) > 0.05)
-    bet_tier_count = sum(1 for r in results if r.get("recommendation") == "Bet")
-    avg_prob       = sum(r["game_prob"] for r in results) / total if total else 0
+    total      = len(results)
+    with_lines = sum(1 for r in results if r["best_odds"] is not None)
+    value_bets = sum(1 for r in results if (r.get("edge") or 0) > 0.05)
+    avg_prob   = sum(r["game_prob"] for r in results) / total if total else 0
 
     # Performance panel
     perf_html = ""
@@ -807,16 +784,12 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         ec = "#64748b" if e is None else "#22c55e" if e>.05 else "#94a3b8" if e>-.04 else "#f87171"
         pc = "#22c55e" if gp>.11 else "#f59e0b" if gp>.07 else "#e2e8f0"
         rec = r.get("recommendation", "—")
-        gate_failed = r.get("gate_failed")
         if rec == "Bet":
             badge = '<span class="badge bet">Bet</span>'
         elif rec == "Lean":
             badge = '<span class="badge lean">Lean</span>'
         elif rec == "Skip":
             badge = '<span class="badge skip">Skip</span>'
-        elif gate_failed:
-            gate_label = "odds cap" if gate_failed == "max_odds" else "impl floor"
-            badge = f'<span class="badge gated" title="Gated: {gate_label}">Gated</span>'
         else:
             badge = "—"
 
@@ -901,12 +874,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
     sc_th    = '<th style="text-align:right">Barrel%</th>' if has_statcast else ""
     odds_ths = '<th style="text-align:right">Best line</th><th>Book</th><th style="text-align:right">Edge</th><th>Rec</th>'
     all_books = list({b["book"] for r in results for b in r.get("all_books", [])})
-    if has_key and all_books:
-        odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp. Gated = raw edge ≥+5pp but failed max-odds (≤+500) or implied-floor (≥10%) gate."
-    elif has_key:
-        odds_note = "Lines fetched — no book matches for this window. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp."
-    else:
-        odds_note = "Run with -k YOUR_ODDS_KEY for live line comparison."
+    odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp." if has_key else "Run with -k YOUR_ODDS_KEY for live line comparison."
     sc_note   = f"Statcast: barrel% + hard-hit% (barrel ratio vs {LG_BARREL*100:.1f}% league avg, exp 0.40)." if has_statcast else "Statcast disabled — install pybaseball."
     wh = f'<div class="wh">{WINDOW_LABELS[window]}</div>' if window else ""
 
@@ -942,37 +910,11 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
             top5_html = f'<div class="top5"><h3>Top 5 by Edge</h3>{t5rows}</div>'
 
     odds_match_color = "#22c55e" if (total > 0 and with_lines / total >= 0.5) else "#f59e0b" if with_lines > 0 else "#f87171"
-    gated_results = [r for r in results if r.get("gate_failed")]
-    gated_html = ""
-    if gated_results:
-        gated_rows = ""
-        for r in gated_results:
-            e  = r.get("edge")
-            ec = "#22c55e" if (e or 0) > 0.05 else "#94a3b8"
-            gf = r.get("gate_failed")
-            gate_label = "odds cap" if gf == "max_odds" else "implied floor"
-            gated_rows += (
-                f'<tr><td style="font-weight:600">{r["name"]}</td>'
-                f'<td style="color:#94a3b8">{r.get("best_book","—")}</td>'
-                f'<td style="text-align:right">{fo(r["best_odds"]) if r.get("best_odds") else "—"}</td>'
-                f'<td style="text-align:right;color:#93c5fd">{(r.get("implied") or 0)*100:.1f}%</td>'
-                f'<td style="text-align:right;font-weight:700;color:{ec}">{e*100:+.1f}%</td>'
-                f'<td style="color:#93c5fd">{gate_label}</td></tr>'
-            )
-        gated_html = f'''<div class="gated-section">
-  <h4>Gated Out — Diagnostic Only</h4>
-  <p>These picks passed raw edge ≥+5pp but failed a v4.3 hard gate. Not staked. Review to calibrate gate thresholds.</p>
-  <div class="tw"><table>
-    <thead><tr><th>Player</th><th>Book</th><th style="text-align:right">Odds</th><th style="text-align:right">Impl (devig)</th><th style="text-align:right">Edge</th><th>Gate failed</th></tr></thead>
-    <tbody>{gated_rows}</tbody>
-  </table></div>
-</div>'''
     return f"""<section>
 {wh}{perf_html}<div class="g5">
   <div class="metric"><div class="ml">Players</div><div class="mv">{total}</div></div>
   <div class="metric"><div class="ml">Odds matched</div><div class="mv" style="color:{odds_match_color}">{with_lines}/{total}</div></div>
-  <div class="metric"><div class="ml">Raw edge ≥5pp</div><div class="mv">{raw_edge_count}</div></div>
-  <div class="metric"><div class="ml">Bet tier</div><div class="mv g">{bet_tier_count}</div></div>
+  <div class="metric"><div class="ml">Value bets</div><div class="mv g">{value_bets}</div></div>
   <div class="metric"><div class="ml">Avg prob</div><div class="mv">{avg_prob*100:.1f}%</div></div>
   <div class="metric"><div class="ml">Weather</div><div class="mv">{weather_count}</div></div>
 </div>
@@ -992,12 +934,11 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
   <tbody>{"".join(rows)}</tbody>
 </table></div>
 <div class="note">
-  <strong style="color:#94a3b8">v4.3 model:</strong>
+  <strong style="color:#94a3b8">v4 model:</strong>
   season HR/PA · splits (regressed) · hotness L14 (regressed) · {sc_note} ·
   SP HR rate (regressed, platoon-aware) · bullpen HR rate (regressed, platoon-aware) · park factor ({len(VENUES)} venues) · weather.<br><br>
   <strong style="color:#94a3b8">Lines:</strong> {odds_note}
 </div>
-{gated_html}
 </section>"""
 
 
@@ -1011,23 +952,15 @@ def build_report(results, date, has_odds, has_statcast, weather_count, has_key,
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v4.3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
+<p class="sub">v4 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
 {section}
 </body></html>"""
 
 
 def append_to_combined(html_path, results, date, has_odds, has_statcast, weather_count, has_key,
                        window=None, stats=None, bankroll=0, reset_date=""):
-    if not results:
-        return  # skip empty runs (e.g. early window before lineups post)
-
-    section_content = _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
-                                     window=window, stats=stats, bankroll=bankroll, reset_date=reset_date)
-    win_label = window or "all"
-    marker_start = f"<!-- window:{win_label} -->"
-    marker_end   = f"<!-- /window:{win_label} -->"
-    tagged_section = f"{marker_start}\n{section_content}\n{marker_end}"
-
+    section = _build_section(results, date, has_odds, has_statcast, weather_count, has_key,
+                             window=window, stats=stats, bankroll=bankroll, reset_date=reset_date)
     if not os.path.exists(html_path):
         content = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/>
@@ -1035,24 +968,16 @@ def append_to_combined(html_path, results, date, has_odds, has_statcast, weather
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v4.3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
-{tagged_section}
+<p class="sub">v4 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
+{section}
 </body></html>"""
         with open(html_path, "w", encoding="utf-8") as f:
             f.write(content)
     else:
-        import re
         with open(html_path, "r", encoding="utf-8") as f:
             existing = f.read()
-        if marker_start in existing:
-            # Replace the existing section for this window
-            pattern = re.escape(marker_start) + r".*?" + re.escape(marker_end)
-            new_content = re.sub(pattern, tagged_section, existing, flags=re.DOTALL)
-        else:
-            # Append a new tagged section
-            new_content = existing.replace("</body></html>", f"{tagged_section}\n</body></html>")
         with open(html_path, "w", encoding="utf-8") as f:
-            f.write(new_content)
+            f.write(existing.replace("</body></html>", f"{section}\n</body></html>"))
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1284,7 +1209,7 @@ def print_debug_summary(results, odds_map):
 # ──────────────────────────────────────────────────────────────────────────────
 
 def main():
-    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4.3")
+    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4")
     p.add_argument("-d","--date",      default=datetime.today().strftime("%Y-%m-%d"))
     p.add_argument("-k","--key",       default=os.environ.get("ODDS_API_KEY",""))
     p.add_argument("--min-edge",       type=float, default=0.0)
@@ -1310,7 +1235,7 @@ def main():
     yr   = date.split("-")[0]
     d14  = (datetime.strptime(date, "%Y-%m-%d") - timedelta(days=14)).strftime("%Y-%m-%d")
 
-    print(f"\n⚾  MLB HR Prop Finder v4.3  —  {date}")
+    print(f"\n⚾  MLB HR Prop Finder v4  —  {date}")
     print("─" * 50)
 
     # Schedule

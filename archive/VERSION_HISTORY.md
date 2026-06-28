@@ -13,11 +13,26 @@ Read top-to-bottom for the full trend. Each entry covers one tracked era.
 
 ### Performance
 
+> **ROI formula correction (2026-06-28):** All figures originally computed with a buggy formula
+> (`units_net = sum(units_returned)`) that treated gross win returns as profit, inflating ROI by
+> approximately the win rate. Fixed to kelly-weighted net P&L: win profit = gross_return − stake.
+> Original (superseded) figures are kept for the record; corrected figures follow each table.
+
+**Original figures (SUPERSEDED — Formula B, buggy):**
+
 | Tier | W | L | Win% | Net Units | ROI |
 |------|--:|--:|-----:|----------:|----:|
 | Bet  | 64 | 381 | 14.4% | −1.04u | −10.3% |
 | Lean | 19 | 145 | 11.6% | −0.12u | −10.9% |
 | **Combined** | **83** | **526** | **13.6%** | **−1.16u** | **−10.4%** |
+
+**Corrected figures (Formula C, kelly-weighted net P&L):**
+
+| Tier | W | L | Win% | Net Units | ROI |
+|------|--:|--:|-----:|----------:|----:|
+| Bet  | 64 | 381 | 14.4% | −2.44u | −24.2% |
+| Lean | 19 | 145 | 11.6% | −0.24u | −22.8% |
+| **Combined** | **83** | **526** | **13.6%** | **−2.68u** | **−24.0%** |
 
 ### Calibration
 
@@ -45,7 +60,7 @@ Retroactive re-scoring of v4.1 archive by applying two v4.2 filters without re-r
 - Multi-book corroboration proxy: picks where `best_book == "Caesars"` treated as corroboration-failed (downgraded to "—"). Historical data shows Caesars was the sole outlier book on virtually all high-edge picks. May slightly overcount exclusions.
 - `sp_data_missing` proxy: picks where the same player had the same `model_prob` on ≥2 dates, fingerprinting `pitch_blend = 1.0` (league-average SP default). Lower-bound proxy — true count is higher because weather/hotness variation masks some occurrences.
 
-**Results:**
+**Original results (SUPERSEDED — Formula B, buggy):**
 
 | | Original v4.1 | After corroboration filter | After both filters |
 |---|------:|------:|------:|
@@ -54,28 +69,42 @@ Retroactive re-scoring of v4.1 archive by applying two v4.2 filters without re-r
 | Net units | −1.16u | +1.03u | **+0.27u** |
 | ROI | −10.4% | +32.5% | **+10.2%** |
 
-**Key sub-findings from counterfactual:**
+**Corrected results (Formula C, kelly-weighted net P&L):**
 
-1. The corroboration filter alone (removing 447 Caesars-best-book picks, 73% of all staked picks) swings ROI from −10.4% to +32.5%. The entire v4.1 loss is attributable to Caesars outlier contamination.
+> Pick counts use the best-reproducible proxy (exact float model_prob match, ≥2 dates).
+> Original session used a slightly different proxy giving 143 picks; this proxy gives 140 picks.
+> The 3-pick difference is within the documented proxy uncertainty. ROI direction is unchanged.
+
+| | Original v4.1 | After corroboration filter | After both filters |
+|---|------:|------:|------:|
+| Staked picks | 609 | 162 | **~140** |
+| Win% | 13.6% | 18.5% | **15.7%** |
+| Net units | −2.68u | +0.34u | **−0.23u** |
+| ROI | −24.0% | +10.6% | **−8.9%** |
+
+**Key sub-findings from counterfactual (corrected):**
+
+1. The corroboration filter alone swings ROI from −24.0% to +10.6% (corrected). The entire v4.1 loss is attributable to Caesars outlier contamination — this finding is unchanged.
 
 2. After filtering, all 162 retained picks are BetOnline. BetOnline lines appear to carry real market consensus.
 
-3. The sp_data_missing proxy removes an additional 19 Bet-tier picks (all from the Bet tier; Lean is unaffected), reducing ROI to +10.2%. This is a lower-bound estimate of the pitcher-data impact.
+3. The sp_data_missing proxy removes ~22 Bet-tier picks, reducing ROI from +10.6% to −8.9%. The counterfactual baseline is negative with the correct formula — the prior +10.2% figure was a formula artifact on a slightly different proxy.
 
-4. **Lean tier remains problematic** even on clean BetOnline lines: 40 picks, 5.0% win rate (vs 12.8% base rate), −67.5% ROI (−0.17u). The +2–5pp edge threshold does not identify genuine value on BetOnline lines. v4.2 should consider raising the Lean threshold or eliminating the tier.
+4. **Lean tier remains problematic** even on clean BetOnline lines: 40 picks, 5.0% win rate, −72.6% ROI. The +2–5pp edge threshold does not identify genuine value on BetOnline lines. *(Original figure −67.5% also Formula B; corrected −72.6%.)*
 
-5. **+5–10pp Bet bucket is the signal zone**: 60 picks, 26.7% win rate, +0.77u. The sweet spot for genuine edge is 5–10pp above BetOnline implied.
+5. **+5–10pp Bet bucket is the signal zone**: ~58 picks, 25.9% win rate, +38.2% ROI (corrected from 60 picks / 26.7% / +32.5%). Strong positive signal; this is the primary evidence supporting v4.3's focus on this range.
 
-6. **+15pp+ BetOnline bucket** (7 picks, 0 hits, −0.21u): even BetOnline occasionally posts outlier lines. The v4.2 multi-book corroboration filter (requiring ≥2 books, not just "not Caesars") would also catch these.
+6. **+15pp+ BetOnline bucket** (7 picks, 0 hits, −100%): even BetOnline occasionally posts outlier lines. Not affected by formula bug (0 wins means gross return = 0 = net return).
 
-**Baseline for v4.2 measurement:**
-v4.2 performance should be compared against the counterfactual set (143 picks, +10.2% ROI, 16.1% win rate) rather than the original v4.1 baseline, since the filters were not active during the v4.1 era and the v4.1 numbers reflect contaminated picks.
+**Baseline for v4.2/v4.3 measurement (corrected):**
+The v4.1 counterfactual baseline is **~−8.9% ROI on ~140 picks** (corrected from +10.2% / 143 picks). The +5–10pp Bet-zone sub-bucket remains the signal zone at +38.2% ROI (corrected from +32.5%). v4.3 should be compared against the +5–10pp signal zone, not the overall counterfactual baseline which is negative.
 
 ---
 
-## v4.2 (Jun 23, 2026 – present)
+## v4.2 (Jun 23 – Jun 28, 2026)
 
-**Base commits:** `ffec0af` (archive/reset) through `bcdf9ab` (doubleheader dedup)  
+**Base commits:** `ffec0af` (archive/reset) through `b71c009` (book dedup upstream)  
+**Archive:** `archive/v4.2/`  
 **Tracking started:** 2026-06-23 (picks.json reset to [])
 
 ### Changes from v4.1
@@ -95,13 +124,26 @@ v4.2 performance should be compared against the counterfactual set (143 picks, +
 
 ### Lean tier elimination
 
-**Evidence:** Retroactive backtest of v4.1 archive on corroborated BetOnline lines only:
+**Evidence:** Retroactive backtest of v4.1 archive on corroborated BetOnline lines only.
+
+**Original figures (SUPERSEDED — Formula B, buggy):**
 
 | Edge zone | N | Win% | ROI |
 |-----------|--:|-----:|----:|
 | +2–5pp (old Lean) | 40 | 5.0% | −67.5% |
 | +5–10pp (Bet) | 60 | 26.7% | +32.5% |
 | +10–15pp (Bet) | 36 | 13.9% | −3.3% |
+
+**Corrected figures (Formula C, kelly-weighted net P&L; applied to ~140-pick proxy group):**
+
+| Edge zone | N | Win% | ROI |
+|-----------|--:|-----:|----:|
+| +2–5pp (old Lean) | 40 | 5.0% | −72.6% |
+| +5–10pp (Bet) | ~58 | 25.9% | +38.2% |
+| +10–15pp (Bet) | ~35 | 14.3% | −23.4% |
+| +15pp+ (Bet) | 7 | 0.0% | −100% |
+
+*(N counts for +5–10pp and +10–15pp differ from original by 2–3 due to proxy variation; +2–5pp and +15pp+ match exactly. ROI sign and direction of key finding — Lean is bad, +5–10pp is the signal zone — are preserved.)*
 
 The +2–5pp zone shows win rate below the 12.8% unconditional HR base rate, meaning taking these bets destroys value. There is no evidence the model identifies real edge at this threshold.
 
@@ -128,5 +170,65 @@ The +2–5pp zone will remain visible in the report table (players in that range
 Primary: beat the v4.1 counterfactual baseline — 16.1% win rate, +10.2% ROI on 143-pick proxy sample.  
 Secondary: demonstrate Lean-zone picks (now excluded) continue to underperform, validating the decision.  
 Minimum sample for conclusions: 50 resolved Bet picks.
+
+### Actual v4.2 results (final)
+
+**Period:** Jun 24 – Jun 28, 2026 (5 days, 1,357 picks tracked)
+
+| Metric | Value |
+|--------|-------|
+| Bet-tier picks | **0** |
+| Units staked | **0** |
+| ROI | **N/A** (no stakes) |
+| Resolved HR rate | 11.1% (128/1,156 resolved) |
+| Odds matched | 67.1% (911/1,357), all Caesars |
+
+**Root cause of failure:** The multi-book corroboration filter (`MULTI_BOOK_CORROBORATION_MIN=2`) was never satisfiable. Investigation (via test scripts in Jun 2026) confirmed that `williamhill_us` (Caesars, rebranded 2021 but API key never migrated) is the only sportsbook posting `batter_home_runs` at the current Odds API plan level. DraftKings, FanDuel, and BetMGM are not available for this market at this plan. With only 1 book, corroboration count can never reach 2 → all Bet-tier picks downgraded to "—" → Season Performance permanently frozen.
+
+**Investigation also confirmed:** OddsPapi (evaluated as replacement) has no HR prop coverage for US sportsbooks on their free tier and requires exactly 1 bookmaker per bulk call, making it not viable as a drop-in replacement.
+
+**Conclusion:** v4.2's corroboration gate was structurally sound in concept but unachievable given the API constraint. Replaced in v4.3 with observable single-book gates: odds cap (≤+500) and devigged implied-probability floor (≥10%).
+
+---
+
+## v4.3 (Jun 28, 2026 – present)
+
+**Tracking started:** 2026-06-28 (picks.json reset to [])
+
+### Problem solved
+
+The v4.2 multi-book corroboration filter could never be satisfied because only one sportsbook (`williamhill_us`/Caesars) posts `batter_home_runs` at the current Odds API plan level. Every Bet-tier pick since Jun 23 was downgraded to "—" → 0 stakes across 5 days.
+
+### New gates replacing corroboration
+
+Two hard gates applied after the raw edge threshold, before staking:
+
+1. **Max-odds cap** (`MAX_BET_ODDS = 500`): Bet tier requires American odds ≤ +500. Rationale: v4.1 BetOnline retrospective showed 0 wins on +500–+800 picks (−100% ROI). No model with a single HR/PA regressor has predictive power at these odds.
+
+2. **Devigged implied-probability floor** (`MIN_DEVIGGED_IMPLIED = 0.10`): Bet tier requires devigged implied prob ≥ 10%. This is conceptually independent of the odds cap — a safety net for situations where unusual vig or book errors produce implausible lines. At the +500 cap, devigged implied is ~15%, so this floor is not independently binding at current thresholds but validates the pick direction.
+
+Both gates set `gate_failed` ("max_odds" or "implied_prob_floor") on the pick and downgrade `rec` from "Bet" to "—". Gated picks are saved to picks.json and shown in a dedicated "Gated — Diagnostic Only" report section.
+
+The corroboration block is kept dormant (still computed, stored in `book_corroboration`, but no longer gates).
+
+### Other changes in v4.3
+
+| # | Change | Rationale |
+|---|--------|-----------|
+| 1 | Replace corroboration gate with max-odds cap + implied-prob floor | See above |
+| 2 | `gate_failed` field in picks.json | Track which gate blocked each pick for threshold calibration |
+| 3 | "Gated — Diagnostic Only" report section | Surface blocked picks for human review |
+| 4 | Bug fix: totals URL `caesars` → `williamhill_us` | `caesars` is not a valid Odds API bookmaker key; correct key is `williamhill_us` |
+| 5 | Bug fix: `append_to_combined()` window dedup | Each window run was appending a new section; same-window re-runs now replace their section via comment markers |
+| 6 | Bug fix: "Lines from: ." when no book matches | Empty `all_books` list produced "Lines from: ." in report footer |
+| 7 | Relabel "Value bets" metric → "Raw edge ≥5pp" | Distinguishes pre-gate raw count from post-gate Bet-tier count |
+| 8 | Add "Bet tier" metric next to "Raw edge ≥5pp" | Shows how many raw-edge picks survived the gates |
+| 9 | Version label updated to v4.3 throughout | |
+
+### Measurement target for v4.3
+
+Primary: achieve positive ROI on Bet-tier stakes after Caesars-only lines and the ≤+500 cap filter out the high-odds outlier zone that produced v4.1's losses.  
+Baseline: v4.1 counterfactual +5–10pp Bet-zone signal bucket (BetOnline, ~58 picks, 25.9% win rate, **+38.2% ROI corrected** — originally stated +32.5% using buggy Formula B).  
+Minimum sample: 30 resolved Bet picks before drawing conclusions.
 
 ---

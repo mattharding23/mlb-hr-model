@@ -1,0 +1,24 @@
+{
+  "version": "v4.2",
+  "period": "2026-06-24 to 2026-06-28",
+  "generated_at": "2026-06-28 17:16",
+  "total_picks": 1357,
+  "resolved_picks": 1156,
+  "bet_tier_picks": 0,
+  "units_staked": 0,
+  "roi_pct": null,
+  "win_loss": "128/1028",
+  "hr_rate_pct": 11.1,
+  "odds_matched": 911,
+  "odds_matched_pct": 67.1,
+  "books": {
+    "Caesars": 911
+  },
+  "corroboration_ever_passed": false,
+  "root_cause": "MULTI_BOOK_CORROBORATION_MIN=2 never satisfied; only williamhill_us (Caesars) posts batter_home_runs at our plan level",
+  "recommendations": {
+    "Bet": 0,
+    "Skip": 725,
+    "dash": 632
+  }
+}
