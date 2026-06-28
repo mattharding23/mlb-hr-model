@@ -193,6 +193,7 @@ Minimum sample for conclusions: 50 resolved Bet picks.
 
 ## v4.3 (Jun 28, 2026 – present)
 
+**Base commit:** `0d709ed` (Jun 28, 2026)  
 **Tracking started:** 2026-06-28 (picks.json reset to [])
 
 ### Problem solved
@@ -203,32 +204,42 @@ The v4.2 multi-book corroboration filter could never be satisfied because only o
 
 Two hard gates applied after the raw edge threshold, before staking:
 
-1. **Max-odds cap** (`MAX_BET_ODDS = 500`): Bet tier requires American odds ≤ +500. Rationale: v4.1 BetOnline retrospective showed 0 wins on +500–+800 picks (−100% ROI). No model with a single HR/PA regressor has predictive power at these odds.
+1. **Max-odds cap** (`MAX_BET_ODDS = 500`): Bet tier requires American odds ≤ +500. Rationale: v4.1 BetOnline retrospective showed 0 wins on +500–+800 picks (0W/36L, −100% ROI, formula-independent). No model with a single HR/PA regressor has predictive power at extreme odds.
 
-2. **Devigged implied-probability floor** (`MIN_DEVIGGED_IMPLIED = 0.10`): Bet tier requires devigged implied prob ≥ 10%. This is conceptually independent of the odds cap — a safety net for situations where unusual vig or book errors produce implausible lines. At the +500 cap, devigged implied is ~15%, so this floor is not independently binding at current thresholds but validates the pick direction.
+2. **Devigged implied-probability floor** (`MIN_DEVIGGED_IMPLIED = 0.16`): Bet tier requires devigged implied prob ≥ 16% (using `VIG_FACTOR = 0.92`). At exactly +500, devigged implied is ~15.3%, so this gate fires on +500 lines while passing +475 lines (~16.0%). The two gates partition at the +475/+500 boundary: `implied_prob_floor` catches +475–+500; `max_odds` catches +501+. Both gates fire independently on real data.
 
-Both gates set `gate_failed` ("max_odds" or "implied_prob_floor") on the pick and downgrade `rec` from "Bet" to "—". Gated picks are saved to picks.json and shown in a dedicated "Gated — Diagnostic Only" report section.
+Both gates set `gate_failed` ("max_odds" or "implied_prob_floor") on the pick and downgrade `rec` from "Bet" to "—". Gated picks are saved to picks.json and shown in a dedicated "Gated — Diagnostic Only" report section. The corroboration block is kept dormant: still computed and stored in `book_corroboration`, but no longer gates picks.
 
-The corroboration block is kept dormant (still computed, stored in `book_corroboration`, but no longer gates).
-
-### Other changes in v4.3
+### All changes in v4.3
 
 | # | Change | Rationale |
 |---|--------|-----------|
-| 1 | Replace corroboration gate with max-odds cap + implied-prob floor | See above |
-| 2 | `gate_failed` field in picks.json | Track which gate blocked each pick for threshold calibration |
-| 3 | "Gated — Diagnostic Only" report section | Surface blocked picks for human review |
+| 1 | Replace corroboration gate with max-odds cap + implied-prob floor | Corroboration permanently unachievable at one-book API plan; observable single-book gates substitute |
+| 2 | `gate_failed` field in picks.json | Track which gate blocked each pick for post-window threshold calibration |
+| 3 | "Gated — Diagnostic Only" report section | Surface blocked picks for human review without polluting the Bet-tier record |
 | 4 | Bug fix: totals URL `caesars` → `williamhill_us` | `caesars` is not a valid Odds API bookmaker key; correct key is `williamhill_us` |
-| 5 | Bug fix: `append_to_combined()` window dedup | Each window run was appending a new section; same-window re-runs now replace their section via comment markers |
-| 6 | Bug fix: "Lines from: ." when no book matches | Empty `all_books` list produced "Lines from: ." in report footer |
-| 7 | Relabel "Value bets" metric → "Raw edge ≥5pp" | Distinguishes pre-gate raw count from post-gate Bet-tier count |
-| 8 | Add "Bet tier" metric next to "Raw edge ≥5pp" | Shows how many raw-edge picks survived the gates |
-| 9 | Version label updated to v4.3 throughout | |
+| 5 | Bug fix: `append_to_combined()` window dedup | Each window run was appending a new `<section>`; same-window re-runs now replace via `<!-- window:X -->` comment markers |
+| 6 | Bug fix: "Lines from: ." when no book matches | Empty `all_books` list produced malformed footer |
+| 7 | Relabel "Value bets" → "Raw edge ≥5pp" + add "Bet tier" metric | Distinguishes pre-gate raw count from post-gate staked count in the Season Performance panel |
+| 8 | **ROI formula fix**: `compute_stats()` and `check_results.py` | `units_net` was summing gross win returns (stake included) as profit — inflating all historical ROI figures by ~win_rate. Fixed to kelly-weighted net P&L: win profit = `gross_return − stake`. Convention documented: ROI in this project is kelly-weighted (return on actual capital deployed), not equal-weight. |
+| 9 | VERSION_HISTORY historical figures corrected | All v4.1/v4.2 ROI figures annotated with original (superseded-buggy) and corrected values alongside |
 
 ### Measurement target for v4.3
 
-Primary: achieve positive ROI on Bet-tier stakes after Caesars-only lines and the ≤+500 cap filter out the high-odds outlier zone that produced v4.1's losses.  
-Baseline: v4.1 counterfactual +5–10pp Bet-zone signal bucket (BetOnline, ~58 picks, 25.9% win rate, **+38.2% ROI corrected** — originally stated +32.5% using buggy Formula B).  
-Minimum sample: 30 resolved Bet picks before drawing conclusions.
+**Baseline:** v4.1 counterfactual +5–10pp Bet-zone signal bucket (BetOnline, ~58 picks, 25.9% win rate, **+38.2% ROI** corrected — originally stated +32.5% using buggy Formula B).  
+**Primary target:** positive ROI on Bet-tier stakes; match or exceed the +5–10pp signal zone baseline.  
+**Minimum sample:** 30 resolved Bet picks before drawing conclusions.
+
+### Watch items for post-observation-window diagnostic
+
+When the first 30+ Bet picks resolve, check the following in addition to headline ROI:
+
+1. **Edge-magnitude monotonicity** *(priority — check first)*: In corrected v4.1 data, ROI is non-monotonic across edge buckets: +5–10pp: **+38.2%**, +10–15pp: **−23.4%**, +15pp+: **−100%** (n=7). If this pattern holds in v4.3 data, the model's edge estimate above +10pp is unreliable and high-edge picks should not receive elevated stakes. Diagnose whether the +10–15pp underperformance clusters by game context, lineup spot, or pitcher-data-missing before attributing it to model calibration vs. small-sample noise.
+
+2. **sp/bp_data_missing rates by window**: Track what fraction of picks have `sp_data_missing=True` or `bp_data_missing=True` per window (early/mid/late). A material drop from early to mid windows confirms the workflow timing is working. Persistent high rates in mid/late windows indicate pitcher announcements are arriving late and the model may need a fallback.
+
+3. **Gated vs. passed pick distribution**: Of raw-edge picks (≥+5pp), track the fraction hitting `max_odds` vs. `implied_prob_floor` vs. passing both gates. If >80% are gated, the threshold pair is too aggressive for current Caesars line distribution. If 0% are gated on any day with odds, verify gates are executing.
+
+4. **BetOnline corroboration rate** *(dormant diagnostic)*: `book_corroboration` is still computed on every pick even though it no longer gates. Track the fraction of Bet-tier picks that would have passed corroboration — this sets a lower bound on what a future multi-book API plan would produce.
 
 ---
