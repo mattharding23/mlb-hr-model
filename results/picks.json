@@ -115720,12 +115720,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 1
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -115774,12 +115774,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -115828,12 +115828,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0227,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -115882,12 +115882,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -115936,12 +115936,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 1
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -115990,12 +115990,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116044,12 +116044,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116098,12 +116098,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116152,12 +116152,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116206,12 +116206,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116260,12 +116260,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 0
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116314,12 +116314,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116368,12 +116368,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116422,12 +116422,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116476,12 +116476,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 1
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116530,12 +116530,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116584,12 +116584,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 0
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116638,12 +116638,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": false
   },
   {
     "date": "2026-07-07",
@@ -116692,12 +116692,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -116746,12 +116746,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -116800,12 +116800,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -116854,12 +116854,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -116908,12 +116908,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.9,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -116962,12 +116962,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117016,12 +117016,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0299,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117070,12 +117070,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0275,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117124,12 +117124,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0255,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117178,12 +117178,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117232,12 +117232,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117286,12 +117286,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0232,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117340,12 +117340,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0227,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117394,12 +117394,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0226,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117448,12 +117448,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0225,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117502,12 +117502,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117556,12 +117556,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0219,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117610,12 +117610,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0213,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117664,12 +117664,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117718,12 +117718,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": true,
+    "units_returned": 0.0959,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117772,12 +117772,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0197,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117826,12 +117826,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117880,12 +117880,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0192,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117934,12 +117934,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -117988,12 +117988,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.7,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0173,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118042,12 +118042,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0169,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118096,12 +118096,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 6
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.016,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118150,12 +118150,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118204,12 +118204,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0155,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118258,12 +118258,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118312,12 +118312,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0154,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118366,12 +118366,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0149,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118420,12 +118420,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0152,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118474,12 +118474,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.8,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": true,
+    "units_returned": 0.0486,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118528,12 +118528,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": true,
+    "units_returned": 0.0677,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118582,12 +118582,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": true,
+    "units_returned": 0.0834,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118636,12 +118636,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0142,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118690,12 +118690,12 @@
       "game_ou": 9.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118744,12 +118744,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0132,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118798,12 +118798,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0106,
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118852,12 +118852,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118906,12 +118906,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -118960,12 +118960,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119014,12 +119014,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119068,12 +119068,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119122,12 +119122,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119176,12 +119176,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119230,12 +119230,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119284,12 +119284,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119338,12 +119338,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119392,12 +119392,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119446,12 +119446,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 6
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119500,12 +119500,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119554,12 +119554,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119608,12 +119608,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119662,12 +119662,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119716,12 +119716,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119770,12 +119770,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119824,12 +119824,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 7
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119878,12 +119878,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119932,12 +119932,12 @@
       "game_ou": 9.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -119986,12 +119986,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120040,12 +120040,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120094,12 +120094,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120148,12 +120148,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120202,12 +120202,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120256,12 +120256,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120310,12 +120310,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120364,12 +120364,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120418,12 +120418,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120472,12 +120472,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120526,12 +120526,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120580,12 +120580,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120634,12 +120634,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120688,12 +120688,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120742,12 +120742,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120796,12 +120796,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120850,12 +120850,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120904,12 +120904,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -120958,12 +120958,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121012,12 +121012,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121066,12 +121066,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121120,12 +121120,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121174,12 +121174,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 7
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121228,12 +121228,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121282,12 +121282,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121336,12 +121336,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121390,12 +121390,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121444,12 +121444,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121498,12 +121498,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.6,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121552,12 +121552,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121606,12 +121606,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121660,12 +121660,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121714,12 +121714,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121768,12 +121768,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121822,12 +121822,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121876,12 +121876,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121930,12 +121930,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -121984,12 +121984,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122038,12 +122038,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122092,12 +122092,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122146,12 +122146,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122200,12 +122200,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122254,12 +122254,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122308,12 +122308,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 6
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122362,12 +122362,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122416,12 +122416,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122470,12 +122470,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122524,12 +122524,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122578,12 +122578,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122632,12 +122632,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122686,12 +122686,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122740,12 +122740,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122794,12 +122794,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122848,12 +122848,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122902,12 +122902,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -122956,12 +122956,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123010,12 +123010,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123064,12 +123064,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123118,12 +123118,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 6
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123172,12 +123172,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123226,12 +123226,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123280,12 +123280,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123334,12 +123334,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123388,12 +123388,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123442,12 +123442,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123496,12 +123496,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123550,12 +123550,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123604,12 +123604,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123658,12 +123658,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123712,12 +123712,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123766,12 +123766,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123820,12 +123820,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123874,12 +123874,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123928,12 +123928,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -123982,12 +123982,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124036,12 +124036,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124090,12 +124090,12 @@
       "game_ou": 9.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124144,12 +124144,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124198,12 +124198,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124252,12 +124252,12 @@
       "game_ou": 9.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124306,12 +124306,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124360,12 +124360,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124414,12 +124414,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124468,12 +124468,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124522,12 +124522,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124576,12 +124576,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124630,12 +124630,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124684,12 +124684,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124738,12 +124738,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124792,12 +124792,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 6
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124846,12 +124846,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124900,12 +124900,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -124954,12 +124954,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125008,12 +125008,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125062,12 +125062,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125116,12 +125116,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125170,12 +125170,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125224,12 +125224,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125278,12 +125278,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125332,12 +125332,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 6
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125386,12 +125386,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125440,12 +125440,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125494,12 +125494,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125548,12 +125548,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125602,12 +125602,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125656,12 +125656,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125710,12 +125710,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125764,12 +125764,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125818,12 +125818,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125872,12 +125872,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125926,12 +125926,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -125980,12 +125980,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126034,12 +126034,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126088,12 +126088,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126142,12 +126142,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126196,12 +126196,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126250,12 +126250,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126304,12 +126304,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126358,12 +126358,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126412,12 +126412,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126466,12 +126466,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126520,12 +126520,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126574,12 +126574,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126628,12 +126628,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126682,12 +126682,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126736,12 +126736,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126790,12 +126790,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 6
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126844,12 +126844,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126898,12 +126898,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -126952,12 +126952,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127006,12 +127006,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127060,12 +127060,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127114,12 +127114,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127168,12 +127168,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127222,12 +127222,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127276,12 +127276,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127330,12 +127330,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127384,12 +127384,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127438,12 +127438,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127492,12 +127492,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127535,12 +127535,12 @@
       "game_ou": 9.5,
       "proj_pa": 4.7,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127578,12 +127578,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127621,12 +127621,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 0
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127664,12 +127664,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127707,12 +127707,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127750,12 +127750,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127793,12 +127793,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127836,12 +127836,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127879,12 +127879,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 1
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127922,12 +127922,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -127965,12 +127965,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128008,12 +128008,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128051,12 +128051,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128094,12 +128094,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128137,12 +128137,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128180,12 +128180,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128223,12 +128223,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128266,12 +128266,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128309,12 +128309,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 1
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128352,12 +128352,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128395,12 +128395,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128438,12 +128438,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128481,12 +128481,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128524,12 +128524,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128567,12 +128567,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128610,12 +128610,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128653,12 +128653,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128696,12 +128696,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128739,12 +128739,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128782,12 +128782,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128825,12 +128825,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128868,12 +128868,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128911,12 +128911,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 0
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128954,12 +128954,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -128997,12 +128997,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129040,12 +129040,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129083,12 +129083,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129126,12 +129126,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129169,12 +129169,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129212,12 +129212,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129255,12 +129255,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129298,12 +129298,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129341,12 +129341,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129384,12 +129384,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129427,12 +129427,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 0
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129470,12 +129470,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129513,12 +129513,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129556,12 +129556,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129599,12 +129599,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129642,12 +129642,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129685,12 +129685,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129728,12 +129728,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129771,12 +129771,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129814,12 +129814,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129857,12 +129857,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129900,12 +129900,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129943,12 +129943,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -129986,12 +129986,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130029,12 +130029,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130072,12 +130072,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130115,12 +130115,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130158,12 +130158,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130201,12 +130201,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130244,12 +130244,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130287,12 +130287,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 0
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130330,12 +130330,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130373,12 +130373,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130416,12 +130416,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130459,12 +130459,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130502,12 +130502,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 1
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130545,12 +130545,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130588,12 +130588,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130631,12 +130631,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130674,12 +130674,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130717,12 +130717,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130760,12 +130760,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130803,12 +130803,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130846,12 +130846,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130889,12 +130889,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-07-07",
@@ -130932,11 +130932,11 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-07-08T15:21:59Z",
+    "counts_toward_roi": true
   }
 ]
