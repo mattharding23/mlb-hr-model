@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MLB HR Prop Finder v4.3
+MLB HR Prop Finder v4.4
 ──────────────────────────────────────────────────────────────────────────────
 Model factors:
   • Season HR/PA rate (base, min 30 PA)
@@ -58,9 +58,20 @@ LG_HARD_HIT  = 0.385
 VIG_FACTOR   = 0.92   # devig: sportsbooks typically have ~8% overround on HR props
 MAX_PROP_ODDS = 2500  # filter out longshot/alternate lines above this threshold
 
-# v4.3 hard gates — replace multi-book corroboration (see VERSION_HISTORY.md)
-MAX_BET_ODDS         = 500   # Bet tier requires American odds ≤ +500
-MIN_DEVIGGED_IMPLIED = 0.16  # Bet tier requires devigged implied prob ≥ 16%
+# v4.3 hard gate, still active in v4.4 (see VERSION_HISTORY.md). The companion
+# implied-prob floor gate (MIN_DEVIGGED_IMPLIED, was 0.16) was removed in v4.4:
+# diagnostic 2026-07-18 found it breakeven (n=30, all at exactly +500 odds)
+# while max_odds accounted for essentially all of the gates' protective value.
+MAX_BET_ODDS = 500   # Bet tier requires American odds ≤ +500
+
+# v4.4 recalibration layer (pass-through at launch — see VERSION_HISTORY.md).
+# RECAL_A=0.0, RECAL_B=1.0 -> sigmoid(0 + 1*logit(p)) == p, a mathematical
+# identity, so this has no effect on model output until re-fit. Re-fit after
+# ~50 resolved picks using the same logistic-recalibration method as the
+# 2026-07-18 diagnostic (archive/diagnostics/v4.3_diagnostic_2026-07-18.md),
+# which found intercept=-1.15, slope=0.40 on the retired v4.3 model.
+RECAL_A = 0.0   # intercept, log-odds space
+RECAL_B = 1.0   # slope — 1.0 = pass-through (no correction)
 
 # Corroboration constants kept for reference / future use but no longer gate picks.
 # Only one sportsbook (williamhill_us/Caesars) posts batter_home_runs at this
@@ -413,12 +424,16 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
             hot_adj = max(0.78, min(1.28, ((r_hr/r_pa)*w + sr*(1-w)) / sr))
 
     # 3. Statcast (barrel% + hard-hit%)
+    # v4.4: upper cap reduced 1.35 -> 1.15 (log-odds contribution capped at
+    # log(1.15) ~= 0.1398, vs. log(1.35) ~= 0.3001 previously). Diagnostic
+    # 2026-07-18 found Statcast-capped picks were overpredicted 6.75x more
+    # than uncapped picks (-5.4pp vs -0.8pp), concentrated at the old +35% cap.
     sc_adj  = 1.0
     sc_info = sc_by_id.get(batter["id"]) or sc_by_name.get(norm(batter["name"]))
     if sc_info:
         b = sc_info["barrel_pct"]; hh = sc_info["hard_hit_pct"]
         if b > 0:
-            sc_adj = max(0.78, min(1.35,
+            sc_adj = max(0.78, min(1.15,
                 (b / LG_BARREL) ** 0.40 * ((hh / LG_HARD_HIT) ** 0.20 if hh > 0 else 1.0)
             ))
 
@@ -463,11 +478,34 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
         temp_adj = max(0.92, min(1.10, 1 + (weather["temp_f"]   - 72) * 0.0015))
         wind_adj = max(0.92, min(1.12, 1 + max(0, weather["wind_mph"] - 5) * 0.005))
 
-    pp         = proj_pa(batter["batting_order"], ou)
-    per_pa_raw = sr * split_adj * hot_adj * sc_adj * pitch_blend * park_adj * temp_adj * wind_adj
+    pp = proj_pa(batter["batting_order"], ou)
+
+    # v4.4: additive log-odds factor compounding (replaces multiplicative
+    # probability-space compounding). Multiplying ratios directly in probability
+    # space let simultaneous positive factors stack geometrically; combining the
+    # same ratios as log-odds contributions dampens stacking non-linearly as the
+    # baseline probability moves away from the extremes. See VERSION_HISTORY.md
+    # v4.3 retirement notes / archive/diagnostics/v4.3_diagnostic_2026-07-18.md.
+    def logit(p):
+        p = max(0.001, min(0.999, p))
+        return math.log(p / (1 - p))
+
+    def sigmoid(x):
+        return 1 / (1 + math.exp(-x))
+
+    log_odds = logit(sr)
+    for ratio in (split_adj, hot_adj, sc_adj, pitch_blend, park_adj, temp_adj, wind_adj):
+        log_odds += math.log(max(0.01, ratio))  # ratio floored to avoid log(<=0)
+
+    per_pa_raw    = sigmoid(log_odds)
     per_pa_capped = per_pa_raw > 0.08  # True when the hard cap is binding
-    per_pa     = max(0.001, min(0.08, per_pa_raw))
-    gp         = 1 - (1 - per_pa) ** pp
+    per_pa        = max(0.001, min(0.08, per_pa_raw))
+    gp            = 1 - (1 - per_pa) ** pp
+
+    # v4.4 recalibration layer (pass-through at launch).
+    # RECAL_A=0, RECAL_B=1 -> pass-through. Re-fit after ~50 resolved picks.
+    recal_log_odds = RECAL_A + RECAL_B * logit(gp)
+    gp             = sigmoid(recal_log_odds)
 
     name_keys = [norm(batter["name"]), norm_reverse(batter["name"])]
     od = {}
@@ -525,15 +563,13 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
             book_corroboration["excluded_outlier"] = best_book
             book_corroboration["excluded_line"]    = best_odds
 
-    # v4.3 hard gates: replace corroboration with two observable single-book checks.
-    # Both are applied only to Bet-tier picks; gated picks get gate_failed set.
+    # v4.3 hard gate (implied-prob floor companion gate removed in v4.4 — see
+    # VERSION_HISTORY.md). Applied only to Bet-tier picks; gated picks get
+    # gate_failed set.
     gate_failed = None
     if rec == "Bet" and best_odds is not None:
         if best_odds > MAX_BET_ODDS:
             gate_failed = "max_odds"
-            rec = "—"
-        elif implied is not None and implied < MIN_DEVIGGED_IMPLIED:
-            gate_failed = "implied_prob_floor"
             rec = "—"
 
     hot_label = ""
@@ -815,8 +851,8 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         elif rec == "Skip":
             badge = '<span class="badge skip">Skip</span>'
         elif gate_failed:
-            gate_label = "odds cap" if gate_failed == "max_odds" else "impl floor"
-            badge = f'<span class="badge gated" title="Gated: {gate_label}">Gated</span>'
+            # Only "max_odds" can be set post-v4.4 (implied-prob floor gate removed).
+            badge = '<span class="badge gated" title="Gated: odds cap">Gated</span>'
         else:
             badge = "—"
 
@@ -902,7 +938,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
     odds_ths = '<th style="text-align:right">Best line</th><th>Book</th><th style="text-align:right">Edge</th><th>Rec</th>'
     all_books = list({b["book"] for r in results for b in r.get("all_books", [])})
     if has_key and all_books:
-        odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp. Gated = raw edge ≥+5pp but failed max-odds (≤+500) or implied-floor (≥10%) gate."
+        odds_note = f"Lines from: {', '.join(all_books[:6])}. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp. Gated = raw edge ≥+5pp but failed max-odds (≤+500) gate."
     elif has_key:
         odds_note = "Lines fetched — no book matches for this window. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp."
     else:
@@ -949,8 +985,8 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         for r in gated_results:
             e  = r.get("edge")
             ec = "#22c55e" if (e or 0) > 0.05 else "#94a3b8"
-            gf = r.get("gate_failed")
-            gate_label = "odds cap" if gf == "max_odds" else "implied floor"
+            # Only "max_odds" can be set post-v4.4 (implied-prob floor gate removed).
+            gate_label = "odds cap"
             gated_rows += (
                 f'<tr><td style="font-weight:600">{r["name"]}</td>'
                 f'<td style="color:#94a3b8">{r.get("best_book","—")}</td>'
@@ -961,7 +997,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
             )
         gated_html = f'''<div class="gated-section">
   <h4>Gated Out — Diagnostic Only</h4>
-  <p>These picks passed raw edge ≥+5pp but failed a v4.3 hard gate. Not staked. Review to calibrate gate thresholds.</p>
+  <p>These picks passed raw edge ≥+5pp but failed the v4.4 max-odds gate. Not staked. Review to calibrate gate threshold.</p>
   <div class="tw"><table>
     <thead><tr><th>Player</th><th>Book</th><th style="text-align:right">Odds</th><th style="text-align:right">Impl (devig)</th><th style="text-align:right">Edge</th><th>Gate failed</th></tr></thead>
     <tbody>{gated_rows}</tbody>
@@ -992,9 +1028,10 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
   <tbody>{"".join(rows)}</tbody>
 </table></div>
 <div class="note">
-  <strong style="color:#94a3b8">v4.3 model:</strong>
+  <strong style="color:#94a3b8">v4.4 model:</strong>
   season HR/PA · splits (regressed) · hotness L14 (regressed) · {sc_note} ·
-  SP HR rate (regressed, platoon-aware) · bullpen HR rate (regressed, platoon-aware) · park factor ({len(VENUES)} venues) · weather.<br><br>
+  SP HR rate (regressed, platoon-aware) · bullpen HR rate (regressed, platoon-aware) · park factor ({len(VENUES)} venues) · weather ·
+  log-odds factor compounding.<br><br>
   <strong style="color:#94a3b8">Lines:</strong> {odds_note}
 </div>
 {gated_html}
@@ -1011,7 +1048,7 @@ def build_report(results, date, has_odds, has_statcast, weather_count, has_key,
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v4.3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
+<p class="sub">v4.4 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
 {section}
 </body></html>"""
 
@@ -1035,7 +1072,7 @@ def append_to_combined(html_path, results, date, has_odds, has_statcast, weather
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v4.3 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
+<p class="sub">v4.4 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
 {tagged_section}
 </body></html>"""
         with open(html_path, "w", encoding="utf-8") as f:
@@ -1284,7 +1321,7 @@ def print_debug_summary(results, odds_map):
 # ──────────────────────────────────────────────────────────────────────────────
 
 def main():
-    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4.3")
+    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4.4")
     p.add_argument("-d","--date",      default=datetime.today().strftime("%Y-%m-%d"))
     p.add_argument("-k","--key",       default=os.environ.get("ODDS_API_KEY",""))
     p.add_argument("--min-edge",       type=float, default=0.0)
@@ -1310,7 +1347,7 @@ def main():
     yr   = date.split("-")[0]
     d14  = (datetime.strptime(date, "%Y-%m-%d") - timedelta(days=14)).strftime("%Y-%m-%d")
 
-    print(f"\n⚾  MLB HR Prop Finder v4.3  —  {date}")
+    print(f"\n⚾  MLB HR Prop Finder v4.4  —  {date}")
     print("─" * 50)
 
     # Schedule

@@ -242,4 +242,108 @@ When the first 30+ Bet picks resolve, check the following in addition to headlin
 
 4. **BetOnline corroboration rate** *(dormant diagnostic)*: `book_corroboration` is still computed on every pick even though it no longer gates. Track the fraction of Bet-tier picks that would have passed corroboration — this sets a lower bound on what a future multi-book API plan would produce.
 
+### Final v4.3 results (retired 2026-07-22)
+
+**Diagnostic-basis period:** Jun 28 – Jul 18, 2026 (19 dates, 4,877 total picks / 4,806
+resolved) — the sample the 2026-07-18 diagnostic was run against and that motivated the
+v4.4 redesign decision below.
+
+| Tier | W | L | Win% | Net Units | ROI |
+|------|--:|--:|-----:|----------:|----:|
+| Bet  | 39 | 141 | 21.7% | −0.35u | −9.1% |
+
+**True final period (v4.3 code stayed live in production a few extra days before the
+v4.4 rollout landed):** Jun 28 – Jul 22, 2026 (23 dates, 6,223 total picks / 6,127
+resolved).
+
+| Tier | W | L | Win% | Net Units | ROI |
+|------|--:|--:|-----:|----------:|----:|
+| Bet  | 42 | 176 | 19.3% | −0.80u | **−17.2%** |
+
+The four extra live days (Jul 19–22) were a losing stretch (streak −4 at close) that pulled
+final ROI down from −9.1% to −17.2% — consistent with, not contradicting, the retirement
+rationale. Staking is quarter-Kelly (capped 0.03u/pick), not flat; both the diagnostic-basis
+and true-final figures were computed with `compute_stats()` from the archived v4.3 code
+against the corresponding `picks.json` snapshot.
+
+**Reason for retirement:** A logistic recalibration fit on all 4,806 resolved tracked
+picks as of Jul 18 (`outcome ~ logit(model_prob)`) produced a slope of **0.40 (SE 0.05)**,
+significantly below 1 — confirming the model is overdispersed (its probability spread is
+roughly 2.5x too wide relative to what outcomes support). Root-cause analysis traced this
+to **factor-stacking in probability space**: overprediction was cleanly monotonic with both
+the reconstructed total per-PA multiplier and the count of simultaneously-positive
+adjustment factors (0 positive factors: +4.9pp underprediction; 7 positive factors:
+−10.0pp overprediction, n=97). The Statcast +35% cap alone accounted for picks 6.75x more
+overpredicted than uncapped picks. Additionally, edge-magnitude was non-monotonic for a
+third consecutive model version (best ROI at 5–7.5pp raw edge, worst at 10–15pp),
+and the `implied_prob_floor` gate looked weak relative to `max_odds` (breakeven at n=30,
+all at exactly +500 odds) — both addressed in v4.4.
+
+**Diagnostic reference:** `archive/diagnostics/v4.3_diagnostic_2026-07-18.md` (figures in
+that report reflect the Jul 18 sample, not the true-final Jul 22 closeout above)
+
+**Archive:** `archive/v4.3/mlb_hr_model_v4.3.py`, `archive/v4.3/picks_v4.3.json` (true-final
+snapshot through 2026-07-22)
+
+---
+
+## v4.4 (Jul 22, 2026 – present)
+
+**Launch date:** 2026-07-22 (spec drafted 2026-07-18; v4.3 stayed live in production for
+four extra days while these changes were finalized — see the true-final v4.3 figures above)
+**Base:** `archive/v4.3/mlb_hr_model_v4.3.py`
+**Tracking started:** 2026-07-22 (`picks.json` reset to `[]`)
+
+### Problem solved
+
+The v4.3 diagnostic (2026-07-18) found the model overdispersed (logistic recalibration
+slope 0.40, SE 0.05) and traced the root cause to multiplicative probability-space factor
+compounding: simultaneous positive adjustment factors stacked geometrically, producing
+overprediction that grew monotonically with both total multiplier and count of positive
+factors (0 positive: +4.9pp underprediction; 7 positive: −10.0pp overprediction). The
+Statcast +35% cap and the (structurally weak) `implied_prob_floor` gate were identified as
+specific contributors.
+
+### All changes in v4.4
+
+| # | Change | Rationale |
+|---|--------|-----------|
+| 1 | Additive log-odds factor compounding (replaces multiplicative probability-space compounding) | Log-odds addition dampens simultaneous-factor stacking non-linearly instead of compounding geometrically; root-cause fix for the overprediction pattern found in the v4.3 diagnostic |
+| 2 | Statcast cap reduced +35% → +15% log-odds equivalent (`sc_adj` upper bound 1.35 → 1.15) | Statcast-capped picks were 6.75x more overpredicted than uncapped picks (−5.4pp vs. −0.8pp) in the v4.3 diagnostic |
+| 3 | Recalibration layer added (`RECAL_A`/`RECAL_B` constants, pass-through at launch: `RECAL_A=0.0`, `RECAL_B=1.0`) | Named constants make it easy to re-fit a logistic recalibration on live v4.4 data after ~50 resolved picks, without touching factor logic |
+| 4 | `MIN_DEVIGGED_IMPLIED` gate removed (`implied_prob_floor`); `MAX_BET_ODDS` (≤+500) kept | v4.3 diagnostic found the floor gate breakeven (n=30, all at exactly +500 odds) while `max_odds` carried essentially all of the gates' protective value |
+| 5 | Dashboard footer: implied-floor mention removed, footer now describes only the surviving `max_odds` gate; model description bumped to "v4.4" with "log-odds factor compounding" noted | Footer previously stated the wrong threshold (≥10% vs. actual 16%) for a gate that no longer exists |
+| 6 | Version strings bumped v4.3 → v4.4 throughout output/headers/dashboard | Historical comments describing when past features/gates were introduced were left as `v4.3`/`v4.2` for accuracy |
+| 7 | `picks.json` reset to `[]`; `results/reset_date.txt` set to 2026-07-22 | Fresh tracking window for the restructured model |
+
+**Not changed:** `check_results.py`, `.github/workflows/`, the 55/45 SP/bullpen blend weight,
+the 0.08 per-PA hard cap, `MAX_BET_ODDS`, any other factor input/weight/threshold not
+listed above, and the dormant multi-book corroboration logic.
+
+### Benchmark
+
+**v4.3 final (retired):** 42-176, Net −0.80u, ROI **−17.2%** (218 resolved Bet-tier picks,
+Jun 28 – Jul 22, quarter-Kelly variable staking). This is the true closeout figure — v4.3
+stayed live in production through Jul 22 while the v4.4 code changes here were finalized;
+the diagnostic that motivated the redesign was run against an earlier, less-negative
+Jul 18 sample (−9.1%, see the v4.3 entry above). v4.4 is measured against the −17.2% true
+final baseline.
+
+### Sanity check (2026-07-22, pre-commit)
+
+Synthetic test per the implementation spec: `baseline_prob=0.10`, 7 simultaneous positive
+factors each `+25%` (ratio 1.25) — an isolated test of the combination formula itself
+(pre-per-PA-cap), since the new per-factor caps (e.g. Statcast now capped at 1.15) make it
+impossible to construct this exact scenario through a live `run_model()` call. Old
+multiplicative architecture: `0.10 × 1.25^7 = 0.4768` (~0.48, in the ballpark of the spec's
+"~0.56" estimate). New additive log-odds architecture: `sigmoid(logit(0.10) + 7·ln(1.25))
+= 0.3463`. **PASS: 0.3463 < 0.35**, though narrowly — this is a meaningfully smaller
+reduction (0.4768 → 0.3463, ~27% relative) than the old-vs-new gap looks at first glance
+once the shared 0.08 per-PA hard cap is applied downstream (both architectures clip to
+0.08 in this specific scenario; the pre-cap comparison is the one that reflects the actual
+change in Step 2). A full `run_model()` dry run with synthetic batter/season/pitcher/
+weather/odds data (no network calls) also executed without error and produced a sane
+result (game_prob=31.6%, edge=+11.1%, recommendation=Bet, `sc_adj` correctly enforced at
+its new 1.15 cap).
+
 ---
