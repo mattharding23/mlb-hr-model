@@ -346,4 +346,147 @@ weather/odds data (no network calls) also executed without error and produced a 
 result (game_prob=31.6%, edge=+11.1%, recommendation=Bet, `sc_adj` correctly enforced at
 its new 1.15 cap).
 
+### Final v4.4 results (retired 2026-08-02)
+
+**9-87, Net −1.17u, ROI −54.88%** (96 resolved Bet-tier picks, latest-window dedup,
+2026-07-22 – 2026-08-01, quarter-Kelly variable staking). Confirmed by direct recompute
+from raw `picks.json` — see `archive/diagnostics/v4.4_diagnostic_2026-08-02.md`. This is
+the benchmark v4.5 needs to beat.
+
+**Archive:** `archive/v4.4/mlb_hr_model_v4.4.py`, `archive/v4.4/check_results_v4.4.py`,
+`archive/v4.4/picks_v4.4.json` (final picks.json, 3,737 total / 3,267 resolved picks).
+
+---
+
+## v4.5 (Aug 2, 2026 – present)
+
+**Launch date:** 2026-08-02
+**Base:** `archive/v4.4/mlb_hr_model_v4.4.py`
+**Tracking started:** 2026-08-02 (`picks.json` reset to `[]`)
+
+### Problem solved
+
+`archive/diagnostics/v4.4_diagnostic_2026-08-02.md` §4 and §7 found `hot_adj` (L14
+hotness) and `sc_adj` (Statcast) were the dominant log-odds contributors behind both the
+general overprediction pattern (§2: every 2.5pp calibration band from 15% predicted
+probability up was overpredicted, worsening to −15 to −16pp around 27.5–32.5%) and the
+concrete 2026-08-01 loss cluster that produced the v4.4 season's 10-game losing streak
+(§6: `hot_adj` or `sc_adj` was the top log-odds contributor on 9 of the 10 losses that day).
+Root cause (§7): `hot_adj`'s regression weight (`min(r_pa/45, 0.45)`) hard-capped at its
+0.45 ceiling for any L14 sample of `r_pa ≥ ~20.25` (about 5 games) — a 5-game hot streak
+got the same maximum trust as a full 14-day, ~55-PA window, with no further shrinkage
+past that point. `sc_adj` had no sample-size-based shrinkage at all — barrel%/hard-hit%
+fed the exponents at full strength regardless of how many batted-ball events the season
+rate was built on; the fixed exponents (0.40/0.20) and the v4.4 cap reduction were the
+only dampening.
+
+### All changes in v4.5
+
+| # | Change | Rationale |
+|---|--------|-----------|
+| 1 | Logging: `factors` now also records `r_pa`, `r_hr`, `season_rate` (backing `hot_adj`), `s_pa`, `s_hr` (backing `split_adj`), and `sc_bbe` (batted-ball-event count backing `sc_adj`, from Baseball Savant's `attempts` column, previously fetched but not persisted) | Diagnostic §4 could not check whether small-sample L14 windows were driving overprediction because the raw PA counts weren't stored anywhere — only the derived `hot_adj`/`split_adj` ratios were. This is additive-only: verified as a byte-identical no-op on every existing computed field (`model_prob`, `hot_adj`, `sc_adj`, `split_adj`, and all other `*_adj` values) via a direct `run_model()` diff across four synthetic scenarios before/after the change |
+| 2 | `hot_adj` shrinkage: replaced the hard-capped linear weight `min(r_pa/45, 0.45)` with continuous empirical-Bayes shrinkage `w = r_pa / (r_pa + HOT_SHRINKAGE_K)`, `HOT_SHRINKAGE_K = 40` | Root-cause fix for the §7 finding above. At `k=40`: a 5-game window (`r_pa≈20`) now gets *less* trust than before (w=0.333 vs. the old flat 0.444–0.45), while a full 14-day window (`r_pa≈55`) gets *more* trust than the old ceiling ever allowed (w=0.579 vs. 0.45) — the weight now separates sample sizes instead of capping them together, and never fully saturates. `k` values from 35–50 were compared (see table below); 40 was chosen as the round middle value giving the clearest small-vs-large-sample separation without being aggressive at either end. The final 0.78/1.28 clip on `hot_adj` is unchanged |
+| 3 | `sc_adj` shrinkage: barrel%/hard-hit% are now shrunk toward league average (`LG_BARREL`/`LG_HARD_HIT`) before the 0.40/0.20 exponents are applied, weighted by BBE count via the same form: `w = n / (n + SC_SHRINKAGE_K)`, `SC_SHRINKAGE_K = 100` | `sc_adj` had zero sample-size-based shrinkage previously. At `k'=100`: a player at the pipeline's minimum eligible sample (50 BBE — `statcast_batter_exitvelo_barrels(year, minBBE=50)` already filters out anyone below this) gets only 33% trust in their raw rate; a ~200-BBE half-season sample gets 67%; a 350+-BBE full-time regular gets 78%+. `k'` values from 50–200 were compared (see table below); 100 was chosen to give meaningful correction at the low-BBE end (just above the 50-BBE floor) without over-shrinking full-season regulars. The final 0.78/1.15 clip on `sc_adj` is unchanged |
+| 4 | Version bump to v4.5 in docstring, argparse description, console banner, and dashboard footer/labels; module docstring's factor list updated to describe empirical-Bayes shrinkage instead of the retired fixed-weight caps | Historical comments describing when past features/gates were introduced (e.g. "v4.4 recalibration layer", "v4.3 hard gate") were left with their original version numbers for accuracy, per the same convention used in the v4.3→v4.4 transition |
+| 5 | `picks.json` reset to `[]`; `results/reset_date.txt` set to 2026-08-02 | Fresh tracking window for the shrinkage-corrected model |
+
+**Not changed:** `MAX_BET_ODDS` (still 500) and all gate logic, `check_results.py`, the
+55/45 SP/bullpen blend weight, the 0.08 per-PA hard cap, the log-odds compounding
+architecture, `RECAL_A`/`RECAL_B` (still pass-through), the corroboration logic, and any
+other factor input/weight/threshold not listed above. In particular, the diagnostic's §5
+finding — that the `max_odds` gate excluded picks (n=77) with a hypothetical +19.1% ROI
+while the picks that passed the gate lost −54.9% — is **being tracked, not acted on**.
+That finding was based on a small early sample (9 wins) and needs a larger resolved
+population before the gate itself is a defensible thing to change; v4.5 does not touch it.
+
+### `HOT_SHRINKAGE_K` candidate comparison (w = r_pa / (r_pa + k))
+
+| r_pa | k=35 | k=40 (chosen) | k=45 | k=50 | old capped formula |
+|---:|---:|---:|---:|---:|---:|
+| 10 | 0.222 | 0.200 | 0.182 | 0.167 | 0.222 |
+| 20 | 0.364 | 0.333 | 0.308 | 0.286 | 0.444 |
+| 35 | 0.500 | 0.467 | 0.438 | 0.412 | 0.450 |
+| 55 | 0.611 | 0.579 | 0.550 | 0.524 | 0.450 |
+| 90 | 0.720 | 0.692 | 0.667 | 0.643 | 0.450 |
+
+### `SC_SHRINKAGE_K` candidate comparison (w = n / (n + k), n = BBE)
+
+| n (BBE) | k=50 | k=75 | k=100 (chosen) | k=150 | k=200 |
+|---:|---:|---:|---:|---:|---:|
+| 50 | 0.500 | 0.400 | 0.333 | 0.250 | 0.200 |
+| 100 | 0.667 | 0.571 | 0.500 | 0.400 | 0.333 |
+| 200 | 0.800 | 0.727 | 0.667 | 0.571 | 0.500 |
+| 350 | 0.875 | 0.824 | 0.778 | 0.700 | 0.636 |
+| 500 | 0.909 | 0.870 | 0.833 | 0.769 | 0.714 |
+
+### Benchmark
+
+**v4.4 final (retired):** 9-87, Net −1.17u, ROI **−54.88%** (96 resolved Bet-tier picks,
+2026-07-22 – 2026-08-01, quarter-Kelly variable staking). v4.5 is measured against this
+figure. See `archive/diagnostics/v4.4_diagnostic_2026-08-02.md` for the full diagnostic
+this release is based on.
+
+### Pre-launch fix: duplicate-splits r_pa/s_pa inflation (2026-08-02, same day)
+
+The Step 2 logging addition above (persisting `r_pa`/`r_hr`/`s_pa`/`s_hr`) surfaced a
+pre-existing MLB Stats API aggregation bug during the v4.5 sanity check, before any picks
+were treated as real tracking data or v4.5 was treated as launch-ready. The API signals its
+pre-combined "grand total" row differently per endpoint, and the original code didn't
+account for either signal:
+
+- `byDateRange` (backs `hot_adj`'s `r_pa`) returns a per-team row (`sport.id==1`) *and* a
+  combined-total row (`sport.id==0`, "All") for every player, every time — for a
+  single-team player these two rows carry identical PA/HR. The old code summed every row it
+  got back, silently doubling `r_pa` for effectively the **entire slate**, not just traded
+  players (median observed `r_pa` was 96 against a ~63 theoretical 14-day ceiling).
+- `statSplits` (backs `split_adj`'s `s_pa`, queried season-to-date, not L14) marks its
+  combined row via `team is None` instead, and only emits it when a player has multiple
+  team stints *at any point in the season* — not just within the 14-day hotness window.
+  The old code's `next(...)` grabbed the first (partial, single-team) row instead, silently
+  **undercounting** `s_pa` for any player traded during the season. Initial re-verification
+  checked only for trades inside the L14 window and reported 1 of 299 affected; re-checking
+  against the season-scoped `statSplits` data directly found **11 of 299 players affected**
+  (corrected from the initial 1-of-299 figure), worst case Luis Rengifo (traded San Diego →
+  Milwaukee), whose vs-RHP `s_pa` was undercounted 38 → should be 163 (4.3x), verified
+  directly against the live API.
+
+Fixed with a single `combined_hitting_stat()` helper (prefers the API's explicit combined
+row when present via either signal, falling back to summing `sport.id==1` rows otherwise),
+used for both `r_pa` and `s_pa`. Verified via a network-free 4-scenario `run_model()`
+harness (zero diffs — the fix is entirely upstream of `run_model()`, in `main()`'s data
+aggregation, so synthetic non-duplicated inputs are provably unaffected) and via live-slate
+re-derivation matching all 299 players 1:1 between pre-fix and post-fix runs of the same
+slate. Full detail, including the `model_prob` impact (142/299 picks changed, mean 0.37pp,
+largest +3.71pp) and the `HOT_SHRINKAGE_K` re-validation below, is in
+`archive/diagnostics/v4.5_dup_bug_reverify_2026-08-02.md`; the original overprediction
+pattern that motivated v4.5 is in `archive/diagnostics/v4.4_diagnostic_2026-08-02.md`.
+
+Live re-check post-fix: median `r_pa` corrected from 96 to 48 (max 138 → 69, consistent
+with legitimate doubleheader-inflated single-team totals, not further duplication).
+`hot_adj` bound-saturation (share of picks with `hot_adj` at/near the 0.78/1.28 clip —
+same ≥1.27-or-≤0.79 convention as `archive/diagnostics/v4.4_diagnostic_2026-08-02.md` §4)
+dropped from 69.8% (v4.5 formula on buggy `r_pa`) to 64.6% (v4.5 formula on corrected
+`r_pa`) — still above the 57.3% the old v4.4 formula gives on the same corrected data,
+**by design, not a residual bug**: the new formula extends more trust to `r_pa` at
+realistic L14 volumes than the old formula ever did at any volume (e.g. at the corrected
+median `r_pa=48`, `w=48/88=0.545` already exceeds the old formula's hard 0.45 ceiling), so
+more genuinely noisy 2-week HR-rate swings now reach the outer clip. This is a specific
+thing to watch via the dormant `RECAL_A`/`RECAL_B` recalibration layer once ~50 v4.5 picks
+resolve, per standing project practice (see the v4.4 recalibration-layer note above) — not
+a reason to touch the 0.78/1.28 clip bounds themselves, which v4.5 explicitly left
+unchanged.
+
+`HOT_SHRINKAGE_K=40` was re-validated against the corrected `r_pa` data and did not need
+revision: the corrected live range (2–69, median 48) sits comfortably inside the 10–90 span
+originally used to choose it, and the corrected median lands almost exactly on the
+`r_pa=55` reference point from the original curve-check (`w=0.579`; `w=0.545` at the actual
+median 48). `SC_SHRINKAGE_K=100` was never affected — its input (Statcast BBE count) comes
+from Baseball Savant, a separate data source untouched by this bug.
+
+`results/picks.json` was cleared and regenerated after the fix so v4.5's actual first
+tracked day of picks reflects the corrected aggregation, not any pre-fix or partially-mixed
+run from earlier the same day. Confirmed clean as of this addendum: 299 picks, single
+window, single date, `r_pa` distribution matching the corrected range exactly (max 69, zero
+entries above 80).
+
 ---
