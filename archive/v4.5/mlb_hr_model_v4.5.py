@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-MLB HR Prop Finder v4.6
+MLB HR Prop Finder v4.5
 ──────────────────────────────────────────────────────────────────────────────
 Model factors:
   • Season HR/PA rate (base, min 30 PA)
   • vs LHP/RHP splits (regressed, max 45% weight)
   • Hotness: last 14 days HR/PA (empirical-Bayes shrinkage on PA sample size, needs ≥5 PA)
-  • Statcast: L14 rolling combined barrel%+hard-hit% term (empirical-Bayes shrinkage on BBE sample size; v4.6 unanchored placeholder weighting, see VERSION_HISTORY.md)
+  • Statcast: barrel% + hard-hit% from Baseball Savant (empirical-Bayes shrinkage on BBE sample size)
   • Starting pitcher HR rate vs league avg (regressed, platoon-aware)
   • Bullpen HR rate (regressed, platoon-aware, weighted by reliever IP)
   • Park factor (29 venues)
@@ -41,7 +41,7 @@ import requests
 
 try:
     import pandas as pd
-    from pybaseball import statcast
+    from pybaseball import statcast_batter_exitvelo_barrels
     HAS_PYBASEBALL = True
 except ImportError:
     HAS_PYBASEBALL = False
@@ -58,7 +58,7 @@ LG_HARD_HIT  = 0.385
 VIG_FACTOR   = 0.92   # devig: sportsbooks typically have ~8% overround on HR props
 MAX_PROP_ODDS = 2500  # filter out longshot/alternate lines above this threshold
 
-# v4.3 hard gate, still active in v4.6 (see VERSION_HISTORY.md). The companion
+# v4.3 hard gate, still active in v4.5 (see VERSION_HISTORY.md). The companion
 # implied-prob floor gate (MIN_DEVIGGED_IMPLIED, was 0.16) was removed in v4.4:
 # diagnostic 2026-07-18 found it breakeven (n=30, all at exactly +500 odds)
 # while max_odds accounted for essentially all of the gates' protective value.
@@ -83,53 +83,7 @@ MULTI_BOOK_MAX_IMPLIED_SPREAD  = 0.03  # dormant
 # w = n / (n + k): continuous, never fully saturates, unlike the v4.4 hard-capped
 # linear weights it replaces. Larger k = more skepticism of a small raw sample.
 HOT_SHRINKAGE_K = 40   # hot_adj (L14 hotness) — weight on raw r_pa-based rate
-SC_SHRINKAGE_K  = 100  # sc_adj (Statcast) — weight on raw BBE-based barrel/hard-hit rates.
-                        # Chosen against v4.5's SEASON-cumulative BBE distribution (50-BBE
-                        # pipeline floor / ~200 half-season / 350+ full-time regular). v4.6
-                        # switched sc_adj's underlying data to a 14-day rolling window (see
-                        # SC_MIN_BBE below and VERSION_HISTORY.md v4.6 entry), which yields
-                        # much smaller per-player BBE counts (~20-40 for a regular over 14
-                        # days) than this constant was calibrated against. Left unchanged
-                        # pending a checkpoint on whether it needs revision for the new
-                        # window — see Step 3 report for the live BBE distribution under the
-                        # rolling window and its implied shrinkage weights.
-
-# v4.6 Statcast rework (see VERSION_HISTORY.md v4.6 entry;
-# archive/diagnostics/v4.6_phase1_statcast_refit_2026-08-11.md,
-# ..._v45only_refit_2026-08-11.md, ..._phase2_step1_2_proposal_2026-08-12.md).
-# ~12 regression specifications (pooled + per-version + v4.5-only; joint,
-# univariate, bootstrap, date-split) tried to fit independent marginal
-# exponents for barrel_pct/hard_hit_pct net of what the rest of the model
-# already explains (season rate, hotness, splits, park, pitching). None
-# produced a confidently positive, stable marginal effect; several flipped
-# sign across cuts. The two inputs are only weakly correlated with each other
-# (r=0.05-0.08) but each is separately confounded with the model's other
-# factors (r=0.39/0.55 with an offset excluding sc_adj) — the data can't
-# support two independently-fit exponents, so v4.6 collapses barrel%/hard-hit%
-# into one equal-weighted "quality of contact" term (confirmed via PCA: first
-# component loads ~[0.71,0.71] given the near-zero mutual correlation, i.e.
-# PCA independently finds the same 50/50 split).
-#
-# SC_GAMMA is an EXPLICIT, UNANCHORED PLACEHOLDER, not a fitted or otherwise
-# validated value. The one finding that held up everywhere was "no confirmed
-# positive marginal signal," not a specific magnitude — SC_GAMMA=0.30 is a
-# deliberate, round discount (half the old total exponent of 0.40+0.20=0.60)
-# reflecting that, not a fit. Revisit at the next checkpoint once this
-# construction has live outcome data of its own.
-#
-# SC_CAP is anchored, not a placeholder: ln(SC_CAP) matches park_adj's mean
-# |log-odds| contribution (0.072) in the v4.5 checkpoint's factor-attribution
-# table, so Statcast's worst-case influence is sized to a modest, already-
-# established factor rather than dominate as it did under the old 1.15 cap
-# (94.8% of Bet-tier picks pinned there — see
-# archive/diagnostics/v4.5_checkpoint_2026-08-11_rootcause.md §3). SC_FLOOR is
-# its log-symmetric counterpart (1/SC_CAP).
-SC_GAMMA = 0.30   # UNANCHORED PLACEHOLDER — round discount, not fitted. Revisit next checkpoint.
-SC_CAP   = 1.07   # anchored to park_adj's mean log-odds contribution (ln(1.07)=0.068 ≈ 0.072)
-SC_FLOOR = 0.93   # 1/SC_CAP, rounded
-SC_MIN_BBE = 3    # minimum L14 batted-ball events before sc_adj moves off neutral (1.0);
-                  # shrinkage (SC_SHRINKAGE_K) already pulls small samples toward league
-                  # average, this is just a floor against near-zero-BBE noise entries
+SC_SHRINKAGE_K  = 100  # sc_adj (Statcast) — weight on raw BBE-based barrel/hard-hit rates
 
 PA_BY_SPOT = {1:4.7,2:4.6,3:4.5,4:4.4,5:4.3,6:4.1,7:4.0,8:3.9,9:3.8}
 
@@ -275,56 +229,41 @@ def fo(n):
 # Data fetchers
 # ──────────────────────────────────────────────────────────────────────────────
 
-def get_statcast(start_date, end_date):
-    # v4.6: rolling L14 window (mirrors hot_adj's byDateRange pattern) instead of
-    # v4.5's season-cumulative statcast_batter_exitvelo_barrels() leaderboard call
-    # — see VERSION_HISTORY.md v4.6 entry. That leaderboard function only returns
-    # season-to-date aggregates with no date-range parameter, so a rolling window
-    # requires pulling raw play-level Statcast data for the window and aggregating
-    # batted-ball events (type=="X") ourselves: barrel = launch_speed_angle==6
-    # (Baseball Savant's own classification code for a "Barrel"), hard-hit =
-    # launch_speed>=95mph. Verified against a live single-day pull that this
-    # reproduces league-average rates matching LG_BARREL/LG_HARD_HIT closely
-    # (7.09% vs 6.7% barrel, 34.3% vs 38.5% hard-hit on one day's ~760 BBE).
-    #
-    # No by-name fallback: the raw play-level pull's player_name column is the
-    # PITCHER's name (one row per pitch), not the batter's — unlike the old
-    # season leaderboard, which had a reliable per-batter name field. Matching
-    # is by MLB player ID only now (batter["id"], same ID space used throughout
-    # the rest of the model via the MLB Stats API roster/lineup data).
+def get_statcast(year):
     if not HAS_PYBASEBALL:
         print("  ⚠  pybaseball not installed — Statcast disabled")
-        return {}
-    print("  Fetching Statcast (Baseball Savant, rolling L14)…", end=" ", flush=True)
+        return {}, {}
+    print("  Fetching Statcast (Baseball Savant)…", end=" ", flush=True)
     try:
         import io
         from contextlib import redirect_stdout, redirect_stderr
         buf = io.StringIO()
         with redirect_stdout(buf), redirect_stderr(buf):
-            df = statcast(start_dt=start_date, end_dt=end_date)
-        if df is None or len(df) == 0:
-            print("✗  (no data)")
-            return {}
-        bip = df[df["type"] == "X"]
-        by_id = {}
-        for pid, grp in bip.groupby("batter"):
-            bbe = int(len(grp))
-            if bbe < SC_MIN_BBE:
-                continue
-            ls = grp["launch_speed"]
-            barrels   = int((grp["launch_speed_angle"] == 6).sum())
-            hard_hits = int((ls >= 95).sum())
-            by_id[int(pid)] = {
-                "barrel_pct":   barrels   / bbe,
-                "hard_hit_pct": hard_hits / bbe,
-                "avg_ev":       safe_float(ls.mean()),
-                "bbe":          bbe,  # batted-ball-event count backing the rates above
+            df = statcast_batter_exitvelo_barrels(year, minBBE=50)
+        by_id, by_name = {}, {}
+        for _, row in df.iterrows():
+            pid = safe_int(row.get("player_id"))
+            raw = str(row.get("last_name, first_name") or row.get("player_name") or "")
+            if "," in raw:
+                p = raw.split(",", 1)
+                full = p[1].strip() + " " + p[0].strip()
+            else:
+                full = raw
+            rb = safe_float(row.get("barrel_batted_rate") or row.get("brl_percent") or row.get("barrel_percent"))
+            rh = safe_float(row.get("hard_hit_percent")   or row.get("ev95percent")  or row.get("hard_hit_pct"))
+            entry = {
+                "barrel_pct":   rb   / 100 if rb   > 1 else rb,
+                "hard_hit_pct": rh   / 100 if rh   > 1 else rh,
+                "avg_ev":       safe_float(row.get("avg_hit_speed") or row.get("avg_exit_velocity")),
+                "bbe":          safe_int(row.get("attempts")),  # batted-ball-event count backing the rates above
             }
+            if pid:      by_id[pid]      = entry
+            if norm(full): by_name[norm(full)] = entry
         print(f"✓  {len(by_id)} players")
-        return by_id
+        return by_id, by_name
     except Exception as e:
         print(f"✗  ({e})")
-        return {}
+        return {}, {}
 
 def get_weather(venue_game_times):
     result = {}
@@ -463,7 +402,7 @@ def regressed_hr_pa(hr, ip, min_ip=10, max_weight=0.70, full_ip=150):
 
 
 def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
-              team_stat, weather, sc_by_id, odds_map, ou=8.5):
+              team_stat, weather, sc_by_id, sc_by_name, odds_map, ou=8.5):
     if not season: return None
     pa = safe_int(season.get("plateAppearances"))
     hr = safe_int(season.get("homeRuns"))
@@ -497,19 +436,20 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
             w = r_pa / (r_pa + HOT_SHRINKAGE_K)
             hot_adj = max(0.78, min(1.28, ((r_hr/r_pa)*w + sr*(1-w)) / sr))
 
-    # 3. Statcast — collapsed single "quality of contact" term (v4.6)
-    # v4.4: upper cap reduced 1.35 -> 1.15. v4.5: shrink barrel%/hard-hit%
-    # toward league average first, weighted by BBE count, w = n / (n + SC_SHRINKAGE_K)
-    # (see VERSION_HISTORY.md v4.5 entry). v4.6 replaces the two separately-
-    # weighted exponents (barrel^0.40 * hard_hit^0.20) with one equal-weighted
-    # geometric-mean term, an unanchored placeholder overall exponent
-    # (SC_GAMMA), and a park_adj-anchored cap — see the SC_GAMMA/SC_CAP
-    # constant block above for the full reasoning and VERSION_HISTORY.md's
-    # v4.6 entry. `sc_by_id` is now a rolling L14 window (get_statcast()),
-    # not a season-cumulative leaderboard — same shrinkage form applies to
-    # whatever BBE count backs it.
+    # 3. Statcast (barrel% + hard-hit%)
+    # v4.4: upper cap reduced 1.35 -> 1.15 (log-odds contribution capped at
+    # log(1.15) ~= 0.1398, vs. log(1.35) ~= 0.3001 previously). Diagnostic
+    # 2026-07-18 found Statcast-capped picks were overpredicted 6.75x more
+    # than uncapped picks (-5.4pp vs -0.8pp), concentrated at the old +35% cap.
+    # v4.5: barrel%/hard-hit% previously fed the exponents at full strength
+    # regardless of sample size, with no PA/BBE-based regression at all -- the
+    # exponents (0.40/0.20) and the cap above were the only dampening. Now
+    # shrink both rates toward league average first, weighted by the batted-
+    # ball-event count (`attempts` from Baseball Savant) via the same continuous
+    # empirical-Bayes form used for hot_adj: w = n / (n + SC_SHRINKAGE_K).
+    # See VERSION_HISTORY.md v4.5 entry / archive/diagnostics/v4.4_diagnostic_2026-08-02.md §4/§7.
     sc_adj  = 1.0
-    sc_info = sc_by_id.get(batter["id"])
+    sc_info = sc_by_id.get(batter["id"]) or sc_by_name.get(norm(batter["name"]))
     if sc_info:
         b = sc_info["barrel_pct"]; hh = sc_info["hard_hit_pct"]
         if b > 0:
@@ -517,10 +457,9 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
             sw = n / (n + SC_SHRINKAGE_K)
             b_shrunk  = b  * sw + LG_BARREL   * (1 - sw)
             hh_shrunk = hh * sw + LG_HARD_HIT * (1 - sw)
-            combined_ratio = math.sqrt(
-                (b_shrunk / LG_BARREL) * ((hh_shrunk / LG_HARD_HIT) if hh_shrunk > 0 else 1.0)
-            )
-            sc_adj = max(SC_FLOOR, min(SC_CAP, combined_ratio ** SC_GAMMA))
+            sc_adj = max(0.78, min(1.15,
+                (b_shrunk / LG_BARREL) ** 0.40 * ((hh_shrunk / LG_HARD_HIT) ** 0.20 if hh_shrunk > 0 else 1.0)
+            ))
 
     bh = batter.get("batter_hand", "R")
     sp_sitcode = "vl" if bh == "L" else "vr"  # SP faces batter: vl=vs lefties, vr=vs righties
@@ -624,18 +563,6 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     # rests on a neutral pitcher assumption that may be wildly wrong. Log the reason.
     pitcher_data_missing = sp_data_missing or bp_data_missing
     if pitcher_data_missing and rec == "Bet":
-        rec = "—"
-
-    # v4.6 sc_adj/hot_adj interaction rule (see VERSION_HISTORY.md v4.6 entry;
-    # archive/diagnostics/v4.6_phase3_4_proposal_2026-08-12.md). Targets the
-    # cold-tagged 0-7 failure mode from the root-cause diagnostic: a floored
-    # hot_adj (0.78, the model's own "ice cold" threshold — same value used
-    # for the 🧊 label below) means the L14 signal says this player is
-    # genuinely cold; sc_adj>1.0 pointing the opposite direction is a
-    # disagreement, not corroboration, and shouldn't be enough to carry a
-    # pick into Bet tier. Historical check (old sc_adj/hot_adj values, v4.5
-    # Bet-tier): 6/58 picks blocked, 6/6 were losses, 0 false positives.
-    if hot_adj <= 0.78 and sc_adj > 1.0 and rec == "Bet":
         rec = "—"
 
     # Corroboration: computed for diagnostics but NO LONGER gates picks (v4.3).
@@ -1047,7 +974,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
         odds_note = "Lines fetched — no book matches for this window. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp."
     else:
         odds_note = "Run with -k YOUR_ODDS_KEY for live line comparison."
-    sc_note   = f"Statcast (L14 rolling): combined barrel%+hard-hit% quality-of-contact term, equal-weighted, exp {SC_GAMMA} (placeholder, cap {SC_CAP})." if has_statcast else "Statcast disabled — install pybaseball."
+    sc_note   = f"Statcast: barrel% + hard-hit% (barrel ratio vs {LG_BARREL*100:.1f}% league avg, exp 0.40)." if has_statcast else "Statcast disabled — install pybaseball."
     wh = f'<div class="wh">{WINDOW_LABELS[window]}</div>' if window else ""
 
     # Top-5 by edge panel (only when odds are available)
@@ -1101,7 +1028,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
             )
         gated_html = f'''<div class="gated-section">
   <h4>Gated Out — Diagnostic Only</h4>
-  <p>These picks passed raw edge ≥+5pp but failed the v4.6 max-odds gate. Not staked. Review to calibrate gate threshold.</p>
+  <p>These picks passed raw edge ≥+5pp but failed the v4.5 max-odds gate. Not staked. Review to calibrate gate threshold.</p>
   <div class="tw"><table>
     <thead><tr><th>Player</th><th>Book</th><th style="text-align:right">Odds</th><th style="text-align:right">Impl (devig)</th><th style="text-align:right">Edge</th><th>Gate failed</th></tr></thead>
     <tbody>{gated_rows}</tbody>
@@ -1132,7 +1059,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
   <tbody>{"".join(rows)}</tbody>
 </table></div>
 <div class="note">
-  <strong style="color:#94a3b8">v4.6 model:</strong>
+  <strong style="color:#94a3b8">v4.5 model:</strong>
   season HR/PA · splits (regressed) · hotness L14 (regressed) · {sc_note} ·
   SP HR rate (regressed, platoon-aware) · bullpen HR rate (regressed, platoon-aware) · park factor ({len(VENUES)} venues) · weather ·
   log-odds factor compounding.<br><br>
@@ -1152,7 +1079,7 @@ def build_report(results, date, has_odds, has_statcast, weather_count, has_key,
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v4.6 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
+<p class="sub">v4.5 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
 {section}
 </body></html>"""
 
@@ -1176,7 +1103,7 @@ def append_to_combined(html_path, results, date, has_odds, has_statcast, weather
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v4.6 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
+<p class="sub">v4.5 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
 {tagged_section}
 </body></html>"""
         with open(html_path, "w", encoding="utf-8") as f:
@@ -1425,7 +1352,7 @@ def print_debug_summary(results, odds_map):
 # ──────────────────────────────────────────────────────────────────────────────
 
 def main():
-    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4.6")
+    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4.5")
     p.add_argument("-d","--date",      default=datetime.today().strftime("%Y-%m-%d"))
     p.add_argument("-k","--key",       default=os.environ.get("ODDS_API_KEY",""))
     p.add_argument("--min-edge",       type=float, default=0.0)
@@ -1451,7 +1378,7 @@ def main():
     yr   = date.split("-")[0]
     d14  = (datetime.strptime(date, "%Y-%m-%d") - timedelta(days=14)).strftime("%Y-%m-%d")
 
-    print(f"\n⚾  MLB HR Prop Finder v4.6  —  {date}")
+    print(f"\n⚾  MLB HR Prop Finder v4.5  —  {date}")
     print("─" * 50)
 
     # Schedule
@@ -1719,8 +1646,8 @@ def main():
             bp_splits_m.setdefault(tid, {})
             bp_splits_m[tid][side] = (weighted_rate / total_ip) if total_ip > 0 else LG_HR_PA
 
-    # Statcast — rolling L14 window, same start/end as hot_adj's byDateRange (d14/date)
-    sc_by_id = get_statcast(d14, date)
+    # Statcast
+    sc_by_id, sc_by_name = get_statcast(int(yr))
 
     # Weather
     print("→ Fetching weather…", end=" ", flush=True)
@@ -1764,7 +1691,7 @@ def main():
             bp_splits_m.get(b["opp_team_id"]),
             tsm.get(b["opp_team_id"]),
             wmap.get(b["venue"]),
-            sc_by_id,
+            sc_by_id, sc_by_name,
             odds_map,
             ou=ou,
         )
@@ -1813,7 +1740,7 @@ def main():
     os.makedirs("reports", exist_ok=True)
     window_suffix = f"_{args.window}" if args.window else ""
     report_path   = os.path.abspath(f"reports/report_{date}{window_suffix}.html")
-    html = build_report(results, date, bool(odds_map), bool(sc_by_id), len(wmap), bool(args.key),
+    html = build_report(results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key),
                         window=args.window, stats=season_stats, bankroll=args.bankroll, reset_date=reset_date)
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(html)
@@ -1821,7 +1748,7 @@ def main():
     # Combined daily report for GitHub Pages (append this window's section)
     os.makedirs("docs", exist_ok=True)
     combined_path = f"docs/report_{date}.html"
-    append_to_combined(combined_path, results, date, bool(odds_map), bool(sc_by_id), len(wmap), bool(args.key),
+    append_to_combined(combined_path, results, date, bool(odds_map), bool(sc_by_id or sc_by_name), len(wmap), bool(args.key),
                        window=args.window, stats=season_stats, bankroll=args.bankroll, reset_date=reset_date)
     shutil.copy2(combined_path, "docs/index.html")
 

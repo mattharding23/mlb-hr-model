@@ -490,3 +490,184 @@ window, single date, `r_pa` distribution matching the corrected range exactly (m
 entries above 80).
 
 ---
+
+## v4.6 (Aug 12, 2026 – present)
+
+**Status: finalized, Phases 1-3 shipped, Phase 4 (`league_adj`) deliberately held — see below.**
+`archive/v4.5/` holds the complete pre-release snapshot (`mlb_hr_model_v4.5.py`,
+`check_results_v4.5.py`, `picks_v4.5.json` — 2,242 picks, 2026-08-02–2026-08-11); checkpoint
+diagnostics moved to `archive/diagnostics/`. `results/picks.json` reset to `[]`,
+`results/reset_date.txt` set to 2026-08-12 for a clean v4.6 tracking window.
+
+**Trigger:** `archive/diagnostics/v4.5_checkpoint_2026-08-11.md` and its `_rootcause` follow-up
+found `sc_adj` pinned at its 1.15 cap for 94.8% of Bet-tier picks (season-cumulative Statcast
+barely moves day to day, so once a player cleared the cap they stayed flagged for weeks
+regardless of current form), and traced the 0.40/0.20 barrel%/hard-hit% exponents to having never
+been fit to outcome data at all — present unchanged since the very first commit.
+
+**Statcast rework (Phase 1-2, `archive/diagnostics/v4.6_phase1_statcast_refit_2026-08-11.md` +
+`..._v45only_refit_2026-08-11.md` + `..._phase2_step1_2_proposal_2026-08-12.md`):**
+
+1. ~12 logistic-regression specifications (pooled v4.2-v4.5 n=9,791 + per-version + v4.5-only
+   joint/univariate/bootstrap/date-split) attempted to fit independent marginal exponents for
+   `barrel_pct`/`hard_hit_pct` net of the model's other factors (offset-controlled, to isolate
+   incremental signal rather than total association already explained elsewhere). None produced a
+   confidently positive, stable marginal effect; several flipped sign across cuts.
+2. `barrel_pct`/`hard_hit_pct` are weakly correlated with each other (r=0.05-0.08) but each is
+   separately confounded with the model's other factors (r=0.39/0.55 with an offset excluding
+   `sc_adj`) — the data can't support two independently-fit exponents. Collapsed to one
+   equal-weighted geometric-mean "quality of contact" term; confirmed via PCA that the data
+   independently supports equal weighting (first component loads ~[0.71,0.71] given near-zero
+   mutual correlation).
+3. **`SC_GAMMA=0.30` is an explicit, UNANCHORED PLACEHOLDER, not a fitted or validated value.**
+   The one finding that held up across every specification was "no confirmed positive marginal
+   signal," not a specific magnitude — `SC_GAMMA` is a deliberate, round discount (half the old
+   total exponent of 0.60) reflecting that, pending outcome data under this new construction at a
+   future checkpoint. Flagging prominently per explicit instruction, since this is the piece of
+   the release without an independent empirical or structural anchor (see (5) below for what does
+   have one).
+4. First attempt at sizing the cap (`SC_GAMMA`=0.20, cap=1.08) was **circular** — both were chosen
+   by sweeping and picking whichever combination produced an appealing-looking Bet-tier pin-rate
+   reduction (94.8%→27.6%), with the park-factor magnitude comparison computed *afterward* as a
+   post-hoc justification. Caught and corrected before shipping (see
+   `..._phase2_step1_2_proposal_2026-08-12.md`) — re-derived cap independently of any pin-rate
+   check, gamma via a fixed rule stated before looking at outcomes, and reported the resulting
+   pin-rate (86.2% under season-cumulative data) purely as an observation rather than continuing
+   to tune toward it.
+5. **`SC_CAP=1.07` / `SC_FLOOR=0.93` ARE anchored**, unlike `SC_GAMMA`: `ln(SC_CAP)=0.068` matches
+   park_adj's mean `|log-odds|` contribution (0.072) in the v4.5 checkpoint's factor-attribution
+   table — Statcast's worst-case influence is now sized to a modest, already-established factor
+   rather than dominating as the old 1.15 cap did. `SC_FLOOR` is the log-symmetric counterpart
+   (1/`SC_CAP`).
+
+**Rolling L14 window (Phase 3):** `sc_adj`'s data source changed from
+`statcast_batter_exitvelo_barrels()` (season-cumulative leaderboard, no date-range parameter) to
+raw play-level `statcast(start_dt, end_dt)` pulls aggregated to batted-ball events (`type=="X"`)
+ourselves — barrel = `launch_speed_angle==6` (Baseball Savant's own classification), hard-hit =
+`launch_speed>=95`. Verified this reproduces league-average rates matching `LG_BARREL`/
+`LG_HARD_HIT` closely on a live single-day check (7.09% vs 6.7% barrel, 34.3% vs 38.5% hard-hit).
+Window matches `hot_adj`'s existing L14 pattern exactly (same `d14`/`date` variables, no
+deviation). No by-name fallback in the new source — the raw pull's `player_name` column is the
+*pitcher's* name (one row per pitch), unlike the old leaderboard; matching is by MLB player ID
+only now.
+
+**BBE sample size dropped sharply under the rolling window** (live check, 2026-07-28 to
+2026-08-11, 415 qualifying batters leaguewide): median 26 BBE, mean 25.3, range 3-55 — versus the
+season-cumulative distribution `SC_SHRINKAGE_K=100` was originally calibrated against (50-BBE
+pipeline floor / ~200 half-season / 350+ full-time regular, per the v4.5 entry above). At the new
+median (26 BBE), the empirical-Bayes weight `w=n/(n+100)` is only ~0.21 (79% pulled to league
+average) versus ~0.68 average under the old season-cumulative data. **`SC_SHRINKAGE_K` was left
+unchanged this release** (per explicit instruction not to retune based on this check alone) — flagging
+for the next checkpoint that it now looks calibrated for a data source the model no longer uses,
+and is likely over-shrinking relative to what a 14-day-fresh signal probably deserves.
+
+**Pin-rate re-check, reported as an observation, not used to retune `SC_GAMMA`:** Bet-tier at-cap
+rate under the *old* season-cumulative window (already re-derived properly, see item 4 above) was
+86.2%. Under the *new* rolling L14 window (same `SC_GAMMA`=0.30/cap=1.07/floor=0.93, live snapshot
+as of 2026-08-11) it drops to **32.8%** (n=58, all 58 Bet-tier players matched to a current L14
+record) — general leaguewide population (415 batters) sits at 4.6%. **Removing the staleness did
+most of the practical work on its own** — the rolling window, not further `SC_GAMMA` tightening,
+is what took the pin-rate from a near-universal 86-95% down to a real-but-no-longer-dominant ~33%.
+Spot-check against the 13 repeat Bet-tier players and cold-tagged 0-7 subset (all previously
+pinned at exactly `sc_adj=1.15` regardless of actual form): now properly differentiated —
+Esmerlyn Valdez 1.1500→1.0046, Colson Montgomery 1.1500→0.9982, CJ Abrams 1.1500→0.9739 (now
+*below* neutral), full table in `archive/diagnostics/v4.6_phase2_step3_4_report_2026-08-12.md`.
+
+**Note on the pin-rate snapshot method:** the 32.8%/4.6% figures use a single live pull as of
+2026-08-11 (the last diagnostic date), applied to each Bet-tier pick's player once — not a
+per-pick-date historical reconstruction (would require a separate 14-day pull ending on each of
+the ~7 distinct pick dates in the window). Same snapshot-approximation approach used for the
+pre-ASB/post-ASB league-rate check in the root-cause diagnostic; flagged there for the same reason.
+
+**Phase 2 Step 4 (sanity spot-check) result:** all 13 previously-pinned players (all at exactly
+`sc_adj=1.15` under the old construction) confirmed properly differentiated under the new one — 3
+of 13 remained at the (much lower) new cap, 10 of 13 spread across a real range. Re-confirmed again
+at release finalization with a fresh live pull covering all 28 unique Bet-tier players from the
+archived window (not just the original 13): range **0.972–1.070**, only **6 of 28 (21.4%)** at the
+new cap, versus 94.8% under the retired construction. See "Release validation" below.
+
+### Phase 3 — sc_adj / hot_adj interaction rule
+
+Implemented in `run_model()`, immediately after the existing `pitcher_data_missing` downgrade
+(same pattern, same place in the pipeline):
+
+```python
+if hot_adj <= 0.78 and sc_adj > 1.0 and rec == "Bet":
+    rec = "—"
+```
+
+Targets the cold-tagged 0-7 failure mode directly: `0.78` is `hot_adj`'s existing hard floor (same
+value already used for the 🧊 label) — not a new number. `sc_adj > 1.0` is the simplest possible
+"pointing the other direction" test. Historical check against the old (pre-Phase-2) `sc_adj`/
+`hot_adj` values: **6 of 58 Bet-tier picks would have been blocked, all 6 were losses, 0 false
+positives** (no winning pick would have been caught); catches 6 of the 7 known cold-tagged cases
+(misses one at `hot_adj=0.986`, not a real floor case). Considered and rejected a looser threshold
+(would catch that one miss but fire far more on ordinary noise), a soft-damping alternative
+(introduces an unsized new number where the hard downgrade needs none), and a symmetric mirror rule
+for the opposite direction (no observed failure instance to justify it, and Phase 2's floor
+tightening 0.78→0.93 already sharply limits how much a bad Statcast reading can drag down an
+otherwise-hot player). Full design writeup:
+`archive/diagnostics/v4.6_phase3_4_proposal_2026-08-12.md`.
+
+### Phase 4 — league_adj: scoped, investigated, deliberately held (not forgotten)
+
+A uniform, player-independent log-odds addend comparing a trailing short-window league-wide HR/PA
+rate against a long rolling reference (60-90d, explicitly *not* a fixed season-to-date average —
+same staleness failure mode this release exists to fix for `sc_adj`) was designed per the original
+spec. Cap was anchored empirically: pulled the actual L14-vs-L90 HR/PA ratio at 8 biweekly
+checkpoints this season, observed range 0.863–1.190 (wider than the spec's suggested ±10-15%),
+proposed ±15% anyway as a real-but-occasionally-binding cap.
+
+**Held at a follow-up checkpoint on the short-window length.** The original 14-day proposal was
+justified only by consistency with `hot_adj` — flagged as not actually transferring, since
+`hot_adj`'s window length is driven by individual-player sample-size limits that don't apply to a
+league-wide aggregate (thousands of PA/day regardless of window). Recomputed the same 8 checkpoints
+under 7/14/21-day short windows: **direction was stable (all three always agree on which side of
+1.0), but cap-triggering was not — 3 of 8 checkpoints (37.5%) would have gotten a different
+capped/not-capped answer depending purely on window choice** (e.g. 2026-07-29: 7-day reads −20.9%,
+21-day reads −1.9% on the *same date*). 7-day was clearly the noisiest of the three; 14 vs. 21 still
+disagreed on cap status at 2 of 8 checkpoints even so. This didn't resolve to "any reasonable window
+works" — it resolved to a real, unresolved sensitivity. **Decision: do not ship `league_adj` this
+release.** None of the available options (widen/drop the cap, pick 21d on the noise evidence alone,
+blend multiple windows, hold) were well-anchored enough to ship alongside three phases that *are*
+well-anchored. Full sensitivity data: `archive/diagnostics/v4.6_phase4_window_sensitivity_2026-08-12.md`.
+Whoever picks this back up next should start from that file, not from the original 14d proposal in
+`..._phase3_4_proposal_2026-08-12.md`, which is superseded on the window-length question (the cap
+value itself, ±15%, is unaffected by this and can likely be reused).
+
+### Release validation
+
+Same standard as v4.5's launch:
+- **Compile check:** `python3 -m py_compile mlb_hr_model.py` clean throughout.
+- **Harness (7 tests, all pass):** exercised the actual shipped `run_model()`/`get_statcast()`
+  functions (not a parallel hand calculation) — missing-Statcast zero-diff path (`sc_adj` stays
+  exactly 1.0), new combined-term formula matches an independent hand calculation to floating-point
+  precision, cap/floor constants confirmed (`SC_GAMMA=0.30`, `SC_CAP=1.07`, `SC_FLOOR=0.93`,
+  `SC_SHRINKAGE_K=100` unchanged), extreme input clips at the new 1.07 cap (not the old 1.15),
+  Phase 3 rule fires with a genuine qualifying edge (positive control), and correctly does *not*
+  fire in two negative-control cases (hot_adj not floored; hot_adj floored but `sc_adj<=1.0`,
+  i.e. agreement rather than conflict).
+- **Live-slate re-derivation:** ran the full pipeline live for 2026-08-12 (`python3
+  mlb_hr_model.py --debug`) — schedule, lineups, rolling Statcast fetch ("✓ 407 players"), weather,
+  and model all completed without error for 104 players. Live `sc_adj` distribution: min 0.94, p25
+  0.99, median 1.00, p75 1.02, max 1.07 — well-behaved, bounded correctly, no pinning.
+- **28-player spot-check re-confirmed at release time** (see Phase 2 Step 4 result above) using a
+  fresh live pull, not the earlier diagnostic-time snapshot.
+
+### Carried-forward open items for the next checkpoint
+
+1. **`SC_GAMMA=0.30`** — unanchored placeholder, not fitted. Revisit once this construction has its
+   own live outcome data.
+2. **`SC_SHRINKAGE_K=100`** — calibrated against the old season-cumulative BBE scale (~241 median);
+   the new rolling-window scale is much smaller (~26 median), so this constant is likely
+   over-shrinking. Not changed this release; flagged in code comments and here.
+3. **`league_adj`** — designed, cap empirically anchored, but short-window length (7 vs. 14 vs. 21
+   days) unresolved — 37.5% of checkpoints disagreed on cap-triggering across window choices. Held
+   for a future version; see `archive/diagnostics/v4.6_phase4_window_sensitivity_2026-08-12.md`.
+4. **Odds-cap gate protective value** — tracked since v4.3/v4.4, sign has flipped checkpoint to
+   checkpoint (neutral → harmful → helpful) on samples of 47-109 gated picks each; still not a
+   stable enough read to act on.
+5. **`bp_data_missing`** — ~11% of the `model_prob>15%` population in the v4.5 checkpoint had no
+   bullpen split data (defaults to league average), a structural gap not addressed by this release.
+
+---
