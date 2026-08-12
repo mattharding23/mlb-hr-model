@@ -110999,12 +110999,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.3,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111059,12 +111059,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.03,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111119,12 +111119,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": true,
+    "units_returned": 0.1127,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111179,12 +111179,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.4,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0233,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111239,12 +111239,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0214,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111299,12 +111299,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0213,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111359,12 +111359,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0207,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111419,12 +111419,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111479,12 +111479,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0165,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111539,12 +111539,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0161,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111599,12 +111599,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
-    "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "result": false,
+    "units_returned": -0.0155,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111659,12 +111659,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111719,12 +111719,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111779,12 +111779,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111839,12 +111839,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111899,12 +111899,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -111959,12 +111959,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112019,12 +112019,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112079,12 +112079,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112139,12 +112139,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112199,12 +112199,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112259,12 +112259,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112319,12 +112319,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112379,12 +112379,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112439,12 +112439,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112499,12 +112499,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112559,12 +112559,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112619,12 +112619,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112679,12 +112679,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 1
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112739,12 +112739,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112799,12 +112799,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112859,12 +112859,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112919,12 +112919,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -112979,12 +112979,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113039,12 +113039,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113099,12 +113099,12 @@
       "game_ou": 8.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113159,12 +113159,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113219,12 +113219,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113279,12 +113279,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113339,12 +113339,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113399,12 +113399,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113459,12 +113459,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113519,12 +113519,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113579,12 +113579,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113639,12 +113639,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113699,12 +113699,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113759,12 +113759,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113819,12 +113819,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113879,12 +113879,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113939,12 +113939,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -113999,12 +113999,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114059,12 +114059,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114119,12 +114119,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114179,12 +114179,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114239,12 +114239,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114299,12 +114299,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114359,12 +114359,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114419,12 +114419,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114479,12 +114479,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114539,12 +114539,12 @@
       "game_ou": 8.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114599,12 +114599,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114659,12 +114659,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114719,12 +114719,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114779,12 +114779,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114839,12 +114839,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114899,12 +114899,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -114959,12 +114959,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115019,12 +115019,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115079,12 +115079,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115139,12 +115139,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115199,12 +115199,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115259,12 +115259,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115319,12 +115319,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115379,12 +115379,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115439,12 +115439,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115499,12 +115499,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115559,12 +115559,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115619,12 +115619,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115679,12 +115679,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115739,12 +115739,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115799,12 +115799,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115859,12 +115859,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115919,12 +115919,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -115979,12 +115979,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116039,12 +116039,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116099,12 +116099,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116159,12 +116159,12 @@
       "game_ou": 8.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116219,12 +116219,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116279,12 +116279,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116339,12 +116339,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116399,12 +116399,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116459,12 +116459,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116519,12 +116519,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116579,12 +116579,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116639,12 +116639,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116699,12 +116699,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116759,12 +116759,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116819,12 +116819,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116879,12 +116879,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116939,12 +116939,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -116999,12 +116999,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117059,12 +117059,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117119,12 +117119,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117179,12 +117179,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117239,12 +117239,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117299,12 +117299,12 @@
       "game_ou": 7.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117359,12 +117359,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117419,12 +117419,12 @@
       "game_ou": 8.0,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117479,12 +117479,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 1
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117539,12 +117539,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117599,12 +117599,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117659,12 +117659,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117719,12 +117719,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117779,12 +117779,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117839,12 +117839,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117899,12 +117899,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -117959,12 +117959,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.2,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118019,12 +118019,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118079,12 +118079,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118139,12 +118139,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118199,12 +118199,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118259,12 +118259,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118319,12 +118319,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118379,12 +118379,12 @@
       "game_ou": 7.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118439,12 +118439,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118499,12 +118499,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118559,12 +118559,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118619,12 +118619,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118679,12 +118679,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118739,12 +118739,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118799,12 +118799,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118859,12 +118859,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118919,12 +118919,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -118979,12 +118979,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119039,12 +119039,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119099,12 +119099,12 @@
       "game_ou": 9.0,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119159,12 +119159,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119219,12 +119219,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119279,12 +119279,12 @@
       "game_ou": 9.0,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119339,12 +119339,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119399,12 +119399,12 @@
       "game_ou": 8.0,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119459,12 +119459,12 @@
       "game_ou": 7.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119508,12 +119508,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": true,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119557,12 +119557,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119606,12 +119606,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 2
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119655,12 +119655,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119704,12 +119704,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119753,12 +119753,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119802,12 +119802,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119851,12 +119851,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119900,12 +119900,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119949,12 +119949,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -119998,12 +119998,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120047,12 +120047,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120096,12 +120096,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120145,12 +120145,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120194,12 +120194,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120243,12 +120243,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120292,12 +120292,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120341,12 +120341,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120390,12 +120390,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120439,12 +120439,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120488,12 +120488,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120537,12 +120537,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120586,12 +120586,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120635,12 +120635,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120684,12 +120684,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120733,12 +120733,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120782,12 +120782,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120831,12 +120831,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.3,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120880,12 +120880,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120929,12 +120929,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -120978,12 +120978,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121027,12 +121027,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121076,12 +121076,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121125,12 +121125,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.1,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121174,12 +121174,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121223,12 +121223,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121272,12 +121272,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121321,12 +121321,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121370,12 +121370,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121419,12 +121419,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121468,12 +121468,12 @@
       "game_ou": 7.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121517,12 +121517,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.4,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121566,12 +121566,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121615,12 +121615,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.5,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121664,12 +121664,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121713,12 +121713,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121762,12 +121762,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121811,12 +121811,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121860,12 +121860,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.7,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121909,12 +121909,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -121958,12 +121958,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.9,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -122007,12 +122007,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 3
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -122056,12 +122056,12 @@
       "game_ou": 8.5,
       "proj_pa": 3.8,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -122105,12 +122105,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.6,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 5
     },
-    "result": null,
+    "result": true,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -122154,12 +122154,12 @@
       "game_ou": 8.5,
       "proj_pa": 4.0,
       "per_pa_capped": false,
-      "actual_pa": null
+      "actual_pa": 4
     },
-    "result": null,
+    "result": false,
     "units_returned": null,
-    "resolved_at": null,
-    "counts_toward_roi": null
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
   },
   {
     "date": "2026-08-11",
@@ -122202,6 +122202,2046 @@
       "wind_adj": 1.0,
       "game_ou": 8.5,
       "proj_pa": 3.8,
+      "per_pa_capped": false,
+      "actual_pa": 3
+    },
+    "result": false,
+    "units_returned": null,
+    "resolved_at": "2026-08-12T14:20:17Z",
+    "counts_toward_roi": true
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Pete Alonso",
+    "player_id": 624413,
+    "game_pk": 823672,
+    "team": "BAL",
+    "batting_order": 2,
+    "lineup_confirmed": true,
+    "model_prob": 0.3139,
+    "fair_line": "+219",
+    "best_odds": 330,
+    "best_book": "Caesars",
+    "edge": 0.0999,
+    "recommendation": "Bet",
+    "kelly_fraction": 0.1059,
+    "quarter_kelly": 0.0265,
+    "units_staked": 0.0265,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 330
+    },
+    "factors": {
+      "barrel_pct": 0.141,
+      "hard_hit_pct": 0.564,
+      "sc_bbe": 326,
+      "season_rate": 0.05,
+      "s_pa": 369,
+      "s_hr": 20,
+      "r_pa": 50,
+      "r_hr": 4,
+      "split_adj": 1.0462,
+      "hot_adj": 1.28,
+      "sc_adj": 1.15,
+      "sp_adj": 1.1317,
+      "sp_data_missing": false,
+      "bp_adj": 0.9597,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.6,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Bryce Harper",
+    "player_id": 547180,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 3,
+    "lineup_confirmed": true,
+    "model_prob": 0.2587,
+    "fair_line": "+287",
+    "best_odds": 400,
+    "best_book": "Caesars",
+    "edge": 0.0747,
+    "recommendation": "Bet",
+    "kelly_fraction": 0.0733,
+    "quarter_kelly": 0.0183,
+    "units_staked": 0.0183,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 400
+    },
+    "factors": {
+      "barrel_pct": 0.115,
+      "hard_hit_pct": 0.449,
+      "sc_bbe": 323,
+      "season_rate": 0.0486,
+      "s_pa": 320,
+      "s_hr": 21,
+      "r_pa": 59,
+      "r_hr": 3,
+      "split_adj": 1.1921,
+      "hot_adj": 1.0271,
+      "sc_adj": 1.15,
+      "sp_adj": 0.9622,
+      "sp_data_missing": false,
+      "bp_adj": 0.9499,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.5,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Alec Burleson",
+    "player_id": 676475,
+    "game_pk": 823017,
+    "team": "STL",
+    "batting_order": 3,
+    "lineup_confirmed": true,
+    "model_prob": 0.238,
+    "fair_line": "+320",
+    "best_odds": 425,
+    "best_book": "Caesars",
+    "edge": 0.0628,
+    "recommendation": "Bet",
+    "kelly_fraction": 0.0587,
+    "quarter_kelly": 0.0147,
+    "units_staked": 0.0147,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 425
+    },
+    "factors": {
+      "barrel_pct": 0.115,
+      "hard_hit_pct": 0.491,
+      "sc_bbe": 373,
+      "season_rate": 0.0377,
+      "s_pa": 351,
+      "s_hr": 16,
+      "r_pa": 55,
+      "r_hr": 4,
+      "split_adj": 1.115,
+      "hot_adj": 1.28,
+      "sc_adj": 1.15,
+      "sp_adj": 0.9843,
+      "sp_data_missing": false,
+      "bp_adj": 0.9517,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.5,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Trea Turner",
+    "player_id": 607208,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 2,
+    "lineup_confirmed": true,
+    "model_prob": 0.1751,
+    "fair_line": "+471",
+    "best_odds": 575,
+    "best_book": "Caesars",
+    "edge": 0.0388,
+    "recommendation": "\u2014",
+    "kelly_fraction": 0.0316,
+    "quarter_kelly": 0.0079,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 575
+    },
+    "factors": {
+      "barrel_pct": 0.065,
+      "hard_hit_pct": 0.403,
+      "sc_bbe": 372,
+      "season_rate": 0.0327,
+      "s_pa": 352,
+      "s_hr": 14,
+      "r_pa": 56,
+      "r_hr": 3,
+      "split_adj": 1.1191,
+      "hot_adj": 1.28,
+      "sc_adj": 0.9977,
+      "sp_adj": 0.838,
+      "sp_data_missing": false,
+      "bp_adj": 0.9432,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.5,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Josh Bell",
+    "player_id": 605137,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 3,
+    "lineup_confirmed": true,
+    "model_prob": 0.1836,
+    "fair_line": "+445",
+    "best_odds": 500,
+    "best_book": "Caesars",
+    "edge": 0.0303,
+    "recommendation": "\u2014",
+    "kelly_fraction": 0.0203,
+    "quarter_kelly": 0.0051,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 500
+    },
+    "factors": {
+      "barrel_pct": 0.103,
+      "hard_hit_pct": 0.418,
+      "sc_bbe": 330,
+      "season_rate": 0.034,
+      "s_pa": 316,
+      "s_hr": 11,
+      "r_pa": 53,
+      "r_hr": 3,
+      "split_adj": 1.0124,
+      "hot_adj": 1.28,
+      "sc_adj": 1.15,
+      "sp_adj": 0.7803,
+      "sp_data_missing": false,
+      "bp_adj": 1.0,
+      "bp_data_missing": true,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.5,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Brooks Lee",
+    "player_id": 686797,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 5,
+    "lineup_confirmed": true,
+    "model_prob": 0.1296,
+    "fair_line": "+672",
+    "best_odds": 700,
+    "best_book": "Caesars",
+    "edge": 0.0146,
+    "recommendation": "\u2014",
+    "kelly_fraction": 0.0052,
+    "quarter_kelly": 0.0013,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 700
+    },
+    "factors": {
+      "barrel_pct": 0.037,
+      "hard_hit_pct": 0.318,
+      "sc_bbe": 352,
+      "season_rate": 0.0368,
+      "s_pa": 315,
+      "s_hr": 14,
+      "r_pa": 48,
+      "r_hr": 2,
+      "split_adj": 1.1143,
+      "hot_adj": 1.0722,
+      "sc_adj": 0.8182,
+      "sp_adj": 0.7803,
+      "sp_data_missing": false,
+      "bp_adj": 1.0,
+      "bp_data_missing": true,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.3,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Brandon Marsh",
+    "player_id": 669016,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 6,
+    "lineup_confirmed": true,
+    "model_prob": 0.1173,
+    "fair_line": "+752",
+    "best_odds": 750,
+    "best_book": "Caesars",
+    "edge": 0.0091,
+    "recommendation": "\u2014",
+    "kelly_fraction": 0,
+    "quarter_kelly": 0.0,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 750
+    },
+    "factors": {
+      "barrel_pct": 0.083,
+      "hard_hit_pct": 0.455,
+      "sc_bbe": 314,
+      "season_rate": 0.0349,
+      "s_pa": 343,
+      "s_hr": 13,
+      "r_pa": 54,
+      "r_hr": 0,
+      "split_adj": 1.048,
+      "hot_adj": 0.78,
+      "sc_adj": 1.0968,
+      "sp_adj": 0.9622,
+      "sp_data_missing": false,
+      "bp_adj": 0.9499,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.0,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Tyler O'Neill",
+    "player_id": 641933,
+    "game_pk": 823672,
+    "team": "BAL",
+    "batting_order": 4,
+    "lineup_confirmed": true,
+    "model_prob": 0.1951,
+    "fair_line": "+413",
+    "best_odds": 390,
+    "best_book": "Caesars",
+    "edge": 0.0074,
+    "recommendation": "\u2014",
+    "kelly_fraction": 0,
+    "quarter_kelly": 0.0,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 390
+    },
+    "factors": {
+      "barrel_pct": 0.094,
+      "hard_hit_pct": 0.424,
+      "sc_bbe": 139,
+      "season_rate": 0.0435,
+      "s_pa": 120,
+      "s_hr": 2,
+      "r_pa": 33,
+      "r_hr": 3,
+      "split_adj": 0.75,
+      "hot_adj": 1.28,
+      "sc_adj": 1.1004,
+      "sp_adj": 1.1317,
+      "sp_data_missing": false,
+      "bp_adj": 0.9597,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.5,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Jimmy Crooks",
+    "player_id": 699625,
+    "game_pk": 823017,
+    "team": "STL",
+    "batting_order": 9,
+    "lineup_confirmed": true,
+    "model_prob": 0.1205,
+    "fair_line": "+730",
+    "best_odds": 700,
+    "best_book": "Caesars",
+    "edge": 0.0055,
+    "recommendation": "\u2014",
+    "kelly_fraction": 0,
+    "quarter_kelly": 0.0,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 700
+    },
+    "factors": {
+      "barrel_pct": 0.086,
+      "hard_hit_pct": 0.471,
+      "sc_bbe": 70,
+      "season_rate": 0.0339,
+      "s_pa": 104,
+      "s_hr": 3,
+      "r_pa": 27,
+      "r_hr": 1,
+      "split_adj": 0.918,
+      "hot_adj": 1.0373,
+      "sc_adj": 1.0637,
+      "sp_adj": 0.9843,
+      "sp_data_missing": false,
+      "bp_adj": 0.9517,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 3.8,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Jordan Walker",
+    "player_id": 691023,
+    "game_pk": 823017,
+    "team": "STL",
+    "batting_order": 4,
+    "lineup_confirmed": true,
+    "model_prob": 0.156,
+    "fair_line": "+541",
+    "best_odds": 500,
+    "best_book": "Caesars",
+    "edge": 0.0027,
+    "recommendation": "\u2014",
+    "kelly_fraction": 0,
+    "quarter_kelly": 0.0,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 500
+    },
+    "factors": {
+      "barrel_pct": 0.133,
+      "hard_hit_pct": 0.473,
+      "sc_bbe": 332,
+      "season_rate": 0.0465,
+      "s_pa": 366,
+      "s_hr": 16,
+      "r_pa": 49,
+      "r_hr": 1,
+      "split_adj": 0.9675,
+      "hot_adj": 0.78,
+      "sc_adj": 1.15,
+      "sp_adj": 0.9187,
+      "sp_data_missing": false,
+      "bp_adj": 0.9451,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.4,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Nathan Church",
+    "player_id": 701675,
+    "game_pk": 823017,
+    "team": "STL",
+    "batting_order": 5,
+    "lineup_confirmed": true,
+    "model_prob": 0.0932,
+    "fair_line": "+973",
+    "best_odds": 850,
+    "best_book": "Caesars",
+    "edge": -0.0037,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 850
+    },
+    "factors": {
+      "barrel_pct": 0.069,
+      "hard_hit_pct": 0.317,
+      "sc_bbe": 246,
+      "season_rate": 0.027,
+      "s_pa": 261,
+      "s_hr": 7,
+      "r_pa": 48,
+      "r_hr": 1,
+      "split_adj": 0.9958,
+      "hot_adj": 0.875,
+      "sc_adj": 0.9817,
+      "sp_adj": 0.9843,
+      "sp_data_missing": false,
+      "bp_adj": 0.9517,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.2,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Kyle Schwarber",
+    "player_id": 656941,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 1,
+    "lineup_confirmed": true,
+    "model_prob": 0.2541,
+    "fair_line": "+294",
+    "best_odds": 255,
+    "best_book": "Caesars",
+    "edge": -0.0051,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 255
+    },
+    "factors": {
+      "barrel_pct": 0.175,
+      "hard_hit_pct": 0.524,
+      "sc_bbe": 252,
+      "season_rate": 0.0684,
+      "s_pa": 323,
+      "s_hr": 23,
+      "r_pa": 55,
+      "r_hr": 2,
+      "split_adj": 1.0229,
+      "hot_adj": 0.78,
+      "sc_adj": 1.15,
+      "sp_adj": 0.9622,
+      "sp_data_missing": false,
+      "bp_adj": 0.9499,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.7,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Royce Lewis",
+    "player_id": 668904,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 2,
+    "lineup_confirmed": true,
+    "model_prob": 0.19,
+    "fair_line": "+426",
+    "best_odds": 370,
+    "best_book": "Caesars",
+    "edge": -0.0058,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 370
+    },
+    "factors": {
+      "barrel_pct": 0.123,
+      "hard_hit_pct": 0.427,
+      "sc_bbe": 227,
+      "season_rate": 0.0369,
+      "s_pa": 256,
+      "s_hr": 9,
+      "r_pa": 55,
+      "r_hr": 3,
+      "split_adj": 0.9736,
+      "hot_adj": 1.2761,
+      "sc_adj": 1.15,
+      "sp_adj": 0.7803,
+      "sp_data_missing": false,
+      "bp_adj": 0.9504,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.6,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Kody Clemens",
+    "player_id": 665019,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 4,
+    "lineup_confirmed": true,
+    "model_prob": 0.1684,
+    "fair_line": "+494",
+    "best_odds": 425,
+    "best_book": "Caesars",
+    "edge": -0.0069,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 425
+    },
+    "factors": {
+      "barrel_pct": 0.115,
+      "hard_hit_pct": 0.456,
+      "sc_bbe": 296,
+      "season_rate": 0.0472,
+      "s_pa": 319,
+      "s_hr": 15,
+      "r_pa": 50,
+      "r_hr": 2,
+      "split_adj": 0.9983,
+      "hot_adj": 0.9156,
+      "sc_adj": 1.15,
+      "sp_adj": 0.7631,
+      "sp_data_missing": false,
+      "bp_adj": 0.8969,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.5,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Trevor Larnach",
+    "player_id": 663616,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 1,
+    "lineup_confirmed": true,
+    "model_prob": 0.1287,
+    "fair_line": "+677",
+    "best_odds": 575,
+    "best_book": "Caesars",
+    "edge": -0.0076,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 575
+    },
+    "factors": {
+      "barrel_pct": 0.076,
+      "hard_hit_pct": 0.359,
+      "sc_bbe": 251,
+      "season_rate": 0.028,
+      "s_pa": 311,
+      "s_hr": 8,
+      "r_pa": 38,
+      "r_hr": 2,
+      "split_adj": 0.9551,
+      "hot_adj": 1.28,
+      "sc_adj": 1.0272,
+      "sp_adj": 0.7631,
+      "sp_data_missing": false,
+      "bp_adj": 0.8969,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.8,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Jackson Holliday",
+    "player_id": 702616,
+    "game_pk": 823672,
+    "team": "BAL",
+    "batting_order": 3,
+    "lineup_confirmed": true,
+    "model_prob": 0.1162,
+    "fair_line": "+761",
+    "best_odds": 625,
+    "best_book": "Caesars",
+    "edge": -0.0107,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 625
+    },
+    "factors": {
+      "barrel_pct": 0.079,
+      "hard_hit_pct": 0.367,
+      "sc_bbe": 139,
+      "season_rate": 0.0265,
+      "s_pa": 174,
+      "s_hr": 5,
+      "r_pa": 45,
+      "r_hr": 1,
+      "split_adj": 1.0453,
+      "hot_adj": 0.9137,
+      "sc_adj": 1.0347,
+      "sp_adj": 1.0659,
+      "sp_data_missing": false,
+      "bp_adj": 0.9948,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.5,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Luis Arraez",
+    "player_id": 650333,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 4,
+    "lineup_confirmed": true,
+    "model_prob": 0.0641,
+    "fair_line": "+1460",
+    "best_odds": 1100,
+    "best_book": "Caesars",
+    "edge": -0.0126,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 1100
+    },
+    "factors": {
+      "barrel_pct": 0.9,
+      "hard_hit_pct": 0.196,
+      "sc_bbe": 449,
+      "season_rate": 0.01,
+      "s_pa": 355,
+      "s_hr": 4,
+      "r_pa": 56,
+      "r_hr": 1,
+      "split_adj": 1.0722,
+      "hot_adj": 1.28,
+      "sc_adj": 1.15,
+      "sp_adj": 0.9622,
+      "sp_data_missing": false,
+      "bp_adj": 0.9499,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.4,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Christian Encarnacion-Strand",
+    "player_id": 687952,
+    "game_pk": 823672,
+    "team": "BAL",
+    "batting_order": 6,
+    "lineup_confirmed": true,
+    "model_prob": 0.162,
+    "fair_line": "+517",
+    "best_odds": 400,
+    "best_book": "Caesars",
+    "edge": -0.022,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 400
+    },
+    "factors": {
+      "barrel_pct": null,
+      "hard_hit_pct": null,
+      "sc_bbe": null,
+      "season_rate": 0.0615,
+      "s_pa": 40,
+      "s_hr": 1,
+      "r_pa": 35,
+      "r_hr": 1,
+      "split_adj": 0.8173,
+      "hot_adj": 0.78,
+      "sc_adj": 1.0,
+      "sp_adj": 1.1317,
+      "sp_data_missing": false,
+      "bp_adj": 0.9597,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.1,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Leody Taveras",
+    "player_id": 665750,
+    "game_pk": 823672,
+    "team": "BAL",
+    "batting_order": 7,
+    "lineup_confirmed": true,
+    "model_prob": 0.0867,
+    "fair_line": "+1054",
+    "best_odds": 700,
+    "best_book": "Caesars",
+    "edge": -0.0283,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 700
+    },
+    "factors": {
+      "barrel_pct": 0.047,
+      "hard_hit_pct": 0.309,
+      "sc_bbe": 236,
+      "season_rate": 0.0166,
+      "s_pa": 247,
+      "s_hr": 5,
+      "r_pa": 35,
+      "r_hr": 1,
+      "split_adj": 1.1217,
+      "hot_adj": 1.28,
+      "sc_adj": 0.8834,
+      "sp_adj": 1.1317,
+      "sp_data_missing": false,
+      "bp_adj": 1.0,
+      "bp_data_missing": true,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.0,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "JJ Wetherholt",
+    "player_id": 802139,
+    "game_pk": 823017,
+    "team": "STL",
+    "batting_order": 1,
+    "lineup_confirmed": true,
+    "model_prob": 0.1158,
+    "fair_line": "+763",
+    "best_odds": 525,
+    "best_book": "Caesars",
+    "edge": -0.0314,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 525
+    },
+    "factors": {
+      "barrel_pct": 0.074,
+      "hard_hit_pct": 0.444,
+      "sc_bbe": 364,
+      "season_rate": 0.031,
+      "s_pa": 331,
+      "s_hr": 11,
+      "r_pa": 56,
+      "r_hr": 1,
+      "split_adj": 1.0395,
+      "hot_adj": 0.78,
+      "sc_adj": 1.0557,
+      "sp_adj": 0.9843,
+      "sp_data_missing": false,
+      "bp_adj": 0.9517,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.7,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Ryan Kreidler",
+    "player_id": 668952,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 9,
+    "lineup_confirmed": true,
+    "model_prob": 0.0749,
+    "fair_line": "+1236",
+    "best_odds": 750,
+    "best_book": "Caesars",
+    "edge": -0.0334,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 750
+    },
+    "factors": {
+      "barrel_pct": 0.078,
+      "hard_hit_pct": 0.366,
+      "sc_bbe": 153,
+      "season_rate": 0.0239,
+      "s_pa": 119,
+      "s_hr": 4,
+      "r_pa": 32,
+      "r_hr": 0,
+      "split_adj": 1.2228,
+      "hot_adj": 0.78,
+      "sc_adj": 1.0323,
+      "sp_adj": 0.7803,
+      "sp_data_missing": false,
+      "bp_adj": 0.9504,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 3.8,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Iv\u00e1n Herrera",
+    "player_id": 671056,
+    "game_pk": 823017,
+    "team": "STL",
+    "batting_order": 2,
+    "lineup_confirmed": true,
+    "model_prob": 0.0759,
+    "fair_line": "+1217",
+    "best_odds": 700,
+    "best_book": "Caesars",
+    "edge": -0.0391,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 700
+    },
+    "factors": {
+      "barrel_pct": 0.056,
+      "hard_hit_pct": 0.413,
+      "sc_bbe": 359,
+      "season_rate": 0.0245,
+      "s_pa": 367,
+      "s_hr": 8,
+      "r_pa": 58,
+      "r_hr": 1,
+      "split_adj": 0.9388,
+      "hot_adj": 0.8242,
+      "sc_adj": 0.957,
+      "sp_adj": 0.9187,
+      "sp_data_missing": false,
+      "bp_adj": 0.9451,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.5,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Jos\u00e9 Ferm\u00edn",
+    "player_id": 665877,
+    "game_pk": 823017,
+    "team": "STL",
+    "batting_order": 8,
+    "lineup_confirmed": true,
+    "model_prob": 0.0376,
+    "fair_line": "+2560",
+    "best_odds": 1100,
+    "best_book": "Caesars",
+    "edge": -0.0391,
+    "recommendation": "\u2014",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 1100
+    },
+    "factors": {
+      "barrel_pct": 0.021,
+      "hard_hit_pct": 0.328,
+      "sc_bbe": 195,
+      "season_rate": 0.0198,
+      "s_pa": 134,
+      "s_hr": 2,
+      "r_pa": 43,
+      "r_hr": 0,
+      "split_adj": 0.8637,
+      "hot_adj": 0.78,
+      "sc_adj": 0.78,
+      "sp_adj": 0.9187,
+      "sp_data_missing": false,
+      "bp_adj": 0.9451,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 3.9,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "J.T. Realmuto",
+    "player_id": 592663,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 7,
+    "lineup_confirmed": true,
+    "model_prob": 0.083,
+    "fair_line": "+1105",
+    "best_odds": 625,
+    "best_book": "Caesars",
+    "edge": -0.0439,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 625
+    },
+    "factors": {
+      "barrel_pct": 0.048,
+      "hard_hit_pct": 0.407,
+      "sc_bbe": 231,
+      "season_rate": 0.024,
+      "s_pa": 253,
+      "s_hr": 7,
+      "r_pa": 41,
+      "r_hr": 1,
+      "split_adj": 1.0834,
+      "hot_adj": 1.0077,
+      "sc_adj": 0.9228,
+      "sp_adj": 0.838,
+      "sp_data_missing": false,
+      "bp_adj": 0.9432,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.0,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Victor Caratini",
+    "player_id": 605170,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 7,
+    "lineup_confirmed": true,
+    "model_prob": 0.0602,
+    "fair_line": "+1562",
+    "best_odds": 750,
+    "best_book": "Caesars",
+    "edge": -0.0481,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 750
+    },
+    "factors": {
+      "barrel_pct": 0.065,
+      "hard_hit_pct": 0.394,
+      "sc_bbe": 216,
+      "season_rate": 0.0217,
+      "s_pa": 217,
+      "s_hr": 5,
+      "r_pa": 30,
+      "r_hr": 0,
+      "split_adj": 1.0348,
+      "hot_adj": 0.78,
+      "sc_adj": 0.9949,
+      "sp_adj": 0.7803,
+      "sp_data_missing": false,
+      "bp_adj": 1.0,
+      "bp_data_missing": true,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.0,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Alec Bohm",
+    "player_id": 664761,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 8,
+    "lineup_confirmed": true,
+    "model_prob": 0.06,
+    "fair_line": "+1568",
+    "best_odds": 750,
+    "best_book": "Caesars",
+    "edge": -0.0483,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 750
+    },
+    "factors": {
+      "barrel_pct": 0.052,
+      "hard_hit_pct": 0.416,
+      "sc_bbe": 365,
+      "season_rate": 0.0277,
+      "s_pa": 331,
+      "s_hr": 7,
+      "r_pa": 50,
+      "r_hr": 0,
+      "split_adj": 0.8705,
+      "hot_adj": 0.78,
+      "sc_adj": 0.937,
+      "sp_adj": 0.838,
+      "sp_data_missing": false,
+      "bp_adj": 0.9432,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 3.9,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Bryson Stott",
+    "player_id": 681082,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 5,
+    "lineup_confirmed": true,
+    "model_prob": 0.0595,
+    "fair_line": "+1581",
+    "best_odds": 750,
+    "best_book": "Caesars",
+    "edge": -0.0488,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 750
+    },
+    "factors": {
+      "barrel_pct": 0.065,
+      "hard_hit_pct": 0.406,
+      "sc_bbe": 325,
+      "season_rate": 0.0178,
+      "s_pa": 352,
+      "s_hr": 7,
+      "r_pa": 55,
+      "r_hr": 0,
+      "split_adj": 1.0639,
+      "hot_adj": 0.78,
+      "sc_adj": 0.9989,
+      "sp_adj": 0.9622,
+      "sp_data_missing": false,
+      "bp_adj": 0.9499,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.2,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Masyn Winn",
+    "player_id": 691026,
+    "game_pk": 823017,
+    "team": "STL",
+    "batting_order": 6,
+    "lineup_confirmed": true,
+    "model_prob": 0.0248,
+    "fair_line": "+3928",
+    "best_odds": 1100,
+    "best_book": "Caesars",
+    "edge": -0.0518,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 1100
+    },
+    "factors": {
+      "barrel_pct": 0.032,
+      "hard_hit_pct": 0.351,
+      "sc_bbe": 316,
+      "season_rate": 0.0088,
+      "s_pa": 339,
+      "s_hr": 4,
+      "r_pa": 50,
+      "r_hr": 0,
+      "split_adj": 1.1882,
+      "hot_adj": 0.78,
+      "sc_adj": 0.8057,
+      "sp_adj": 0.9187,
+      "sp_data_missing": false,
+      "bp_adj": 0.9451,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 4.0,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Gunnar Henderson",
+    "player_id": 683002,
+    "game_pk": 823672,
+    "team": "BAL",
+    "batting_order": 1,
+    "lineup_confirmed": true,
+    "model_prob": 0.1341,
+    "fair_line": "+646",
+    "best_odds": 390,
+    "best_book": "Caesars",
+    "edge": -0.0537,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 390
+    },
+    "factors": {
+      "barrel_pct": 0.075,
+      "hard_hit_pct": 0.457,
+      "sc_bbe": 361,
+      "season_rate": 0.0352,
+      "s_pa": 373,
+      "s_hr": 13,
+      "r_pa": 50,
+      "r_hr": 1,
+      "split_adj": 0.9948,
+      "hot_adj": 0.78,
+      "sc_adj": 1.0651,
+      "sp_adj": 1.0659,
+      "sp_data_missing": false,
+      "bp_adj": 0.9948,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.8,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Luke Keaschall",
+    "player_id": 807712,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 6,
+    "lineup_confirmed": true,
+    "model_prob": 0.0525,
+    "fair_line": "+1805",
+    "best_odds": 750,
+    "best_book": "Caesars",
+    "edge": -0.0557,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 750
+    },
+    "factors": {
+      "barrel_pct": 0.032,
+      "hard_hit_pct": 0.286,
+      "sc_bbe": 315,
+      "season_rate": 0.0136,
+      "s_pa": 302,
+      "s_hr": 5,
+      "r_pa": 49,
+      "r_hr": 2,
+      "split_adj": 1.1193,
+      "hot_adj": 1.28,
+      "sc_adj": 0.7824,
+      "sp_adj": 0.7803,
+      "sp_data_missing": false,
+      "bp_adj": 0.9504,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.1,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Carlos Narv\u00e1ez",
+    "player_id": 665966,
+    "game_pk": 823672,
+    "team": "BAL",
+    "batting_order": 9,
+    "lineup_confirmed": true,
+    "model_prob": 0.0492,
+    "fair_line": "+1934",
+    "best_odds": 750,
+    "best_book": "Caesars",
+    "edge": -0.0591,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 750
+    },
+    "factors": {
+      "barrel_pct": 0.072,
+      "hard_hit_pct": 0.36,
+      "sc_bbe": 125,
+      "season_rate": 0.0137,
+      "s_pa": 170,
+      "s_hr": 3,
+      "r_pa": 32,
+      "r_hr": 0,
+      "split_adj": 1.1585,
+      "hot_adj": 0.78,
+      "sc_adj": 1.0089,
+      "sp_adj": 1.1317,
+      "sp_data_missing": false,
+      "bp_adj": 0.9597,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 3.8,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Justin Crawford",
+    "player_id": 702222,
+    "game_pk": 823017,
+    "team": "PHI",
+    "batting_order": 9,
+    "lineup_confirmed": true,
+    "model_prob": 0.0136,
+    "fair_line": "+7249",
+    "best_odds": 1100,
+    "best_book": "Caesars",
+    "edge": -0.0631,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 1100
+    },
+    "factors": {
+      "barrel_pct": 0.015,
+      "hard_hit_pct": 0.351,
+      "sc_bbe": 265,
+      "season_rate": 0.0056,
+      "s_pa": 301,
+      "s_hr": 2,
+      "r_pa": 43,
+      "r_hr": 0,
+      "split_adj": 1.0987,
+      "hot_adj": 0.78,
+      "sc_adj": 0.78,
+      "sp_adj": 0.9622,
+      "sp_data_missing": false,
+      "bp_adj": 0.9499,
+      "bp_data_missing": false,
+      "park_adj": 0.97,
+      "temp_adj": 1.0415,
+      "wind_adj": 1.0,
+      "game_ou": 8.0,
+      "proj_pa": 3.8,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Alan Roden",
+    "player_id": 702176,
+    "game_pk": 823672,
+    "team": "MIN",
+    "batting_order": 8,
+    "lineup_confirmed": true,
+    "model_prob": 0.0039,
+    "fair_line": "+9900",
+    "best_odds": 950,
+    "best_book": "Caesars",
+    "edge": -0.0837,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 950
+    },
+    "factors": {
+      "barrel_pct": null,
+      "hard_hit_pct": null,
+      "sc_bbe": null,
+      "season_rate": 0.0,
+      "s_pa": 54,
+      "s_hr": 0,
+      "r_pa": 0,
+      "r_hr": 0,
+      "split_adj": 1.0,
+      "hot_adj": 1.0,
+      "sc_adj": 1.0,
+      "sp_adj": 0.7631,
+      "sp_data_missing": false,
+      "bp_adj": 0.8969,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 3.9,
+      "per_pa_capped": false,
+      "actual_pa": null
+    },
+    "result": null,
+    "units_returned": null,
+    "resolved_at": null,
+    "counts_toward_roi": null
+  },
+  {
+    "date": "2026-08-12",
+    "window": "early",
+    "player": "Dylan Beavers",
+    "player_id": 687637,
+    "game_pk": 823672,
+    "team": "BAL",
+    "batting_order": 5,
+    "lineup_confirmed": true,
+    "model_prob": 0.0331,
+    "fair_line": "+2923",
+    "best_odds": 625,
+    "best_book": "Caesars",
+    "edge": -0.0938,
+    "recommendation": "Skip",
+    "kelly_fraction": null,
+    "quarter_kelly": null,
+    "units_staked": null,
+    "gate_failed": null,
+    "book_corroboration": {
+      "corroborated": false,
+      "n_corroborating": 1,
+      "books_with_line": [
+        "Caesars"
+      ],
+      "corroborating_books": [
+        "Caesars"
+      ],
+      "excluded_outlier": "Caesars",
+      "excluded_line": 625
+    },
+    "factors": {
+      "barrel_pct": 0.057,
+      "hard_hit_pct": 0.39,
+      "sc_bbe": 141,
+      "season_rate": 0.0091,
+      "s_pa": 186,
+      "s_hr": 2,
+      "r_pa": 33,
+      "r_hr": 0,
+      "split_adj": 1.1005,
+      "hot_adj": 0.78,
+      "sc_adj": 0.9656,
+      "sp_adj": 1.0659,
+      "sp_data_missing": false,
+      "bp_adj": 0.9948,
+      "bp_data_missing": false,
+      "park_adj": 0.96,
+      "temp_adj": 1.0286,
+      "wind_adj": 1.0,
+      "game_ou": 9.0,
+      "proj_pa": 4.3,
       "per_pa_capped": false,
       "actual_pa": null
     },
