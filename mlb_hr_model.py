@@ -1110,7 +1110,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
             )
         gated_html = f'''<div class="gated-section">
   <h4>Gated Out — Diagnostic Only</h4>
-  <p>These picks passed raw edge ≥+5pp but failed the v4.6 max-odds gate. Not staked. Review to calibrate gate threshold.</p>
+  <p>These picks passed raw edge ≥+5pp but failed the v4.7 max-odds gate. Not staked. Review to calibrate gate threshold.</p>
   <div class="tw"><table>
     <thead><tr><th>Player</th><th>Book</th><th style="text-align:right">Odds</th><th style="text-align:right">Impl (devig)</th><th style="text-align:right">Edge</th><th>Gate failed</th></tr></thead>
     <tbody>{gated_rows}</tbody>
