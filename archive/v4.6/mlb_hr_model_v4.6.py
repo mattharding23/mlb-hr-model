@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MLB HR Prop Finder v4.7
+MLB HR Prop Finder v4.6
 ──────────────────────────────────────────────────────────────────────────────
 Model factors:
   • Season HR/PA rate (base, min 30 PA)
@@ -64,22 +64,14 @@ MAX_PROP_ODDS = 2500  # filter out longshot/alternate lines above this threshold
 # while max_odds accounted for essentially all of the gates' protective value.
 MAX_BET_ODDS = 500   # Bet tier requires American odds ≤ +500
 
-# v4.4 recalibration layer — ACTIVATED in v4.7 (pass-through identity v4.4 through v4.6).
-# Applied as: recal_gp = sigmoid(RECAL_A + RECAL_B * logit(model_gp)).
-# Fitted via the v4.6 checkpoint diagnostic 2026-09-01
-# (archive/diagnostics/v4.6_checkpoint_2026-09-01.md §3): logistic regression of
-# resolved v4.6 outcomes (0/1) on logit(model_prob), Newton-Raphson, on the
-# DEDUPED resolved sample (counts_toward_roi != False), n=3988.
-#   slope     RECAL_B = 0.6521  (SE 0.0790, 95% CI [0.497, 0.807] — excludes 1.0,
-#                                i.e. the raw model is overdispersed / too spread out)
-#   intercept RECAL_A = -0.7995 (SE 0.1600)
-# Effect: compresses predictions toward the empirical base rate (~10.5%), most
-# aggressively at the extremes — raw model_prob 0.30 -> ~0.206, 0.20 -> ~0.154,
-# 0.10 -> ~0.097. Expected to REDUCE Bet-tier volume, since nearly all current
-# Bet-tier picks sit in the over-confident 15%+ zone this pulls down hardest.
-# Re-fit at the next checkpoint once v4.7 has live outcome data of its own.
-RECAL_A = -0.7995   # intercept, log-odds space — fitted 2026-09-01 (deduped, n=3988)
-RECAL_B = 0.6521    # slope, log-odds space — <1.0 corrects overdispersion (95% CI [0.497, 0.807])
+# v4.4 recalibration layer (pass-through at launch — see VERSION_HISTORY.md).
+# RECAL_A=0.0, RECAL_B=1.0 -> sigmoid(0 + 1*logit(p)) == p, a mathematical
+# identity, so this has no effect on model output until re-fit. Re-fit after
+# ~50 resolved picks using the same logistic-recalibration method as the
+# 2026-07-18 diagnostic (archive/diagnostics/v4.3_diagnostic_2026-07-18.md),
+# which found intercept=-1.15, slope=0.40 on the retired v4.3 model.
+RECAL_A = 0.0   # intercept, log-odds space
+RECAL_B = 1.0   # slope — 1.0 = pass-through (no correction)
 
 # Corroboration constants kept for reference / future use but no longer gate picks.
 # Only one sportsbook (williamhill_us/Caesars) posts batter_home_runs at this
@@ -91,17 +83,16 @@ MULTI_BOOK_MAX_IMPLIED_SPREAD  = 0.03  # dormant
 # w = n / (n + k): continuous, never fully saturates, unlike the v4.4 hard-capped
 # linear weights it replaces. Larger k = more skepticism of a small raw sample.
 HOT_SHRINKAGE_K = 40   # hot_adj (L14 hotness) — weight on raw r_pa-based rate
-SC_SHRINKAGE_K  = 29   # sc_adj (Statcast) — weight on raw BBE-based barrel/hard-hit rates,
-                        # w = n / (n + k). RE-ANCHORED 2026-09-01 v4.6 checkpoint, 100 -> 29
-                        # (archive/diagnostics/v4.6_checkpoint_2026-09-01.md §5). The old
-                        # k=100 was calibrated against v4.5's SEASON-cumulative BBE
-                        # distribution (~200 for a half-season regular); v4.6 switched sc_adj
-                        # to a 14-day rolling window, whose live median BBE is 29 — so under
-                        # k=100 the median pick got only 29/(29+100) = 22.5% weight on its own
-                        # rolling Statcast reading. k=29 gives w = 29/(29+29) = ~50% weight at
-                        # that median. NB: "~50%-weight-at-the-median" is a design choice, not
-                        # a fitted value — revisit if the L14 BBE distribution shifts or a
-                        # later checkpoint argues for more/less trust in the raw reading.
+SC_SHRINKAGE_K  = 100  # sc_adj (Statcast) — weight on raw BBE-based barrel/hard-hit rates.
+                        # Chosen against v4.5's SEASON-cumulative BBE distribution (50-BBE
+                        # pipeline floor / ~200 half-season / 350+ full-time regular). v4.6
+                        # switched sc_adj's underlying data to a 14-day rolling window (see
+                        # SC_MIN_BBE below and VERSION_HISTORY.md v4.6 entry), which yields
+                        # much smaller per-player BBE counts (~20-40 for a regular over 14
+                        # days) than this constant was calibrated against. Left unchanged
+                        # pending a checkpoint on whether it needs revision for the new
+                        # window — see Step 3 report for the live BBE distribution under the
+                        # rolling window and its implied shrinkage weights.
 
 # v4.6 Statcast rework (see VERSION_HISTORY.md v4.6 entry;
 # archive/diagnostics/v4.6_phase1_statcast_refit_2026-08-11.md,
@@ -596,8 +587,8 @@ def run_model(batter, season, splits, hot, sp_stat, sp_splits, bp_splits,
     per_pa        = max(0.001, min(0.08, per_pa_raw))
     gp            = 1 - (1 - per_pa) ** pp
 
-    # v4.4 recalibration layer — active since v4.7 with fitted constants
-    # (see RECAL_A / RECAL_B definitions above). Was an identity pass-through v4.4-v4.6.
+    # v4.4 recalibration layer (pass-through at launch).
+    # RECAL_A=0, RECAL_B=1 -> pass-through. Re-fit after ~50 resolved picks.
     recal_log_odds = RECAL_A + RECAL_B * logit(gp)
     gp             = sigmoid(recal_log_odds)
 
@@ -1141,7 +1132,7 @@ def _build_section(results, date, has_odds, has_statcast, weather_count, has_key
   <tbody>{"".join(rows)}</tbody>
 </table></div>
 <div class="note">
-  <strong style="color:#94a3b8">v4.7 model:</strong>
+  <strong style="color:#94a3b8">v4.6 model:</strong>
   season HR/PA · splits (regressed) · hotness L14 (regressed) · {sc_note} ·
   SP HR rate (regressed, platoon-aware) · bullpen HR rate (regressed, platoon-aware) · park factor ({len(VENUES)} venues) · weather ·
   log-odds factor compounding.<br><br>
@@ -1161,7 +1152,7 @@ def build_report(results, date, has_odds, has_statcast, weather_count, has_key,
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v4.7 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
+<p class="sub">v4.6 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Generated {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
 {section}
 </body></html>"""
 
@@ -1185,7 +1176,7 @@ def append_to_combined(html_path, results, date, has_odds, has_statcast, weather
 <title>MLB HR Props — {date}</title>
 <style>{CSS}</style></head><body>
 <h1>⚾ MLB HR Prop Finder — {date}</h1>
-<p class="sub">v4.7 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
+<p class="sub">v4.6 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
 {tagged_section}
 </body></html>"""
         with open(html_path, "w", encoding="utf-8") as f:
@@ -1434,7 +1425,7 @@ def print_debug_summary(results, odds_map):
 # ──────────────────────────────────────────────────────────────────────────────
 
 def main():
-    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4.7")
+    p = argparse.ArgumentParser(description="MLB HR Prop Finder v4.6")
     p.add_argument("-d","--date",      default=datetime.today().strftime("%Y-%m-%d"))
     p.add_argument("-k","--key",       default=os.environ.get("ODDS_API_KEY",""))
     p.add_argument("--min-edge",       type=float, default=0.0)
@@ -1460,7 +1451,7 @@ def main():
     yr   = date.split("-")[0]
     d14  = (datetime.strptime(date, "%Y-%m-%d") - timedelta(days=14)).strftime("%Y-%m-%d")
 
-    print(f"\n⚾  MLB HR Prop Finder v4.7  —  {date}")
+    print(f"\n⚾  MLB HR Prop Finder v4.6  —  {date}")
     print("─" * 50)
 
     # Schedule

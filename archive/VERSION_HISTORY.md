@@ -491,7 +491,7 @@ entries above 80).
 
 ---
 
-## v4.6 (Aug 12, 2026 – present)
+## v4.6 (Aug 12, 2026 – Sep 1, 2026)
 
 **Status: finalized, Phases 1-3 shipped, Phase 4 (`league_adj`) deliberately held — see below.**
 `archive/v4.5/` holds the complete pre-release snapshot (`mlb_hr_model_v4.5.py`,
@@ -669,5 +669,124 @@ Same standard as v4.5's launch:
    stable enough read to act on.
 5. **`bp_data_missing`** — ~11% of the `model_prob>15%` population in the v4.5 checkpoint had no
    bullpen split data (defaults to league average), a structural gap not addressed by this release.
+
+---
+
+## v4.7 (Sep 1, 2026 – present)
+
+**Status: shipped. Exactly two changes — recalibration layer activated, `SC_SHRINKAGE_K`
+re-anchored. Nothing else moved (`SC_GAMMA`, edge tier cutoffs, `MAX_BET_ODDS`, the
+`sc_adj`/`hot_adj` interaction rule, and `league_adj` all deliberately untouched — see below).**
+
+`archive/v4.6/` holds the pre-release snapshot (`mlb_hr_model_v4.6.py`, `check_results_v4.6.py`,
+`picks_v4.6.json` — 5,016 picks / 4,990 resolved, 2026-08-12 – 2026-09-01, plus a `README.md`
+tag). `results/picks.json` reset to `[]` and `results/reset_date.txt` set to `2026-09-01` on
+**2026-09-01 12:40 PDT (2026-09-01T19:40Z)**, launch commit **`__V47_LAUNCH_COMMIT__`**, for a
+clean v4.7 tracking window.
+
+**Trigger:** the end-of-life v4.6 checkpoint `archive/diagnostics/v4.6_checkpoint_2026-09-01.md`
+(5,016-record live sample, 4,990 resolved). Its headline reconciled exactly with the dashboard
+(Bet 11-72 / −0.39u / −23.9% ROI / +1 streak). Two of its findings were rated strong enough to
+act on; every other finding was explicitly flagged noisy / sample-limited and is held for the
+post-recal checkpoint.
+
+### Change 1 — recalibration layer activated (checkpoint §3)
+
+`RECAL_A` / `RECAL_B` were a mathematical identity pass-through (`0.0` / `1.0`) from v4.4 through
+v4.6. Now fitted:
+
+- **Method:** logistic regression `logit(P_HR) = RECAL_A + RECAL_B · logit(model_prob)`,
+  Newton–Raphson MLE, observed-information SEs — the same logistic-recalibration method as the
+  2026-07-18 v4.3 diagnostic.
+- **Sample:** resolved v4.6 picks, **deduplicated** (`counts_toward_roi != False`, which drops
+  1,002 earlier-window duplicate rows — a 20% dup rate under v4.6's three windows), **n = 3,988**,
+  empirical base rate 10.53% (420 HR).
+- **Fit:** **`RECAL_A = −0.7995`** (SE 0.1600), **`RECAL_B = 0.6521`** (SE 0.0790, 95% CI
+  **[0.497, 0.807]**). Full precision: `RECAL_A = −0.7994726868`, `RECAL_B = 0.6520988645`
+  (stored to 4 dp in code). Slope CI excludes 1.0 → the raw model is overdispersed (probability
+  spread ~1.5× too wide); negative intercept → a further multiplicative overprediction on top.
+- **For reference** (not used): the all-resolved / non-deduped fit is `−0.8493` / `0.6345`. The
+  deduped fit was chosen per the checkpoint's recommendation — the 20% duplicate rate biases the
+  non-deduped standard errors low.
+
+**Expected effect:** compresses predictions toward the ~10.5% empirical base rate, most
+aggressively at the extremes — raw `model_prob` 0.30 → ~0.206, 0.20 → ~0.154, 0.15 → ~0.127,
+0.10 → ~0.097, 0.05 → ~0.062. **Bet-tier volume should drop:** all 83 v4.6 Bet picks sat at
+`model_prob ≥ 0.206` (avg 0.271), the zone this pulls down hardest, so many will no longer clear
+the +5pp edge threshold. Pick *ranking* is unchanged — the transform is monotonic, only levels
+move.
+
+### Change 2 — `SC_SHRINKAGE_K` re-anchored 100 → 29 (checkpoint §5)
+
+`sc_adj`'s empirical-Bayes shrinkage weight is `w = n / (n + k)` on the L14 batted-ball-event
+count `n`. `k = 100` was calibrated against v4.5's **season-cumulative** BBE scale (~200 for a
+half-season regular); v4.6 switched `sc_adj` to a **14-day rolling window** but left `k` unchanged
+(flagged as open item #2 in the v4.6 entry above).
+
+- Live v4.6 L14 BBE distribution (4,912 resolved picks): min 3 / p25 21 / **median 29** / p75 36
+  / max 57.
+- Under `k = 100` the median pick got only `29/(29+100)` = **22.5%** weight on its own rolling
+  reading (~78% pulled to league average).
+- `k = 29` sets `w = 29/(29+29)` = **50%** weight at that median.
+- **"~50%-weight-at-the-median" is a design choice, not a fitted value** (stated in the code
+  comment and checkpoint §5). `SC_CAP` / `SC_FLOOR` (±1.07 / ±0.93) are unchanged, so Statcast's
+  *maximum* influence on a pick is identical to v4.6 — only how quickly a given BBE sample reaches
+  the cap/floor changed.
+
+### What was NOT changed this release (and why)
+
+- **`SC_GAMMA` (0.30)** — checkpoint §4: the marginal Statcast signal is still sign-unstable
+  across specification (OLS partial association −0.13, p=0.009; logistic offset spec +0.89,
+  p=0.11) with R² ≈ 0. No defensible action on this evidence.
+- **Edge tier cutoffs (`Bet` > +5pp / `Skip` < −4pp)** — deferred: recalibration shifts which
+  picks land in each tier, so retuning the cutoffs now would be fitting to a pick-probability
+  distribution that is about to move. First task for the post-recal checkpoint.
+- **`MAX_BET_ODDS` gate (+500)** — checkpoint §7: "gated picks outperform" recurred (n=184) but is
+  driven by longshot-payout variance in the +700-and-longer tail; the decision-relevant +501–700
+  band lost 52.8% flat-1u. No case to loosen.
+- **`sc_adj`/`hot_adj` interaction rule** — checkpoint §9: only 6 live picks plausibly blocked
+  (3–3, ROI inflated by longshot payouts). The pre-launch 6/6-losses record has eroded, but n=6
+  is far too small to revise the rule.
+- **`league_adj` / post-ASB step-change** — checkpoint §6: a corrected league baseline explains at
+  most ~1/4–1/3 of the aggregate overprediction and less of the high-bucket gap; the recal layer
+  should absorb most of the remainder. Revisit only if a post-recal checkpoint shows residual
+  overprediction the recal cannot explain. (The v4.6 Phase 4 short-window-length sensitivity is
+  also still unresolved.)
+
+### Release validation
+
+- **Diff vs `archive/v4.6/mlb_hr_model_v4.6.py`** — 8 hunks, nothing else: `RECAL_A`, `RECAL_B`,
+  `SC_SHRINKAGE_K`, their three surrounding comment blocks, and 5 version-string bumps (docstring
+  header, argparse description, console banner, both HTML report `<p class="sub">` lines, and the
+  "v4.X model:" report footer). `SC_GAMMA` / `SC_CAP` / `SC_FLOOR` / `MAX_BET_ODDS` / the tier
+  cutoff line / the interaction-rule line all confirmed byte-identical.
+- **Compile:** `python3 -m py_compile mlb_hr_model.py check_results.py` clean.
+- **RECAL non-identity check:** through the shipped constants, 0.20 → 0.154 and 0.30 → 0.206 —
+  compressed toward the base rate, not unchanged.
+- **`SC_SHRINKAGE_K` math:** `29/(29+29)` = 0.500 exactly at the median BBE (vs 0.225 under
+  `k=100`).
+- **Synthetic end-to-end `run_model()`** (no committed test harness or live spot-check tool
+  exists in this repo): ran the current module against the archived v4.6 module on identical
+  fabricated inputs across 6 scenarios — `game_prob` compressed in every case (e.g. 0.313 → 0.212,
+  0.338 → 0.225), pick *ranking* identical under both versions, and `sc_adj` moves further off
+  neutral per BBE under `k=29` as intended.
+- **No live-slate run** — the model was not executed against the 2026-09-01 slate (would require
+  network + an Odds API key and would write into the freshly-reset tracker). First live v4.7 picks
+  come from the next scheduled GitHub Actions run.
+
+### Open items carried into the next checkpoint
+
+1. **`RECAL_A` / `RECAL_B`** — fitted on a single ~3-week v4.6 window (n=3,988 deduped). Re-fit
+   once v4.7 has its own resolved outcomes; watch whether the slope drifts back toward 1.0 as the
+   independent sample grows.
+2. **`SC_GAMMA`** — still an unanchored placeholder (v4.6 open item #1), now with a checkpoint's
+   worth of sign-unstable evidence against a positive marginal effect. Revisit with v4.7 outcome
+   data.
+3. **`SC_SHRINKAGE_K = 29`** — anchored to "50% weight at the current median BBE", not fitted.
+   Re-check if the L14 BBE distribution shifts (season wind-down, roster churn).
+4. **Edge tier cutoffs** — deliberately not retuned this release; the recal layer moves the
+   distribution they sit on. First real task for the post-recal checkpoint.
+5. **Odds-cap gate protective value / `league_adj` / `bp_data_missing`** — unchanged v4.6 open
+   items #3–#5, plus the Phase 4 `league_adj` window-length sensitivity still unresolved.
 
 ---
