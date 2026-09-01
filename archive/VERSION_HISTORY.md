@@ -681,8 +681,9 @@ re-anchored. Nothing else moved (`SC_GAMMA`, edge tier cutoffs, `MAX_BET_ODDS`, 
 `archive/v4.6/` holds the pre-release snapshot (`mlb_hr_model_v4.6.py`, `check_results_v4.6.py`,
 `picks_v4.6.json` — 5,016 picks / 4,990 resolved, 2026-08-12 – 2026-09-01, plus a `README.md`
 tag). `results/picks.json` reset to `[]` and `results/reset_date.txt` set to `2026-09-01` on
-**2026-09-01 12:40 PDT (2026-09-01T19:40Z)**, launch commit **`__V47_LAUNCH_COMMIT__`**, for a
-clean v4.7 tracking window.
+**2026-09-01 12:40 PDT (2026-09-01T19:40Z)**, launch commit **`d6685d2`**
+(`v4.7: activate recalibration layer + re-anchor SC_SHRINKAGE_K`), for a clean v4.7 tracking
+window.
 
 **Trigger:** the end-of-life v4.6 checkpoint `archive/diagnostics/v4.6_checkpoint_2026-09-01.md`
 (5,016-record live sample, 4,990 resolved). Its headline reconciled exactly with the dashboard
