@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MLB HR Props — 2026-10-13</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+     background:#0f1117;color:#e2e8f0;padding:24px;}
+h1{font-size:18px;font-weight:600;margin-bottom:4px;}
+.sub{font-size:12px;color:#64748b;margin-bottom:20px;}
+.g5{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:16px;}
+.metric{background:#1e293b;border-radius:8px;padding:12px 14px;}
+.ml{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+.mv{font-size:20px;font-weight:600;color:#e2e8f0;} .mv.g{color:#22c55e;}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;color:#64748b;}
+.tw{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{padding:6px 8px;text-align:left;color:#64748b;font-weight:500;font-size:10.5px;
+   text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #1e293b;white-space:nowrap;}
+td{padding:6px 8px;border-bottom:1px solid #1a2234;vertical-align:top;}
+tr:hover td{background:#1e293b;}
+.badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;}
+.bet{background:#166534;color:#86efac;} .lean{background:#1c3a2a;color:#4ade80;} .skip{background:#3b0f0f;color:#f87171;} .gated{background:#1c2a3a;color:#93c5fd;}
+.gated-section{margin-top:24px;padding:14px 18px;background:#0f1a2a;border:1px solid #1e3a5f;border-radius:8px;}
+.gated-section h4{font-size:13px;color:#60a5fa;margin-bottom:6px;font-weight:600;}
+.gated-section p{font-size:11px;color:#475569;margin-bottom:10px;}
+.factors{font-size:10px;color:#475569;line-height:1.7;margin-top:3px;}
+.note{font-size:12px;color:#64748b;margin-top:20px;padding:14px;background:#1e293b;border-radius:8px;line-height:1.8;}
+section+section{border-top:2px solid #1e293b;margin-top:40px;padding-top:30px;}
+.wh{font-size:15px;font-weight:600;color:#94a3b8;margin-bottom:14px;}
+.perf-panel{background:#1e293b;border-radius:8px;padding:14px 18px;margin-bottom:16px;}
+.perf-panel h3{font-size:13px;color:#94a3b8;margin-bottom:10px;font-weight:600;}
+.perf-row{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;margin-bottom:8px;}
+.perf-item{display:flex;flex-direction:column;gap:2px;}
+.perf-label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.04em;}
+.perf-value{font-size:14px;font-weight:600;color:#e2e8f0;}
+.perf-value.pos{color:#22c55e;} .perf-value.neg{color:#f87171;}
+.cal-table{font-size:11px;margin-top:8px;border-collapse:collapse;}
+.cal-table th,.cal-table td{padding:3px 8px;text-align:right;border:1px solid #334155;}
+.cal-table th{color:#64748b;font-weight:500;font-size:10px;}
+.top5{background:#1e293b;border-radius:8px;padding:14px 18px;margin-bottom:16px;}
+.top5 h3{font-size:13px;color:#94a3b8;margin-bottom:10px;font-weight:600;letter-spacing:.02em;}
+.top5-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #1a2234;}
+.top5-row:last-child{border-bottom:none;}
+.top5-rank{font-size:11px;color:#475569;width:16px;flex-shrink:0;text-align:right;}
+.top5-name{font-size:13px;font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.top5-prob{font-size:11px;color:#94a3b8;width:44px;text-align:right;flex-shrink:0;}
+.top5-odds{font-size:12px;font-weight:600;width:50px;text-align:right;flex-shrink:0;}
+.top5-edge{font-size:13px;font-weight:700;width:56px;text-align:right;flex-shrink:0;}
+.top5-badge{width:44px;text-align:right;flex-shrink:0;}
+</style></head><body>
+<h1>⚾ MLB HR Prop Finder — 2026-10-13</h1>
+<p class="sub">v4.7 · hotness · bullpen · weather · Statcast &nbsp;|&nbsp; Combined daily report</p>
+<!-- window:all -->
+<section>
+<div class="perf-panel">
+  <h3>Season Performance</h3>
+  <div class="perf-row">
+    <div class="perf-item"><span class="perf-label">Bet record</span><span class="perf-value">0-5</span></div>
+    <div class="perf-item"><span class="perf-label">Net units</span><span class="perf-value neg">-0.06u</span></div>
+    <div class="perf-item"><span class="perf-label">ROI</span><span class="perf-value neg">-100.0%</span></div>
+    <div class="perf-item"><span class="perf-label">Streak</span><span class="perf-value neg">-5 streak</span></div>
+    <div class="perf-item"><span class="perf-label">Tracked</span><span class="perf-value">9042</span></div>
+  </div>
+  <table class="cal-table">
+              <thead><tr><th>Prob bucket</th><th>Pred avg</th><th>Actual</th><th>n</th></tr></thead>
+              <tbody><tr><td>0-5%</td><td>3.1%</td><td>2.5%</td><td>881</td></tr><tr><td>5-10%</td><td>7.9%</td><td>7.8%</td><td>3173</td></tr><tr><td>10-15%</td><td>12.2%</td><td>12.7%</td><td>3537</td></tr><tr><td>15-20%</td><td>16.9%</td><td>16.8%</td><td>1237</td></tr><tr><td>20-99%</td><td>20.9%</td><td>28.5%</td><td>214</td></tr></tbody>
+            </table>
+</div><div class="g5">
+  <div class="metric"><div class="ml">Players</div><div class="mv">18</div></div>
+  <div class="metric"><div class="ml">Odds matched</div><div class="mv" style="color:#f87171">0/18</div></div>
+  <div class="metric"><div class="ml">Raw edge ≥5pp</div><div class="mv">0</div></div>
+  <div class="metric"><div class="ml">Bet tier</div><div class="mv g">0</div></div>
+  <div class="metric"><div class="ml">Avg prob</div><div class="mv">8.7%</div></div>
+  <div class="metric"><div class="ml">Weather</div><div class="mv">0</div></div>
+</div>
+<div class="legend">
+  <span>🔥 Hot ≥+20%</span><span>↗ Warm +8–19%</span>
+  <span>↘ Cool −10–22%</span><span>🧊 Cold ≤−22%</span>
+  <span style="margin-left:8px">↑ raises prob &nbsp; ↓ lowers prob</span>
+  <span>⚠ proj = lineup not yet confirmed</span>
+</div>
+<div class="tw"><table>
+  <thead><tr>
+    <th>Player &amp; factors</th><th>Opp pitcher</th><th>Park</th>
+    <th>#</th><th>PA</th><th style="text-align:right">Season</th>
+    <th style="text-align:right">Barrel%</th><th style="text-align:right">Model %</th>
+    <th style="text-align:right">Fair line</th><th style="text-align:right">Best line</th><th>Book</th><th style="text-align:right">Edge</th><th>Rec</th>
+  </tr></thead>
+  <tbody>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Junior Caminero</span>
+            <div class="factors"><span style="color:#f87171">↓vs LHP -17%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -28%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -5%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8">4.5</td>
+          <td style="text-align:right">42/702<div style="color:#64748b;font-size:10px">6.0%/PA</div></td>
+          <td style="text-align:right">10.0%<div style="font-size:10px;color:#64748b">50% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#22c55e">13.6%</td>
+          <td style="text-align:right;color:#64748b">+634</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Nathaniel Lowe</span>
+            <div class="factors"><span style="color:#22c55e">↑vs RHP +7%</span>&nbsp;·&nbsp;<span style="color:#22c55e">↑SP +10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -6%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8">4.3</td>
+          <td style="text-align:right">17/429<div style="color:#64748b;font-size:10px">4.0%/PA</div></td>
+          <td style="text-align:right">0.0%<div style="font-size:10px;color:#64748b">50% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#22c55e">13.4%</td>
+          <td style="text-align:right;color:#64748b">+646</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Victor Mesa Jr.</span>
+            <div class="factors"><span style="color:#f87171">↓vs LHP -22%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8">4.4</td>
+          <td style="text-align:right">14/262<div style="color:#64748b;font-size:10px">5.3%/PA</div></td>
+          <td style="text-align:right">12.5%<div style="font-size:10px;color:#64748b">25% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#22c55e">12.9%</td>
+          <td style="text-align:right;color:#64748b">+672</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Chase DeLauter</span>
+            <div class="factors"><span style="color:#22c55e">↑vs RHP +11%</span>&nbsp;·&nbsp;<span style="color:#22c55e">↑SP +10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -6%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8">4.5</td>
+          <td style="text-align:right">16/559<div style="color:#64748b;font-size:10px">2.9%/PA</div></td>
+          <td style="text-align:right">4.2%<div style="font-size:10px;color:#64748b">50% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#22c55e">11.4%</td>
+          <td style="text-align:right;color:#64748b">+777</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Yandy Díaz</span>
+            <div class="factors"><span style="color:#22c55e">↑vs LHP +13%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -28%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -5%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8">4.7</td>
+          <td style="text-align:right">22/686<div style="color:#64748b;font-size:10px">3.2%/PA</div></td>
+          <td style="text-align:right">7.7%<div style="font-size:10px;color:#64748b">46% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#22c55e">11.3%</td>
+          <td style="text-align:right;color:#64748b">+786</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Travis Bazzana</span>
+            <div class="factors"><span style="color:#22c55e">↑vs RHP +15%</span>&nbsp;·&nbsp;<span style="color:#22c55e">↑SP +10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -6%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">6</td>
+          <td style="text-align:center;color:#94a3b8">4.1</td>
+          <td style="text-align:right">15/517<div style="color:#64748b;font-size:10px">2.9%/PA</div></td>
+          <td style="text-align:right">6.2%<div style="font-size:10px;color:#64748b">38% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#22c55e">11.1%</td>
+          <td style="text-align:right;color:#64748b">+798</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Jonathan Aranda</span>
+            <div class="factors"><span style="color:#f87171">↓vs LHP -25%</span>&nbsp;·&nbsp;<span style="color:#22c55e">↑Statcast (brl 20.0%) +7%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8">4.6</td>
+          <td style="text-align:right">22/668<div style="color:#64748b;font-size:10px">3.3%/PA</div></td>
+          <td style="text-align:right">20.0%<div style="font-size:10px;color:#64748b">73% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#f59e0b">9.9%</td>
+          <td style="text-align:right;color:#64748b">+913</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Jo Adell</span>
+            <div class="factors"><span style="color:#f87171">↓vs RHP -25%</span>&nbsp;·&nbsp;<span style="color:#22c55e">↑Statcast (brl 14.3%) +5%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -9%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -7%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8">4.4</td>
+          <td style="text-align:right">23/660<div style="color:#64748b;font-size:10px">3.5%/PA</div></td>
+          <td style="text-align:right">14.3%<div style="font-size:10px;color:#64748b">43% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#f59e0b">9.8%</td>
+          <td style="text-align:right;color:#64748b">+924</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Brayan Rocchio</span>
+            <div class="factors"><span style="color:#f87171">↓SP -9%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8">3.8</td>
+          <td style="text-align:right">15/592<div style="color:#64748b;font-size:10px">2.5%/PA</div></td>
+          <td style="text-align:right">0.0%<div style="font-size:10px;color:#64748b">15% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#f59e0b">8.6%</td>
+          <td style="text-align:right;color:#64748b">+1065</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Austin Hedges</span>
+            <div class="factors"><span style="color:#f87171">↓SP -9%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -7%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8">3.9</td>
+          <td style="text-align:right">6/247<div style="color:#64748b;font-size:10px">2.4%/PA</div></td>
+          <td style="color:#334155;text-align:right">—</td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#f59e0b">8.5%</td>
+          <td style="text-align:right;color:#64748b">+1081</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Liam Hicks</span>
+            <div class="factors"><span style="color:#f87171">↓vs LHP -25%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8">3.9</td>
+          <td style="text-align:right">18/554<div style="color:#64748b;font-size:10px">3.2%/PA</div></td>
+          <td style="text-align:right">10.0%<div style="font-size:10px;color:#64748b">20% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#f59e0b">8.5%</td>
+          <td style="text-align:right;color:#64748b">+1082</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">José Ramírez</span>
+            <div class="factors"><span style="color:#f87171">↓vs RHP -9%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -9%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8">4.6</td>
+          <td style="text-align:right">12/544<div style="color:#64748b;font-size:10px">2.2%/PA</div></td>
+          <td style="text-align:right">5.6%<div style="font-size:10px;color:#64748b">44% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#f59e0b">8.3%</td>
+          <td style="text-align:right;color:#64748b">+1100</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Petey Halpin</span>
+            <div class="factors"><span style="color:#22c55e">↑SP +10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -6%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">7</td>
+          <td style="text-align:center;color:#94a3b8">4.0</td>
+          <td style="text-align:right">4/195<div style="color:#64748b;font-size:10px">2.1%/PA</div></td>
+          <td style="text-align:right">0.0%<div style="font-size:10px;color:#64748b">50% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#f59e0b">8.1%</td>
+          <td style="text-align:right;color:#64748b">+1133</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Jonny DeLuca</span>
+            <div class="factors"><span style="color:#f87171">↓vs LHP -25%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -28%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -5%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8">4.3</td>
+          <td style="text-align:right">11/370<div style="color:#64748b;font-size:10px">3.0%/PA</div></td>
+          <td style="text-align:right">0.0%<div style="font-size:10px;color:#64748b">31% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#f59e0b">7.8%</td>
+          <td style="text-align:right;color:#64748b">+1175</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Ben Williamson</span>
+            <div class="factors"><span style="color:#f87171">↓vs LHP -16%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -28%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -5%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">7</td>
+          <td style="text-align:center;color:#94a3b8">4.0</td>
+          <td style="text-align:right">3/286<div style="color:#64748b;font-size:10px">1.0%/PA</div></td>
+          <td style="color:#334155;text-align:right">—</td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#e2e8f0">4.2%</td>
+          <td style="text-align:right;color:#64748b">+2307</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Steven Kwan</span>
+            <div class="factors"><span style="color:#22c55e">↑vs RHP +26%</span>&nbsp;·&nbsp;<span style="color:#22c55e">↑SP +10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓BP -6%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Peralta (R)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8">4.7</td>
+          <td style="text-align:right">3/637<div style="color:#64748b;font-size:10px">0.5%/PA</div></td>
+          <td style="text-align:right">0.0%<div style="font-size:10px;color:#64748b">10% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#e2e8f0">4.1%</td>
+          <td style="text-align:right;color:#64748b">+2339</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Taylor Walls</span>
+            <div class="factors"><span style="color:#22c55e">↑vs LHP +22%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓SP -28%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8">3.8</td>
+          <td style="text-align:right">2/433<div style="color:#64748b;font-size:10px">0.5%/PA</div></td>
+          <td style="text-align:right">0.0%<div style="font-size:10px;color:#64748b">0% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#e2e8f0">3.1%</td>
+          <td style="text-align:right;color:#64748b">+3173</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr>
+        <tr style="">
+          <td style="min-width:155px;max-width:220px;">
+            <span style="font-weight:600">Chandler Simpson</span>
+            <div class="factors"><span style="color:#f87171">↓SP -10%</span>&nbsp;·&nbsp;<span style="color:#f87171">↓park -7%</span></div>
+          </td>
+          <td style="color:#94a3b8;white-space:nowrap;font-size:11px">Messick (L)</td>
+          <td style="font-size:11px;color:#64748b;white-space:nowrap">Tropicana</td>
+          <td style="text-align:center">6</td>
+          <td style="text-align:center;color:#94a3b8">4.1</td>
+          <td style="text-align:right">0/612<div style="color:#64748b;font-size:10px">0.0%/PA</div></td>
+          <td style="text-align:right">0.0%<div style="font-size:10px;color:#64748b">25% HH</div></td>
+          <td style="text-align:right;font-weight:700;font-size:13px;color:#e2e8f0">1.2%</td>
+          <td style="text-align:right;color:#64748b">+8002</td>
+          <td style="text-align:right"><span style="color:#475569">—</span></td><td><span style="color:#475569">—</span></td><td style="text-align:right;font-weight:700;color:#64748b">—</td><td><span class="badge skip">Skip</span></td>
+        </tr></tbody>
+</table></div>
+<div class="note">
+  <strong style="color:#94a3b8">v4.7 model:</strong>
+  season HR/PA · splits (regressed) · hotness L14 (regressed) · Statcast (L14 rolling): combined barrel%+hard-hit% quality-of-contact term, equal-weighted, exp 0.3 (placeholder, cap 1.07). ·
+  SP HR rate (regressed, platoon-aware) · bullpen HR rate (regressed, platoon-aware) · park factor (29 venues) · weather ·
+  log-odds factor compounding.<br><br>
+  <strong style="color:#94a3b8">Lines:</strong> Lines fetched — no book matches for this window. Edge = model − implied. Bet ≥+5pp · Skip ≤−4pp.
+</div>
+
+</section>
+<!-- /window:all -->
+</body></html>
